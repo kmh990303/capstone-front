@@ -1,3 +1,5 @@
+'use client';
+
 import { useAuthenticatedFetch } from "@/hooks/useAuthenticatedFetch";
 
 interface LoginResponse {

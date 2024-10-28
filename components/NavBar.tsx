@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import NavLogo from "@/images/navLogo.png";
+import NavLogo from "@/images/navLogo2.png";
 
 import Image from "next/image";
 
@@ -20,7 +20,7 @@ const NavBar: React.FC = () => {
       <Image
         src={NavLogo}
         alt="NavLogo"
-        className="ml-10 cursor-pointer"
+        className="ml-10 cursor-pointer w-[12rem]"
         onClick={handleLogoClick}
       />
     </menu>

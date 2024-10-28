@@ -76,3 +76,61 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.background {
+  background-image: url('/backImage.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.my-text {
+  font-family: 'Pretendard', sans-serif; 
+  font-size: 30px; 
+  font-weight: 800; 
+  line-height: 36.01px; 
+  letter-spacing: -0.03em; 
+  text-align: left; 
+}
+
+.my-text2 {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: -0.03em;
+  text-align: left;
+
+}
+
+.input-field {
+  background-color: #F6F6F6;
+}
+
+.input-text {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.6px;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+.loginButton {
+  background-color: #8949FF;
+  font-family: 'Pretendard';
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+.smallButton {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.2px;
+  letter-spacing: -0.03em;
+  text-align: right;
+}
