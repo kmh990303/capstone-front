@@ -92,17 +92,26 @@ export function CardForm() {
               />
             </div>
             <CardFooter className="flex flex-col justify-center items-center m-2 px-2">
-              <button
+              <motion.button
                 type="submit"
                 className="loginButton rounded-lg w-full text-white py-4"
+                whileHover={{ scale: 1.05 }}
               >
                 로그인
-              </button>
+              </motion.button>
               <div className="flex justify-between w-full px-2 mt-4">
-                <button className="smallButton">회원가입</button>
-                <button className="smallButton">
+                <motion.button
+                  className="smallButton"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  회원가입
+                </motion.button>
+                <motion.button
+                  className="smallButton"
+                  whileHover={{ scale: 1.05 }}
+                >
                   아이디 &middot; 비밀번호 찾기
-                </button>
+                </motion.button>
               </div>
             </CardFooter>
           </div>
