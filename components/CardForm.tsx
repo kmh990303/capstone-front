@@ -1,15 +1,12 @@
 "use client";
 
+import { motion } from "framer-motion";
 import {
-  Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "./ui/button";
-import { Input } from "@/components/ui/input";
 
 import Image from "next/image";
 import ModalLogo from "@/images/ModalLogo2.png";
@@ -38,21 +35,24 @@ export function CardForm() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setUserInfo((prevState) => {
-      return {
-        ...prevState,
-        [name]: value,
-      };
-    });
+    setUserInfo((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   return (
-    <Card className="w-[35rem] h-[35rem] mx-auto">
+    <motion.div
+      className="w-[35rem] h-[35rem] mx-auto bg-white shadow-xl rounded-md"
+      initial={{ opacity: 0, y: 50 }} // 초기 상태
+      animate={{ opacity: 1, y: 0 }} // 애니메이션 중 상태
+      exit={{ opacity: 0, y: 50 }} // 종료 상태
+      transition={{ duration: 0.5 }} // 애니메이션 지속 시간
+    >
       <CardHeader>
         <CardTitle>
           <Image src={ModalLogo} alt="logo" className="w-20rem mx-auto m-1" />
         </CardTitle>
-        {/* <CardDescription>Deploy your new project in one-click.</CardDescription> */}
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit}>
@@ -72,7 +72,7 @@ export function CardForm() {
                 type="email"
                 name="email"
                 placeholder="이메일을 입력해 주세요."
-                className="input-text outline-none h-full border-gray-100 flex w-full bg-gray-100 rounded-md px-2 py-1 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground  focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                className="input-text outline-none h-full border-gray-100 flex w-full bg-gray-100 rounded-md px-2 py-1 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 value={userInfo.email}
                 onChange={handleChange}
               />
@@ -86,7 +86,7 @@ export function CardForm() {
                 type="password"
                 name="password"
                 placeholder="비밀번호를 입력해 주세요."
-                className="input-text outline-none h-full border-gray-100 flex w-full bg-gray-100 rounded-md px-2 py-1 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground  focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                className="input-text outline-none h-full border-gray-100 flex w-full bg-gray-100 rounded-md px-2 py-1 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 value={userInfo.password}
                 onChange={handleChange}
               />
@@ -108,6 +108,6 @@ export function CardForm() {
           </div>
         </form>
       </CardContent>
-    </Card>
+    </motion.div>
   );
 }
