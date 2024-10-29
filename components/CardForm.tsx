@@ -31,6 +31,20 @@ export function CardForm() {
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [isValidEmail, setIsValidEmail] = useState<boolean>(false);
+  const [isValidPassword, setIsValidPassword] = useState<boolean>(false);
+
+  const validateSubmit = isLoading || !isValidEmail || !isValidPassword;
+
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,6}$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePassword = (password: string) => {
+    const passwordRegex = /^[A-Za-z\d!@#$%^&*]{8,}$/;
+    return passwordRegex.test(password);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -55,6 +69,22 @@ export function CardForm() {
       ...prevState,
       [name]: value,
     }));
+
+    if (name === "email") {
+      if (validateEmail(userInfo.email)) {
+        setIsValidEmail(true);
+      } else {
+        setIsValidEmail(false);
+      }
+    }
+
+    if (name === "password") {
+      if (validatePassword(userInfo.password)) {
+        setIsValidPassword(true);
+      } else {
+        setIsValidPassword(false);
+      }
+    }
   };
 
   return (
@@ -108,43 +138,40 @@ export function CardForm() {
               />
             </div>
             <CardFooter className="flex flex-col justify-center items-center m-2 px-2">
-              <motion.button
+              <button
                 type="submit"
                 style={{
-                  backgroundColor: isLoading ? "#6536BF" : "#8949FF",
-                  opacity: isLoading ? 0.8 : 1,
+                  backgroundColor: validateSubmit ? "#6536BF" : "#8949FF",
+                  opacity: validateSubmit ? 0.4 : 1,
                 }}
                 className="loginButton rounded-lg w-full text-white py-4 flex justify-center items-center"
-                whileHover={{ scale: 1.05 }}
-                disabled={isLoading}
+                disabled={validateSubmit}
               >
                 {isLoading ? (
                   <MoonLoader color="#FFFFFF" size={20} />
                 ) : (
                   "로그인"
                 )}
-              </motion.button>
+              </button>
               <div className="flex justify-between w-full px-2 mt-4">
-                <motion.button
+                <button
                   className="smallButton"
-                  whileHover={{ scale: 1.05 }}
                   style={{
                     opacity: isLoading ? 0.5 : 1,
                   }}
                   disabled={isLoading}
                 >
                   회원가입
-                </motion.button>
-                <motion.button
+                </button>
+                <button
                   className="smallButton"
-                  whileHover={{ scale: 1.05 }}
                   style={{
                     opacity: isLoading ? 0.5 : 1,
                   }}
                   disabled={isLoading}
                 >
                   아이디 &middot; 비밀번호 찾기
-                </motion.button>
+                </button>
               </div>
             </CardFooter>
           </div>
