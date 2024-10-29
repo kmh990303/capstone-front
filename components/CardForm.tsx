@@ -37,7 +37,7 @@ export function CardForm() {
   const validateSubmit = isLoading || !isValidEmail || !isValidPassword;
 
   const validateEmail = (email: string) => {
-    const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,6}$/;
+    const emailRegex = /^[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]+$/;
     return emailRegex.test(email);
   };
 
