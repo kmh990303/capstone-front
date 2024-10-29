@@ -16,7 +16,7 @@ import emailImage from "@/images/email.png";
 import { MoonLoader } from "react-spinners";
 
 import { useAuth } from "@/api/useAuth";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface userInput {
   email: string;
@@ -71,21 +71,18 @@ export function CardForm() {
     }));
 
     if (name === "email") {
-      if (validateEmail(userInfo.email)) {
-        setIsValidEmail(true);
-      } else {
-        setIsValidEmail(false);
-      }
+      setIsValidEmail(validateEmail(value));
     }
 
     if (name === "password") {
-      if (validatePassword(userInfo.password)) {
-        setIsValidPassword(true);
-      } else {
-        setIsValidPassword(false);
-      }
+      setIsValidPassword(validatePassword(value));
     }
   };
+
+  useEffect(() => {
+    setIsValidEmail(validateEmail(userInfo.email));
+    setIsValidPassword(validatePassword(userInfo.password));
+  }, [userInfo.email, userInfo.password]);
 
   return (
     <motion.div
