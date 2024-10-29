@@ -13,6 +13,8 @@ import ModalLogo from "@/images/ModalLogo2.png";
 import lockImage from "@/images/lock2.png";
 import emailImage from "@/images/email.png";
 
+import { MoonLoader } from "react-spinners";
+
 import { useAuth } from "@/api/useAuth";
 import { useState } from "react";
 
@@ -27,10 +29,24 @@ export function CardForm() {
     email: "",
     password: "",
   });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(userInfo);
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const data = await login(userInfo.email, userInfo.password);
+      console.log(data);
+    } catch (e) {
+      const errorMessage = e instanceof Error ? e.message : "알 수 없는 에러";
+      setError("로그인 실패: " + errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,21 +110,38 @@ export function CardForm() {
             <CardFooter className="flex flex-col justify-center items-center m-2 px-2">
               <motion.button
                 type="submit"
-                className="loginButton rounded-lg w-full text-white py-4"
+                style={{
+                  backgroundColor: isLoading ? "#6536BF" : "#8949FF",
+                  opacity: isLoading ? 0.8 : 1,
+                }}
+                className="loginButton rounded-lg w-full text-white py-4 flex justify-center items-center"
                 whileHover={{ scale: 1.05 }}
+                disabled={isLoading}
               >
-                로그인
+                {isLoading ? (
+                  <MoonLoader color="#FFFFFF" size={20} />
+                ) : (
+                  "로그인"
+                )}
               </motion.button>
               <div className="flex justify-between w-full px-2 mt-4">
                 <motion.button
                   className="smallButton"
                   whileHover={{ scale: 1.05 }}
+                  style={{
+                    opacity: isLoading ? 0.5 : 1,
+                  }}
+                  disabled={isLoading}
                 >
                   회원가입
                 </motion.button>
                 <motion.button
                   className="smallButton"
                   whileHover={{ scale: 1.05 }}
+                  style={{
+                    opacity: isLoading ? 0.5 : 1,
+                  }}
+                  disabled={isLoading}
                 >
                   아이디 &middot; 비밀번호 찾기
                 </motion.button>
