@@ -132,9 +132,9 @@ export function SignUpForm() {
       transition={{ duration: 0.5 }} // 애니메이션 지속 시간
     >
       <CardHeader>
-        <CardTitle>
+        {/* <CardTitle>
           <Image src={ModalLogo} alt="logo" className="w-20rem mx-auto m-1" />
-        </CardTitle>
+        </CardTitle> */}
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit}>
@@ -205,7 +205,7 @@ export function SignUpForm() {
                   backgroundColor: validateSubmit ? "#6536BF" : "#8949FF",
                   opacity: validateSubmit ? 0.4 : 1,
                 }}
-                className="loginButton rounded-lg w-full text-white py-4 flex justify-center items-center"
+                className="loginButton rounded-lg w-full text-white py-4 flex justify-center items-center mt-20"
                 disabled={validateSubmit}
               >
                 {isLoading ? (

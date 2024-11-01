@@ -50,11 +50,10 @@ export function CardForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(userInfo);
-    setIsLoading(true);
-    setError(null);
 
     try {
+      setIsLoading(true);
+      setError(null);
       const data = await login(userInfo.email, userInfo.password);
       console.log(data);
     } catch (e) {
@@ -83,6 +82,10 @@ export function CardForm() {
 
   const handleClickSignUp = () => {
     router.push("/signup");
+  };
+
+  const handleClickFindUserInfo = () => {
+    router.push("/findUserInfo");
   };
 
   useEffect(() => {
@@ -173,8 +176,9 @@ export function CardForm() {
                     opacity: isLoading ? 0.5 : 1,
                   }}
                   disabled={isLoading}
+                  onClick={handleClickFindUserInfo}
                 >
-                  아이디 &middot; 비밀번호 찾기
+                  이메일 &middot; 비밀번호 찾기
                 </button>
               </div>
             </CardFooter>
