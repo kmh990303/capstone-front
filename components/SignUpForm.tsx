@@ -1,5 +1,6 @@
 "use client";
 
+import { MdInfoOutline } from "react-icons/md";
 import { motion } from "framer-motion";
 import {
   CardContent,
@@ -15,21 +16,21 @@ import emailImage from "@/images/email.png";
 
 import { MoonLoader } from "react-spinners";
 
-import { useAuth } from "@/api/useAuth";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 
 interface userInput {
+  name: string;
   email: string;
   password: string;
+  rePassword: string;
 }
 
-export function CardForm() {
-  const router = useRouter();
-  const { login, logout } = useAuth();
+export function SignUpForm() {
   const [userInfo, setUserInfo] = useState<userInput>({
+    name: "",
     email: "",
     password: "",
+    rePassword: "",
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -50,16 +51,52 @@ export function CardForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(userInfo);
     setIsLoading(true);
     setError(null);
 
+    if (userInfo.password !== userInfo.rePassword) {
+      window.alert("두 번의 패스워드 입력이 일치하지 않습니다.");
+      setIsLoading(false);
+      return;
+    }
+
+    if (!isValidEmail) {
+      window.alert("이메일이 유효하지 않습니다.");
+      setIsLoading(false);
+      return;
+    }
+
+    if (!isValidPassword) {
+      window.alert(
+        "패스워드는 영문, 숫자, 기호를 조합해 8자리 이상 입력해주세요."
+      );
+      setIsLoading(false);
+      return;
+    }
+
     try {
-      const data = await login(userInfo.email, userInfo.password);
-      console.log(data);
+      const response = await fetch("http://backEnd/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: userInfo.name,
+          email: userInfo.email,
+          password: userInfo.password,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("[ERROR] 데이터 페칭에 실패했습니다.");
+      }
+
+      const data = await response.json();
+
+      return data;
     } catch (e) {
       const errorMessage = e instanceof Error ? e.message : "알 수 없는 에러";
-      setError("로그인 실패: " + errorMessage);
+      setError("회원가입 실패: " + errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -79,10 +116,6 @@ export function CardForm() {
     if (name === "password") {
       setIsValidPassword(validatePassword(value));
     }
-  };
-
-  const handleClickSignUp = () => {
-    router.push("/signup");
   };
 
   useEffect(() => {
@@ -106,11 +139,22 @@ export function CardForm() {
       <CardContent>
         <form onSubmit={handleSubmit}>
           <div className="grid w-full items-center gap-4">
-            <div className="flex flex-col">
-              <h2 className="my-text mx-4 my-2">안녕하세요! 🙌</h2>
-              <h4 className="my-text2 mx-4 my-2">
-                로컬렌즈를 찾아주셔서 감사합니다.
-              </h4>
+            <div className="flex justify-center gap-2 input-field w-[30rem] h-14 items-center rounded-md m-1 mx-auto">
+              <div className="border-r-2 border-gray-100 flex items-center mr-2">
+                <MdInfoOutline
+                  style={{ color: "#FC8E3F", fontSize: "2rem" }}
+                  className="w-7 ml-1 translate-x-1"
+                />
+              </div>
+              <input
+                id="name"
+                type="text"
+                name="name"
+                placeholder="이름을 입력해 주세요."
+                className="input-text outline-none h-full border-gray-100 flex w-full bg-gray-100 rounded-md px-2 py-1 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                value={userInfo.name}
+                onChange={handleChange}
+              />
             </div>
             <div className="flex justify-center gap-2 input-field w-[30rem] h-14 items-center rounded-md m-1 mx-auto">
               <div className="border-r-2 border-gray-100 flex items-center mr-2">
@@ -140,6 +184,20 @@ export function CardForm() {
                 onChange={handleChange}
               />
             </div>
+            <div className="flex justify-center gap-2 input-field w-[30rem] h-14 items-center rounded-md m-1 mx-auto">
+              <div className="border-r-2 border-gray-100 flex items-center mr-2">
+                <Image src={lockImage} alt="lockImage" className="w-7 ml-2" />
+              </div>
+              <input
+                id="rePassword"
+                type="password"
+                name="rePassword"
+                placeholder="비밀번호를 다시 한번 입력해 주세요."
+                className="input-text outline-none h-full border-gray-100 flex w-full bg-gray-100 rounded-md px-2 py-1 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                value={userInfo.rePassword}
+                onChange={handleChange}
+              />
+            </div>
             <CardFooter className="flex flex-col justify-center items-center m-2 px-2">
               <button
                 type="submit"
@@ -153,30 +211,9 @@ export function CardForm() {
                 {isLoading ? (
                   <MoonLoader color="#FFFFFF" size={20} />
                 ) : (
-                  "로그인"
+                  "회원가입"
                 )}
               </button>
-              <div className="flex justify-between w-full px-2 mt-4">
-                <button
-                  className="smallButton"
-                  style={{
-                    opacity: isLoading ? 0.5 : 1,
-                  }}
-                  disabled={isLoading}
-                  onClick={handleClickSignUp}
-                >
-                  회원가입
-                </button>
-                <button
-                  className="smallButton"
-                  style={{
-                    opacity: isLoading ? 0.5 : 1,
-                  }}
-                  disabled={isLoading}
-                >
-                  아이디 &middot; 비밀번호 찾기
-                </button>
-              </div>
             </CardFooter>
           </div>
         </form>
