@@ -86,21 +86,38 @@ body {
 
 .my-text {
   font-family: 'Pretendard', sans-serif; 
-  font-size: 30px; 
+  font-size: 1.875rem; /* 30px */
   font-weight: 800; 
-  line-height: 36.01px; 
+  line-height: 2.251rem; /* 36.01px */
   letter-spacing: -0.03em; 
-  text-align: left; 
+  text-align: center; 
 }
 
 .my-text2 {
   font-family: 'Pretendard', sans-serif;
-  font-size: 20px;
+  font-size: 1.25rem; /* 20px */
   font-weight: 700;
-  line-height: 24px;
+  line-height: 1.5rem; /* 24px */
   letter-spacing: -0.03em;
-  text-align: left;
+  text-align: center;
+}
 
+.my-text3 {
+  font-family: 'Pretendard', sans-serif; 
+  font-size: 1.7rem; 
+  font-weight: 800; 
+  line-height: 1.8rem; 
+  letter-spacing: -0.03em; 
+  text-align: center; 
+}
+
+.my-text4 {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 1.25rem; /* 20px */
+  font-weight: 500;
+  line-height: 1.5rem; /* 24px */
+  letter-spacing: -0.03em;
+  text-align: center;
 }
 
 .input-field {
@@ -109,9 +126,9 @@ body {
 
 .input-text {
   font-family: 'Pretendard', sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem; /* 18px */
   font-weight: 400;
-  line-height: 21.6px;
+  line-height: 1.35rem; /* 21.6px */
   letter-spacing: -0.03em;
   text-align: left;
 }
@@ -119,18 +136,18 @@ body {
 .loginButton {
   background-color: #8949FF;
   font-family: 'Pretendard';
-  font-size: 20px;
+  font-size: 1.25rem; /* 20px */
   font-weight: 600;
-  line-height: 24px;
+  line-height: 1.5rem; /* 24px */
   letter-spacing: -0.03em;
   text-align: center;
 }
 
 .smallButton {
   font-family: 'Pretendard', sans-serif;
-  font-size: 16px;
+  font-size: 1rem; /* 16px */
   font-weight: 700;
-  line-height: 19.2px;
+  line-height: 1.2rem; /* 19.2px */
   letter-spacing: -0.03em;
   text-align: right;
 }

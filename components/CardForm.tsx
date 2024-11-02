@@ -54,8 +54,9 @@ export function CardForm() {
     try {
       setIsLoading(true);
       setError(null);
-      const data = await login(userInfo.email, userInfo.password);
-      console.log(data);
+      router.push("/inputArea");
+      // const data = await login(userInfo.email, userInfo.password);
+      // console.log(data); 다시 돌려놓을 것!!
     } catch (e) {
       const errorMessage = e instanceof Error ? e.message : "알 수 없는 에러";
       setError("로그인 실패: " + errorMessage);
