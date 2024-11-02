@@ -162,6 +162,7 @@ export function CardForm() {
               </button>
               <div className="flex justify-between w-full px-2 mt-4">
                 <button
+                  type="button"
                   className="smallButton"
                   style={{
                     opacity: isLoading ? 0.5 : 1,
@@ -172,6 +173,7 @@ export function CardForm() {
                   회원가입
                 </button>
                 <button
+                  type="button"
                   className="smallButton"
                   style={{
                     opacity: isLoading ? 0.5 : 1,

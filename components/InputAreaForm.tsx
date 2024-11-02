@@ -117,7 +117,11 @@ export function InputAreaForm() {
             )}
             {isLoading && (
               <div className="ml-3">
-                <MoonLoader color="#8949FF" size={110} className="mx-auto mt-6" />
+                <MoonLoader
+                  color="#8949FF"
+                  size={110}
+                  className="mx-auto mt-6"
+                />
               </div>
             )}
           </div>
