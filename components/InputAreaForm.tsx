@@ -54,6 +54,8 @@ export function InputAreaForm() {
     // } finally {
     //   setIsLoading(false);
     // }
+
+    router.push("/marketAreaAnalysis");
   };
 
   return (
