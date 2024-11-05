@@ -151,3 +151,41 @@ body {
   letter-spacing: -0.03em;
   text-align: right;
 }
+
+.areaAnalysis {
+  color: #FC8E3F;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2rem; /* 19.2px */
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+.areaAnalysis2 {
+  color: black;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1.2rem; /* 19.2px */
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+.areaAnalysis3 {
+  color: black;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1.2rem; /* 19.2px */
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+.areaAnalysis4 {
+  color: #FC8E3F;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 900;
+  line-height: 1.2rem; /* 19.2px */
+  letter-spacing: -0.03em;
+  text-align: left;
+}

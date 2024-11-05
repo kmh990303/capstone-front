@@ -3,6 +3,7 @@
 
 import NavBar from "@/components/NavBar";
 import MapComponent from "@/components/MapComponent";
+import { AreaAnalysisPart } from "@/components/AreaAnalysisPart";
 
 export default function MarketAreaAnalysisPage() {
   return (
@@ -10,6 +11,7 @@ export default function MarketAreaAnalysisPage() {
       <NavBar />
       <div className="flex">
         <MapComponent />
+        <AreaAnalysisPart />
       </div>
     </>
   );
