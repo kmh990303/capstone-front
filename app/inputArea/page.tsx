@@ -4,7 +4,7 @@
 import NavBar from "@/components/NavBar";
 import { InputAreaForm } from "@/components/InputAreaForm";
 
-export default function Home() {
+export default function InputAreaPage() {
   return (
     <>
       <NavBar />

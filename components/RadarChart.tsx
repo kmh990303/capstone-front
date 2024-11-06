@@ -23,38 +23,32 @@ import {
 export const description = "A radar chart with a legend";
 
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { feature: "feature1", Area1: 186, Area2: 80 },
+  { feature: "feature2", Area1: 305, Area2: 200 },
+  { feature: "feature3", Area1: 237, Area2: 120 },
+  { feature: "feature4", Area1: 73, Area2: 190 },
+  { feature: "feature5", Area1: 209, Area2: 130 },
+  { feature: "feature6", Area1: 214, Area2: 140 },
 ];
 
 const chartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "hsl(var(--chart-1))",
+  Area1: {
+    label: "Area1",
+    color: "red",
   },
-  mobile: {
-    label: "Mobile",
-    color: "hsl(var(--chart-2))",
+  Area2: {
+    label: "Area2",
+    color: "blue",
   },
 } satisfies ChartConfig;
 
 export function RadarChartComponent() {
   return (
-    <Card>
-      <CardHeader className="items-center pb-4">
-        <CardTitle>Radar Chart - Legend</CardTitle>
-        <CardDescription>
-          Showing total visitors for the last 6 months
-        </CardDescription>
-      </CardHeader>
+    <Card className="border-none mt-4">
       <CardContent>
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square max-h-[250px]"
+          className="mx-auto h-[35vh]"
         >
           <RadarChart
             data={chartData}
@@ -67,26 +61,17 @@ export function RadarChartComponent() {
               cursor={false}
               content={<ChartTooltipContent indicator="line" />}
             />
-            <PolarAngleAxis dataKey="month" />
-            <PolarGrid />
-            <Radar
-              dataKey="desktop"
-              fill="var(--color-desktop)"
-              fillOpacity={0.6}
+            <PolarAngleAxis
+              dataKey="feature"
+              tick={{ fontSize: 15, width: 80 }}
             />
-            <Radar dataKey="mobile" fill="var(--color-mobile)" />
+            <PolarGrid />
+            <Radar dataKey="Area1" fill="red" fillOpacity={0.3} />
+            <Radar dataKey="Area2" fill="blue" fillOpacity={0.3} />
             <ChartLegend className="mt-8" content={<ChartLegendContent />} />
           </RadarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col gap-2 pt-4 text-sm">
-        <div className="flex items-center gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="flex items-center gap-2 leading-none text-muted-foreground">
-          January - June 2024
-        </div>
-      </CardFooter>
     </Card>
   );
 }
