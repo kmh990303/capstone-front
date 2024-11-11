@@ -34,11 +34,11 @@ const chartData = [
 const chartConfig = {
   Area1: {
     label: "Area1",
-    color: "red",
+    color: "#DD5C48",
   },
   Area2: {
     label: "Area2",
-    color: "blue",
+    color: "#407EFF",
   },
 } satisfies ChartConfig;
 
@@ -46,15 +46,12 @@ export function RadarChartComponent() {
   return (
     <Card className="border-none mt-4">
       <CardContent>
-        <ChartContainer
-          config={chartConfig}
-          className="mx-auto h-[35vh]"
-        >
+        <ChartContainer config={chartConfig} className="mx-auto h-[35vh]">
           <RadarChart
             data={chartData}
             margin={{
               top: -40,
-              bottom: -10,
+              bottom: -30,
             }}
           >
             <ChartTooltip
@@ -64,6 +61,8 @@ export function RadarChartComponent() {
             <PolarAngleAxis
               dataKey="feature"
               tick={{ fontSize: 15, width: 80 }}
+              tickSize={10}
+              dy={5}
             />
             <PolarGrid />
             <Radar dataKey="Area1" fill="red" fillOpacity={0.3} />

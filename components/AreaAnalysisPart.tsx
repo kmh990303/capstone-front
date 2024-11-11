@@ -3,8 +3,15 @@ import Image from "next/image";
 import personLogo from "@/images/person.png";
 
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 export const AreaAnalysisPart = () => {
+  const router = useRouter();
+
+  const handleDetailButton = () => {
+    router.push("/marketAreaAnalysis/detail");
+  };
+
   return (
     <>
       <div className="w-[42%] h-[90vh] flex flex-col">
@@ -61,6 +68,7 @@ export const AreaAnalysisPart = () => {
               className="areaAnalysis9 w-[45%] py-3 rounded-md"
               style={{ backgroundColor: "#8949FF" }}
               whileHover={{ scale: 1.1 }}
+              onClick={handleDetailButton}
             >
               Details
             </motion.button>
