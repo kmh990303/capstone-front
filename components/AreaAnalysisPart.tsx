@@ -15,6 +15,10 @@ export const AreaAnalysisPart = () => {
     router.push("/marketAreaAnalysis/detail");
   };
 
+  const handleCompareButton = () => {
+    router.push("/marketAreaAnalysis/compare");
+  };
+
   return (
     <>
       <div className="w-[42%] h-[90vh] flex flex-col">
@@ -79,6 +83,7 @@ export const AreaAnalysisPart = () => {
               className="areaAnalysis10 w-[45%] py-3 rounded-md border-2 border-violet-400"
               style={{ backgroundColor: "#FFFFFF" }}
               whileHover={{ scale: 1.1 }}
+              onClick={handleCompareButton}
             >
               Compare
             </motion.button>

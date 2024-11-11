@@ -9,7 +9,9 @@ interface AuthState {
 
 interface AreaState {
     name: string | null;
+    compareName: string | null;
     setName: (name: string | null) => void;
+    setCompareName: (name: string | null) => void;
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -27,5 +29,7 @@ export const useAuthStore = create<AuthState>()(
 
 export const useAreaStore = create<AreaState>((set) => ({
     name: null,
-    setName: (name) => set({name}),
+    compareName: null,
+    setName: (name) => set({ name }),
+    setCompareName: (name) => set({ compareName: name }),
 }))

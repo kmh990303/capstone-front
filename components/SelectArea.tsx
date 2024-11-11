@@ -12,11 +12,17 @@ import {
 
 import { dummyAreas } from "@/dummy/dummy.js";
 
+import { useAreaStore } from "@/lib/store";
+
 interface SelectedAreaProps {
   setSelectedArea: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export function SelectArea({ setSelectedArea }: SelectedAreaProps) {
+  const { name } = useAreaStore();
+  console.log(name);
+  let CompareAreaList = dummyAreas.filter((area) => area !== name);
+
   return (
     <Select onValueChange={(value) => setSelectedArea(value)}>
       <SelectTrigger className="h-full bg-gray-100">
@@ -26,8 +32,12 @@ export function SelectArea({ setSelectedArea }: SelectedAreaProps) {
         <SelectGroup>
           <SelectLabel>상권명</SelectLabel>
           <>
-            {dummyAreas.map((areaName) => (
-              <SelectItem key={areaName} value={areaName} className="text-black">
+            {CompareAreaList.map((areaName) => (
+              <SelectItem
+                key={areaName}
+                value={areaName}
+                className="text-black"
+              >
                 {areaName}
               </SelectItem>
             ))}
