@@ -18,12 +18,16 @@ import { MoonLoader } from "react-spinners";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
+import { useStore } from "zustand";
+import { useAreaStore } from "@/lib/store";
+
 export function InputAreaForm() {
   const router = useRouter();
 
   const [selectedArea, setSelectedArea] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const { name, setName } = useAreaStore();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,6 +36,7 @@ export function InputAreaForm() {
     setError(null);
 
     console.log(selectedArea);
+    setName(selectedArea);
     // setIsLoading(false);
 
     // try {

@@ -5,8 +5,11 @@ import personLogo from "@/images/person.png";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
+import { useAreaStore } from "@/lib/store";
+
 export const AreaAnalysisPart = () => {
   const router = useRouter();
+  const { name, setName } = useAreaStore();
 
   const handleDetailButton = () => {
     router.push("/marketAreaAnalysis/detail");

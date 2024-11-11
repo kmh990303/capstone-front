@@ -7,6 +7,11 @@ interface AuthState {
     logout: () => void;
 }
 
+interface AreaState {
+    name: string | null;
+    setName: (name: string | null) => void;
+}
+
 export const useAuthStore = create<AuthState>()(
     persist(
         (set) => ({
@@ -19,3 +24,8 @@ export const useAuthStore = create<AuthState>()(
         }
     )
 )
+
+export const useAreaStore = create<AreaState>((set) => ({
+    name: null,
+    setName: (name) => set({name}),
+}))
