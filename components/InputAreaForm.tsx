@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { SelectArea } from "./SelectArea";
+import { OriginalSelectedArea } from "./OriginalSelectedArea";
 
 import Image from "next/image";
 import SearchImage from "@/images/search.png";
@@ -104,7 +104,7 @@ export function InputAreaForm() {
                       className="w-7 ml-3"
                     />
                   </div>
-                  <SelectArea setSelectedArea={setSelectedArea} />
+                  <OriginalSelectedArea setSelectedArea={setSelectedArea} />
                 </div>
 
                 <CardFooter className="flex justify-end items-center m-2 px-2">
