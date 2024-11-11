@@ -108,7 +108,7 @@ export function InputAreaForm() {
                 </div>
 
                 <CardFooter className="flex justify-end items-center m-2 px-2">
-                  <button
+                  <motion.button
                     type="submit"
                     style={{
                       backgroundColor: "#8949FF",
@@ -116,9 +116,10 @@ export function InputAreaForm() {
                       //   opacity: validateSubmit ? 0.4 : 1,
                     }}
                     className="loginButton rounded-lg w-20 text-white py-2 flex justify-center items-center"
+                    whileHover={{ scale: 1.1 }}
                   >
                     Next
-                  </button>
+                  </motion.button>
                 </CardFooter>
               </>
             )}
