@@ -59,7 +59,7 @@ export function AreaCompareForm() {
     //   setIsLoading(false);
     // }
 
-    router.push("/marketAreaAnalysis");
+    // router.push("/marketAreaAnalysis");
   };
 
   return (
