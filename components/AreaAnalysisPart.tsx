@@ -35,7 +35,7 @@ export const AreaAnalysisPart = () => {
             <h3 className="areaAnalysis4 ml-8">학생 중심 상권</h3>
           </div>
 
-          <div>
+          <div className="mt-6">
             <RadarChartComponent />
           </div>
 
@@ -53,20 +53,22 @@ export const AreaAnalysisPart = () => {
               />
             </span>
             <p className="flex items-center gap-3">
-              <span className="areaAnalysis5">60대 이상, 여성</span>
-              <span className="areaAnalysis6">피생 피처 값이 가장 높아요</span>
+              <span className="areaAnalysis5">시간대별 방문자 수 증가율</span>
+              <span className="areaAnalysis6">이 가장 높아요</span>
             </p>
           </div>
 
           <div className="w-[90%] mt-3 mx-auto py-2">
             <p className="areaAnalysis8 w-full m-1">
-              서울시 광진구에 위치한 세종대 상권의 2024년 상반기 주거인구는 약
-              <span className="areaAnalysis7 m-1">36,244</span>명입니다.
+              서울시 광진구에 위치한 세종대 상권의 2024년 시간대별 방문자 수
+              증가율은 약<span className="areaAnalysis7 m-1">75%</span>입니다.
             </p>
             <p className="areaAnalysis8 w-full m-1">
-              주거인구 비율은{" "}
-              <span className="areaAnalysis7 m-1">60대 이상, 여성</span>이 가장
-              높습니다.
+              <span className="areaAnalysis7 mr-1">
+                시간대별 방문자 수 증가율
+              </span>
+              과<span className="areaAnalysis7 m-1">체류 방문 비율</span>이 높은
+              것으로 보아 학생 중심 상권입니다.
             </p>
           </div>
 

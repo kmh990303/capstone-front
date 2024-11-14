@@ -1,73 +1,52 @@
-"use client";
-
-import { TrendingUp } from "lucide-react";
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
-
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-export const description = "A radar chart with a legend";
-
 const chartData = [
-  { feature: "feature1", Area1: 186, Area2: 80 },
-  { feature: "feature2", Area1: 305, Area2: 200 },
-  { feature: "feature3", Area1: 237, Area2: 120 },
-  { feature: "feature4", Area1: 73, Area2: 190 },
-  { feature: "feature5", Area1: 209, Area2: 130 },
-  { feature: "feature6", Area1: 214, Area2: 140 },
+  { standard: "체류 밀집도", ratio: 60 },
+  { standard: "체류/방문 비율", ratio: 70 },
+  { standard: "혼잡도 변화율", ratio: 60 },
+  { standard: "고객 유지율", ratio: 39 },
+  { standard: "평균 체류시간 변화율", ratio: 50 },
+  { standard: "시간대별 방문자 수 증가율", ratio: 75 },
 ];
 
 const chartConfig = {
-  Area1: {
-    label: "Area1",
-    color: "#DD5C48",
-  },
-  Area2: {
-    label: "Area2",
-    color: "#407EFF",
+  standard: {
+    label: "standard",
+    color: "hsl(var(--chart-1))",
   },
 } satisfies ChartConfig;
 
 export function RadarChartComponent() {
   return (
-    <Card className="border-none mt-4">
-      <CardContent>
-        <ChartContainer config={chartConfig} className="mx-auto h-[35vh]">
+    <Card>
+      <CardContent className="pb-0">
+        <ChartContainer
+          config={chartConfig}
+          className="mx-auto"
+          style={{ width: "100%", height: "40vh" }} // 세로 크기 상대 단위로 설정
+        >
           <RadarChart
             data={chartData}
-            margin={{
-              top: -40,
-              bottom: -30,
-            }}
+            style={{ width: "100%", height: "100%" }}
           >
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="line" />}
-            />
+            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
             <PolarAngleAxis
-              dataKey="feature"
-              tick={{ fontSize: 15, width: 80 }}
-              tickSize={10}
-              dy={5}
+              dataKey="standard"
+              tickSize={15}
+              tick={{ fontSize: 14, fill: "black" }}
+              // 텍스트와 그래프 사이의 거리 조정 (x축)
+              dy={4} // 텍스트와 그래프 사이의 거리 조정 (y축)
+              className="areaAnalysis8"
             />
             <PolarGrid />
-            <Radar dataKey="Area1" fill="red" fillOpacity={0.3} />
-            <Radar dataKey="Area2" fill="blue" fillOpacity={0.3} />
-            <ChartLegend className="mt-8" content={<ChartLegendContent />} />
+            <Radar dataKey="ratio" fill="#FC8E3F" fillOpacity={0.6} />
           </RadarChart>
         </ChartContainer>
       </CardContent>
