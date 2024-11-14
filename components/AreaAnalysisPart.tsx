@@ -1,4 +1,6 @@
 import { RadarChartComponent } from "./RadarChart";
+import { DetailSheet } from "./DetailSheet";
+
 import Image from "next/image";
 import personLogo from "@/images/person.png";
 
@@ -73,14 +75,7 @@ export const AreaAnalysisPart = () => {
           </div>
 
           <div className="flex items-center justify-between mx-auto w-[90%] mt-4">
-            <motion.button
-              className="areaAnalysis9 w-[45%] py-3 rounded-md"
-              style={{ backgroundColor: "#8949FF" }}
-              whileHover={{ scale: 1.1 }}
-              onClick={handleDetailButton}
-            >
-              Details
-            </motion.button>
+            <DetailSheet />
             <motion.button
               className="areaAnalysis10 w-[45%] py-3 rounded-md border-2 border-violet-400"
               style={{ backgroundColor: "#FFFFFF" }}

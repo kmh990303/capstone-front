@@ -1,0 +1,57 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+
+import { motion } from "framer-motion";
+
+export function DetailSheet() {
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <motion.button
+          className="areaAnalysis9 w-[45%] py-3 rounded-md"
+          style={{ backgroundColor: "#8949FF" }}
+          whileHover={{ scale: 1.1 }}
+        >
+          Details
+        </motion.button>
+      </SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle className="areaAnalysis4">
+            세종대 <span className="text-black">상권</span>
+          </SheetTitle>
+          <SheetDescription
+            className="areaAnalysis3"
+            style={{ marginTop: "1.55rem" }}
+          >
+            상권에 대한 세부 지표 정보를 제공합니다.
+          </SheetDescription>
+        </SheetHeader>
+        <div></div>
+        <SheetFooter>
+          <SheetClose asChild>
+            <motion.button
+              type="button"
+              whileHover={{ scale: 1.1 }}
+              className="areaAnalysis9 w-[25%] py-2 rounded-md mt-4"
+              style={{ backgroundColor: "#8949FF" }}
+            >
+              Close
+            </motion.button>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  );
+}
