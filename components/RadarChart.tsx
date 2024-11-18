@@ -7,13 +7,13 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-const chartData = [
-  { standard: "체류 밀집도", ratio: 60 },
+const chartData = [ // -> 이거 수정할 것
+  { standard: "유동 인구 수", ratio: 60 },
   { standard: "체류/방문 비율", ratio: 70 },
   { standard: "혼잡도 변화율", ratio: 60 },
-  { standard: "고객 유지율", ratio: 39 },
-  { standard: "평균 체류시간 변화율", ratio: 50 },
-  { standard: "시간대별 방문자 수 증가율", ratio: 75 },
+  { standard: "체류시간 대비 방문자 수", ratio: 39 },
+  { standard: "방문 집중도", ratio: 50 },
+  { standard: "평균 체류시간 변화율", ratio: 75 },
 ];
 
 const chartConfig = {

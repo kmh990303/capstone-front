@@ -11,6 +11,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { PeopleNumLineChart } from "./PeopleNumLineChart";
+import { StayVisitRatioChart } from "./StayVisitRatioChart";
+import { CongestionChangeChart } from "./CongestionChangeChart";
+import { StayPerVisitorChart } from "./StayPerVisitorChart";
+import { VisitConcentrationChart } from "./VisitConcentrationChart";
+import { PeakTimeChart } from "./PeakTimeChart";
+import { StayTimeChangeChart } from "./StayTimeChangeChart";
+import { VisitorIncreaseChart } from "./VisitorIncreaseChart";
 
 import { motion } from "framer-motion";
 
@@ -26,7 +34,7 @@ export function DetailSheet() {
           Details
         </motion.button>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className="overflow-y-auto">
         <SheetHeader>
           <SheetTitle className="areaAnalysis4">
             세종대 <span className="text-black">상권</span>
@@ -38,13 +46,22 @@ export function DetailSheet() {
             상권에 대한 세부 지표 정보를 제공합니다.
           </SheetDescription>
         </SheetHeader>
-        <div></div>
+        <div className="flex flex-col">
+          <PeopleNumLineChart />
+          <StayVisitRatioChart />
+          <CongestionChangeChart />
+          <StayPerVisitorChart />
+          <VisitConcentrationChart />
+          <PeakTimeChart />
+          <StayTimeChangeChart />
+          <VisitorIncreaseChart />
+        </div>
         <SheetFooter>
           <SheetClose asChild>
             <motion.button
               type="button"
               whileHover={{ scale: 1.1 }}
-              className="areaAnalysis9 w-[25%] py-2 rounded-md mt-4"
+              className="areaAnalysis9 w-[25%] py-2 rounded-md mt-6"
               style={{ backgroundColor: "#8949FF" }}
             >
               Close
