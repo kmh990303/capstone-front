@@ -19,6 +19,8 @@ import { VisitConcentrationChart } from "./VisitConcentrationChart";
 import { PeakTimeChart } from "./PeakTimeChart";
 import { StayTimeChangeChart } from "./StayTimeChangeChart";
 import { VisitorIncreaseChart } from "./VisitorIncreaseChart";
+import { AgeGroupStayPatternChart } from "./AgeStayPatternChart";
+import { CountryPatternChart } from "./CountryPattern";
 
 import { motion } from "framer-motion";
 
@@ -55,6 +57,8 @@ export function DetailSheet() {
           <PeakTimeChart />
           <StayTimeChangeChart />
           <VisitorIncreaseChart />
+          <AgeGroupStayPatternChart />
+          <CountryPatternChart />
         </div>
         <SheetFooter>
           <SheetClose asChild>
