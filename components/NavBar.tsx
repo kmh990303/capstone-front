@@ -16,7 +16,7 @@ const NavBar: React.FC = () => {
   };
 
   return (
-    <menu className="w-full h-[10vh] bg-white flex items-center">
+    <menu className="w-full h-[10vh] bg-white flex items-center border-b-2 border-gray-100">
       <Image
         src={NavLogo}
         alt="NavLogo"

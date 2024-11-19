@@ -27,9 +27,16 @@ export const useAuthStore = create<AuthState>()(
     )
 )
 
-export const useAreaStore = create<AreaState>((set) => ({
-    name: null,
-    compareName: null,
-    setName: (name) => set({ name }),
-    setCompareName: (name) => set({ compareName: name }),
-}))
+export const useAreaStore = create<AreaState>()(
+    persist(
+        (set) => ({
+            name: null,
+            compareName: null,
+            setName: (name) => set({ name }),
+            setCompareName: (name) => set({ compareName: name }),
+        }),
+        {
+            name: 'area-storage'
+        }
+    )
+)

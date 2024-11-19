@@ -7,13 +7,14 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-const chartData = [ // -> 이거 수정할 것
-  { standard: "유동 인구 수", ratio: 60 },
+const chartData = [
+  // -> 이거 수정할 것
+  { standard: "유동 인구 수", ratio: 40 },
   { standard: "체류/방문 비율", ratio: 70 },
-  { standard: "혼잡도 변화율", ratio: 60 },
+  { standard: "혼잡도 변화율", ratio: 80 },
   { standard: "체류시간 대비 방문자 수", ratio: 39 },
   { standard: "방문 집중도", ratio: 50 },
-  { standard: "평균 체류시간 변화율", ratio: 75 },
+  { standard: "평균 체류시간 변화율", ratio: 60 },
 ];
 
 const chartConfig = {
@@ -23,7 +24,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function RadarChartComponent() {
+export function CompareRadarChartComponent() {
   return (
     <Card className="border-0 outline-none">
       <CardContent className="pb-0">
@@ -46,7 +47,7 @@ export function RadarChartComponent() {
               className="areaAnalysis8"
             />
             <PolarGrid />
-            <Radar dataKey="ratio" fill="#FC8E3F" fillOpacity={0.6} />
+            <Radar dataKey="ratio" fill="#8949ff" fillOpacity={0.6} />
           </RadarChart>
         </ChartContainer>
       </CardContent>

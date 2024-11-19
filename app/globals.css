@@ -78,23 +78,23 @@ body {
 }
 
 .background {
-  background-image: url('/backImage.png');
+  background-image: url("/backImage.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .my-text {
-  font-family: 'Pretendard', sans-serif; 
+  font-family: "Pretendard", sans-serif;
   font-size: 1.875rem; /* 30px */
-  font-weight: 800; 
+  font-weight: 800;
   line-height: 2.251rem; /* 36.01px */
-  letter-spacing: -0.03em; 
-  text-align: center; 
+  letter-spacing: -0.03em;
+  text-align: center;
 }
 
 .my-text2 {
-  font-family: 'Pretendard', sans-serif;
+  font-family: "Pretendard", sans-serif;
   font-size: 1.25rem; /* 20px */
   font-weight: 700;
   line-height: 1.5rem; /* 24px */
@@ -103,16 +103,16 @@ body {
 }
 
 .my-text3 {
-  font-family: 'Pretendard', sans-serif; 
-  font-size: 1.7rem; 
-  font-weight: 800; 
-  line-height: 1.8rem; 
-  letter-spacing: -0.03em; 
-  text-align: center; 
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.7rem;
+  font-weight: 800;
+  line-height: 1.8rem;
+  letter-spacing: -0.03em;
+  text-align: center;
 }
 
 .my-text4 {
-  font-family: 'Pretendard', sans-serif;
+  font-family: "Pretendard", sans-serif;
   font-size: 1.25rem; /* 20px */
   font-weight: 500;
   line-height: 1.5rem; /* 24px */
@@ -121,11 +121,11 @@ body {
 }
 
 .input-field {
-  background-color: #F6F6F6;
+  background-color: #f6f6f6;
 }
 
 .input-text {
-  font-family: 'Pretendard', sans-serif;
+  font-family: "Pretendard", sans-serif;
   font-size: 1.125rem; /* 18px */
   font-weight: 400;
   line-height: 1.35rem; /* 21.6px */
@@ -134,8 +134,8 @@ body {
 }
 
 .loginButton {
-  background-color: #8949FF;
-  font-family: 'Pretendard';
+  background-color: #8949ff;
+  font-family: "Pretendard";
   font-size: 1.25rem; /* 20px */
   font-weight: 600;
   line-height: 1.5rem; /* 24px */
@@ -144,7 +144,7 @@ body {
 }
 
 .smallButton {
-  font-family: 'Pretendard', sans-serif;
+  font-family: "Pretendard", sans-serif;
   font-size: 1rem; /* 16px */
   font-weight: 700;
   line-height: 1.2rem; /* 19.2px */
@@ -153,8 +153,28 @@ body {
 }
 
 .areaAnalysis {
-  color: #FC8E3F;
-  font-family: 'Pretendard', sans-serif;
+  color: #fc8e3f;
+  font-family: "Pretendard", sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2rem; /* 19.2px */
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+.areaAnalysis_purple {
+  color: #8949ff;
+  font-family: "Pretendard", sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2rem; /* 19.2px */
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+.areaAnalysis_black {
+  color: black;
+  font-family: "Pretendard", sans-serif;
   font-size: 2rem;
   font-weight: 800;
   line-height: 1.2rem; /* 19.2px */
@@ -163,7 +183,7 @@ body {
 }
 .areaAnalysis2 {
   color: black;
-  font-family: 'Pretendard', sans-serif;
+  font-family: "Pretendard", sans-serif;
   font-size: 1.8rem;
   font-weight: 800;
   line-height: 1.2rem; /* 19.2px */
@@ -172,36 +192,57 @@ body {
 }
 .areaAnalysis3 {
   color: black;
-  font-family: 'Pretendard', sans-serif;
+  font-family: "Pretendard", sans-serif;
   font-size: 1.2rem;
   font-weight: 800;
-  line-height: 0.1rem; 
+  line-height: 0.1rem;
   letter-spacing: -0.03em;
   text-align: left;
 }
 
 .areaAnalysis4 {
-  color: #FC8E3F;
-  font-family: 'Pretendard', sans-serif;
+  color: #fc8e3f;
+  font-family: "Pretendard", sans-serif;
   font-size: 1.7rem;
   font-weight: 900;
-  line-height: 1.0rem; 
+  line-height: 1rem;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+.areaAnalysis4_purple {
+  color: #8949ff;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.7rem;
+  font-weight: 900;
+  line-height: 1rem;
   letter-spacing: -0.03em;
   text-align: left;
 }
 
 .areaAnalysis5 {
-  color: #FC8E3F;
-  font-family: 'Pretendard', sans-serif;
+  color: #fc8e3f;
+  font-family: "Pretendard", sans-serif;
   font-size: 1.2rem;
   font-weight: 800;
   line-height: 1.2rem; /* 19.2px */
   letter-spacing: -0.03em;
   text-align: left;
 }
+
+.areaAnalysis5_purple {
+  color: #8949ff;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 1.2rem; /* 19.2px */
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
 .areaAnalysis6 {
   color: black;
-  font-family: 'Pretendard', sans-serif;
+  font-family: "Pretendard", sans-serif;
   font-size: 1.2rem;
   font-weight: 400;
   line-height: 1.2rem; /* 19.2px */
@@ -210,9 +251,9 @@ body {
 }
 
 .areaAnalysis7 {
-  color: #FC8E3F;
-  font-family: 'Pretendard', sans-serif;
-  font-size: 1.0rem;
+  color: #fc8e3f;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1rem;
   font-weight: 800;
   line-height: 1.2rem; /* 19.2px */
   letter-spacing: -0.03em;
@@ -221,8 +262,8 @@ body {
 
 .areaAnalysis8 {
   color: black;
-  font-family: 'Pretendard', sans-serif;
-  font-size: 1.0rem;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.2rem; /* 19.2px */
   letter-spacing: -0.03em;
@@ -231,7 +272,7 @@ body {
 
 .areaAnalysis9 {
   color: white;
-  font-family: 'Pretendard', sans-serif;
+  font-family: "Pretendard", sans-serif;
   font-size: 1.3rem;
   font-weight: 700;
   line-height: 1.2rem; /* 19.2px */
@@ -239,8 +280,8 @@ body {
   text-align: center;
 }
 .areaAnalysis10 {
-  color: #8949FF;
-  font-family: 'Pretendard', sans-serif;
+  color: #8949ff;
+  font-family: "Pretendard", sans-serif;
   font-size: 1.3rem;
   font-weight: 700;
   line-height: 1.2rem; /* 19.2px */
