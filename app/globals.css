@@ -200,6 +200,16 @@ body {
   text-align: left;
 }
 
+.areaAnalysis3_white {
+  color: white;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 0.1rem;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
 .areaAnalysis4 {
   color: #fc8e3f;
   font-family: "Pretendard", sans-serif;
@@ -228,6 +238,34 @@ body {
   line-height: 1.2rem; /* 19.2px */
   letter-spacing: -0.03em;
   text-align: left;
+}
+
+.areaAnalysis5_center {
+  color: #fc8e3f;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 1.2rem; /* 19.2px */
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+.areaAnalysis5_centerb {
+  color: black;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 1.2rem; /* 19.2px */
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+.areaAnalysis5_centerp {
+  color: #8949ff;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 1.2rem; /* 19.2px */
+  letter-spacing: -0.03em;
+  text-align: center;
 }
 
 .areaAnalysis5_purple {
@@ -259,6 +297,15 @@ body {
   letter-spacing: -0.03em;
   text-align: left;
 }
+.areaAnalysis7p {
+  color: #8949ff;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.2rem; /* 19.2px */
+  letter-spacing: -0.03em;
+  text-align: left;
+}
 
 .areaAnalysis8 {
   color: black;
@@ -268,6 +315,26 @@ body {
   line-height: 1.2rem; /* 19.2px */
   letter-spacing: -0.03em;
   text-align: left;
+}
+
+.areaAnalysis8_center {
+  color: black;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.2rem; /* 19.2px */
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+.areaAnalysis8_centerbold {
+  color: black;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2rem; /* 19.2px */
+  letter-spacing: -0.03em;
+  text-align: center;
 }
 
 .areaAnalysis9 {
@@ -287,4 +354,52 @@ body {
   line-height: 1.2rem; /* 19.2px */
   letter-spacing: -0.03em;
   text-align: center;
+}
+
+.areaAnalysis_ptag {
+  color: #fc8e3f;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.2rem; /* 19.2px */
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+.areaAnalysis_ptagb {
+  color: black;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.2rem; /* 19.2px */
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+.areaAnalysis_ptagp {
+  color: #8949ff;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.2rem; /* 19.2px */
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+
+.areaAnalysis_smallp {
+  color: black;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.2rem; /* 19.2px */
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+.areaAnalysis_xsmallp {
+  color: black;
+  font-family: "Pretendard", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.2rem; /* 19.2px */
+  letter-spacing: -0.03em;
+  text-align: left;
 }

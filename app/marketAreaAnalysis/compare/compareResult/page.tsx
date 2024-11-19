@@ -45,8 +45,15 @@ export default function CompareResultPage() {
                   />
                 </span>
                 <p className="flex items-center gap-3">
-                  <span className="areaAnalysis5">체류/방문 비율</span>
+                  <span className="areaAnalysis5">체류시간 변화율</span>
                   <span className="areaAnalysis6">이 가장 높아요</span>
+                </p>
+              </div>
+              <div className="w-[90%] mt-3 mx-auto py-2">
+                <p className="areaAnalysis8 w-full m-1">
+                  <span className="areaAnalysis7 mr-1">체류시간 변화율</span>과
+                  <span className="areaAnalysis7 m-1">체류 방문 비율</span>이
+                  높은 것으로 보아 <span>학생</span> 중심 상권입니다.
                 </p>
               </div>
             </div>
@@ -76,6 +83,13 @@ export default function CompareResultPage() {
                 <p className="flex items-center gap-3">
                   <span className="areaAnalysis5_purple">국적별 체류 패턴</span>
                   <span className="areaAnalysis6">이 가장 높아요</span>
+                </p>
+              </div>
+              <div className="w-[90%] mt-3 mx-auto py-2">
+                <p className="areaAnalysis8 w-full m-1">
+                  <span className="areaAnalysis7p mr-1">혼잡도 변화율</span>과
+                  <span className="areaAnalysis7p m-1">체류 방문 비율</span>이
+                  높은 것으로 보아 <span>외국인</span> 중심 상권입니다.
                 </p>
               </div>
             </div>
