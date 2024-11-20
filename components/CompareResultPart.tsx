@@ -6,7 +6,15 @@ import { LuDot } from "react-icons/lu";
 
 import { motion } from "framer-motion";
 
+import { useRouter } from "next/navigation";
+
 export const CompareResultPart = () => {
+  const router = useRouter();
+
+  const handleCustomButton = () => {
+    router.push("/marketAreaAnalysis/compare/custom");
+  };
+
   return (
     <>
       <div className="w-[42%] h-[90vh] flex flex-col">
@@ -33,8 +41,9 @@ export const CompareResultPart = () => {
               className="areaAnalysis3_white px-10 py-5 rounded-2xl mr-8"
               style={{ backgroundColor: "#fc8e3f" }}
               whileHover={{ scale: 1.1 }}
+              onClick={handleCustomButton}
             >
-              지표 계산
+              커스텀 지표 계산
             </motion.button>
           </div>
         </div>

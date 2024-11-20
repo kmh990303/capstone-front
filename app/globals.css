@@ -384,6 +384,24 @@ body {
   text-align: center;
 }
 
+.areaAnalysis_ptagl {
+  color: black;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.2rem; /* 19.2px */
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+.areaAnalysis_ptago {
+  color: #fc8e3f;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.2rem; /* 19.2px */
+  letter-spacing: -0.03em;
+  text-align: left;
+}
 
 .areaAnalysis_smallp {
   color: black;
