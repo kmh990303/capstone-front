@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { Input } from "./ui/input";
 import React, { useState } from "react";
 
+import { CustomTable } from "./CustomTable";
+
 interface optionType {
   feature: string;
   id: number;
@@ -39,7 +41,8 @@ export const CustomPart = () => {
   const [keywords, setKeywords] = useState<string[]>([]);
   const [optionCnt, setOptionCnt] = useState<number>(0);
   const [calOptionCnt, setCalOptionCnt] = useState<number>(0);
-  
+  const [isSubmit, setIsSubmit] = useState<boolean>(false); // 폼 제출 여부에 따른 상태
+
   const [showOptions, setShowOptions] = useState(false);
 
   const [newFeat, setNewFeat] = useState<string>("");
@@ -61,15 +64,18 @@ export const CustomPart = () => {
   };
 
   const validateFormula = () => {
+    if (optionCnt < 2 || calOptionCnt < 1) {
+      window.alert("계산식 형태가 올바르지 않습니다.");
+      return false;
+    }
+
     return true;
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const f = formula.split(" ");
-
-    console.log(f);
+    setIsSubmit(true);
 
     if (!validateFormula) {
       window.alert("계산식 형식이 잘못되었습니다.");
@@ -112,17 +118,22 @@ export const CustomPart = () => {
     setFormula((prevState) => prevState + " " + option.feature);
     setShowOptions(false);
     setTurn(false);
+    setOptionCnt((prevState) => prevState + 1);
   };
 
-  const handlecalOptionClick = (option: calOptionType) => {
+  const handleCalOptionClick = (option: calOptionType) => {
     setFormula((prevState) => prevState + " " + option.mark);
     setShowOptions(false);
     setTurn(true);
+    setCalOptionCnt((prevState) => prevState + 1);
   };
 
   const handleInit = () => {
     setFormula(""); // 계산식 초기화
     setTurn(true);
+    setOptionCnt(0);
+    setCalOptionCnt(0);
+    setIsSubmit(false);
   };
 
   return (
@@ -149,6 +160,7 @@ export const CustomPart = () => {
             className="w-[80%] border-2 border-gray-300 mx-auto px-2 py-6 focus:border-orange-300 areaAnalysis_ptago"
             onFocus={handleFocus}
             value={formula}
+            onBlur={handleBlur}
             onChange={handleChangeFormula}
           />
           {showOptions && turn && (
@@ -170,7 +182,7 @@ export const CustomPart = () => {
                 <div
                   key={option.id}
                   className="px-4 py-2 hover:bg-gray-100 cursor-pointer areaAnalysis_ptagl"
-                  onClick={() => handlecalOptionClick(option)}
+                  onClick={() => handleCalOptionClick(option)}
                 >
                   {option.mark}
                 </div>
@@ -197,6 +209,26 @@ export const CustomPart = () => {
             </motion.button>
           </div>
         </form>
+
+        {isSubmit && (
+          <>
+            <div
+              className="w-[80%] border-2 border-gray-300 mx-auto px-2 py-4 areaAnalysis_ptagl rounded-lg mt-4"
+              // style={{ backgroundColor: "#8949FF" }}
+            >
+              <span className="areaAnalysis_ptag mr-1">커스텀 피처</span>의 결과
+              값은 <span className="areaAnalysis_ptag mr-1">15</span>입니다.
+            </div>
+            <div className="w-[80%] mx-auto my-4">
+              <h1 className="areaAnalysis_ptagl">
+                아래는{" "}
+                <span className="areaAnalysis_ptag mr-1 mt-3 ml-1">피처1</span>
+                을 활용한 데이터 분석 지표 추천입니다.
+              </h1>
+            </div>
+            <CustomTable />
+          </>
+        )}
       </div>
     </>
   );
