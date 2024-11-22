@@ -12,7 +12,11 @@ export const CompareResultPart = () => {
   const router = useRouter();
 
   const handleCustomButton = () => {
-    router.push("/marketAreaAnalysis/compare/custom");
+    router.push("/marketAreaAnalysis/compare/compareResult/custom");
+  };
+
+  const handleImproveButton = () => {
+    router.push("/marketAreaAnalysis/compare/compareResult/improve");
   };
 
   return (
@@ -32,6 +36,7 @@ export const CompareResultPart = () => {
               className="areaAnalysis3_white px-10 py-5 rounded-2xl ml-11"
               style={{ backgroundColor: "#8949FF" }}
               whileHover={{ scale: 1.1 }}
+              onClick={handleImproveButton}
             >
               개선 방향 제시
             </motion.button>
