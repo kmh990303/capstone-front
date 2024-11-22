@@ -15,9 +15,10 @@ import {
 
 interface DatePickerPropsType {
   setDateData: React.Dispatch<React.SetStateAction<Date | undefined>>;
+  caption?: string | null;
 }
 
-export function DatePicker({ setDateData }: DatePickerPropsType) {
+export function DatePicker({ setDateData, caption }: DatePickerPropsType) {
   const [date, setDate] = React.useState<Date>();
 
   const handleDate = (selectedDate: Date | undefined) => {
@@ -36,7 +37,7 @@ export function DatePicker({ setDateData }: DatePickerPropsType) {
           )}
         >
           <CalendarIcon className="w-4 h-4 mr-2" />
-          {date ? format(date, "PPP") : <span>날짜를 선택해주세요.</span>}
+          {date ? format(date, "PPP") : <span>{caption}</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">

@@ -22,6 +22,9 @@ import { DatePicker } from "./DatePicker";
 
 import { useAreaStore } from "@/lib/store";
 
+const PREV_MESSAGE = "이전 날짜를 선택해주세요.";
+const NEXT_MESSAGE = "이후 날짜를 선택해주세요.";
+
 export function DateCompareForm() {
   const router = useRouter();
 
@@ -64,7 +67,7 @@ export function DateCompareForm() {
     //   setIsLoading(false);
     // }
 
-    router.push("/marketAreaAnalysis/compare/compareResult");
+    router.push("/marketAreaAnalysis/dateCompare/result");
   };
 
   return (
@@ -101,8 +104,11 @@ export function DateCompareForm() {
             {!isLoading && (
               <>
                 <div className="flex justify-center gap-2 w-[30rem] h-14 items-center rounded-md m-1 mx-auto mt-3">
-                  <DatePicker setDateData={setPrevDate} />
-                  <DatePicker setDateData={setCurDate} />
+                  <DatePicker
+                    setDateData={setPrevDate}
+                    caption={PREV_MESSAGE}
+                  />
+                  <DatePicker setDateData={setCurDate} caption={NEXT_MESSAGE} />
                 </div>
 
                 <CardFooter className="flex justify-end items-center m-2 px-2">
