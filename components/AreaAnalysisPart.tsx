@@ -13,12 +13,12 @@ export const AreaAnalysisPart = () => {
   const router = useRouter();
   const { name, setName } = useAreaStore();
 
-  const handleDetailButton = () => {
-    router.push("/marketAreaAnalysis/detail");
-  };
-
   const handleCompareButton = () => {
     router.push("/marketAreaAnalysis/compare");
+  };
+
+  const handleDateCompareButton = () => {
+    router.push("/marketAreaAnalysis/dateCompare");
   };
 
   return (
@@ -32,9 +32,19 @@ export const AreaAnalysisPart = () => {
         </div>
 
         <div className="mt-6 h-[50vh]">
-          <div className="flex flex-col gap-4">
-            <h3 className="areaAnalysis3 ml-8">세종대 상권 유형</h3>
-            <h3 className="areaAnalysis4 ml-8">학생 중심 상권</h3>
+          <div className="flex justify-between items-center">
+            <div className="flex flex-col gap-4">
+              <h3 className="areaAnalysis3 ml-8">세종대 상권 유형</h3>
+              <h3 className="areaAnalysis4 ml-8">학생 중심 상권</h3>
+            </div>
+            <motion.button
+              className="areaAnalysis10 w-[30%] py-2 mr-12 rounded-md border-2 border-violet-400"
+              style={{ backgroundColor: "#FFFFFF" }}
+              whileHover={{ scale: 1.1 }}
+              onClick={handleDateCompareButton}
+            >
+              Date Compare
+            </motion.button>
           </div>
 
           <div className="mt-6">
@@ -82,7 +92,7 @@ export const AreaAnalysisPart = () => {
               whileHover={{ scale: 1.1 }}
               onClick={handleCompareButton}
             >
-              Compare
+              Area Compare
             </motion.button>
           </div>
         </div>
