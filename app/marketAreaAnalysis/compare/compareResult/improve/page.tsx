@@ -17,7 +17,7 @@ export default function ImprovePage() {
           </div>
           <div className="w-full mx-auto flex justify-between items-center">
             <ImproveCarousel />
-            <div className="flex flex-col areaAnalysis_ptaglw translate-y-3 py-24 px-6 max-w-[20vw] mr-10 border-2 border-gray-100 shadow-lg">
+            <div className="flex flex-col areaAnalysis_ptaglw translate-y-3 py-24 px-6 max-w-[20vw] mr-10 border-2 border-gray-100 shadow-lg transform transition-transform hover:scale-110">
               <p className="flex flex-col gap-1 mb-2">
                 지역{" "}
                 <span className="mb-2 areaAnalysis_ptagl">잠실 한강공원</span>
