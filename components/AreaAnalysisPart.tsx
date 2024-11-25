@@ -41,6 +41,7 @@ export const AreaAnalysisPart = () => {
               className="areaAnalysis10 w-[30%] py-2 mr-12 rounded-md border-2 border-violet-400"
               style={{ backgroundColor: "#FFFFFF" }}
               whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
               onClick={handleDateCompareButton}
             >
               Date Compare
@@ -90,6 +91,7 @@ export const AreaAnalysisPart = () => {
               className="areaAnalysis10 w-[45%] py-3 rounded-md border-2 border-violet-400"
               style={{ backgroundColor: "#FFFFFF" }}
               whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
               onClick={handleCompareButton}
             >
               Area Compare

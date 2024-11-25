@@ -1,9 +1,3 @@
-import { RadarChartComponent } from "./RadarChart";
-import Image from "next/image";
-import personLogo from "@/images/person.png";
-
-import { motion } from "framer-motion";
-
 export const AreaAnalysisDetailPart = () => {
   return (
     <>

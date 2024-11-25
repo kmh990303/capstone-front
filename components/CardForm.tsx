@@ -145,7 +145,7 @@ export function CardForm() {
               />
             </div>
             <CardFooter className="flex flex-col justify-center items-center m-2 px-2">
-              <button
+              <motion.button
                 type="submit"
                 style={{
                   backgroundColor: validateSubmit ? "#6536BF" : "#8949FF",
@@ -159,20 +159,22 @@ export function CardForm() {
                 ) : (
                   "로그인"
                 )}
-              </button>
+              </motion.button>
               <div className="flex justify-between w-full px-2 mt-4">
-                <button
+                <motion.button
                   type="button"
                   className="smallButton"
                   style={{
                     opacity: isLoading ? 0.5 : 1,
                   }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
                   disabled={isLoading}
                   onClick={handleClickSignUp}
                 >
                   회원가입
-                </button>
-                <button
+                </motion.button>
+                <motion.button
                   type="button"
                   className="smallButton"
                   style={{
@@ -180,9 +182,11 @@ export function CardForm() {
                   }}
                   disabled={isLoading}
                   onClick={handleClickFindUserInfo}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   이메일 &middot; 비밀번호 찾기
-                </button>
+                </motion.button>
               </div>
             </CardFooter>
           </div>

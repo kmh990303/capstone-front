@@ -116,6 +116,7 @@ export function AreaCompareForm() {
                     }}
                     className="loginButton rounded-lg w-20 text-white py-2 flex justify-center items-center"
                     whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     Next
                   </motion.button>
