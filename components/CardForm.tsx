@@ -26,7 +26,6 @@ interface userInput {
 
 export function CardForm() {
   const router = useRouter();
-  const { login, logout } = useAuth();
   const [userInfo, setUserInfo] = useState<userInput>({
     email: "",
     password: "",

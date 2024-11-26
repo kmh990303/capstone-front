@@ -38,7 +38,7 @@ const MapComponent: React.FC = () => {
     <>
       <Script
         src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_API_KEY}`}
-        strategy="afterInteractive"
+        strategy="beforeInteractive"
         type="text/javascript"
         onLoad={() => {
           console.log("Naver Map script loaded successfully");
