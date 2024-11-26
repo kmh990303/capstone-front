@@ -40,7 +40,7 @@ export function DetailSheet() {
       <SheetContent className="overflow-y-auto">
         <SheetHeader>
           <SheetTitle className="areaAnalysis4">
-            세종대 <span className="text-black">상권</span>
+            강남 <span className="text-black">상권</span>
           </SheetTitle>
           <SheetDescription
             className="areaAnalysis3"

@@ -21,8 +21,8 @@ import {
 
 // 방문자 수 데이터 (내국인, 외국인)
 const chartData = [
-  { country: "내국인", visitors: 255, fill: "#FC8E3F" },
-  { country: "외국인", visitors: 20, fill: "#F5A16F" },
+  { country: "내국인", visitors: 75, fill: "#FC8E3F" },
+  { country: "외국인", visitors: 25, fill: "#F5A16F" },
 ];
 
 const chartConfig = {

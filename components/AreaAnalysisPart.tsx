@@ -26,7 +26,7 @@ export const AreaAnalysisPart = () => {
       <div className="w-[42%] h-[90vh] flex flex-col">
         <div className="w-full h-[10vh] border-2 border-gray-100 flex justify-center items-center">
           <h1 className="flex items-center gap-2">
-            <span className="areaAnalysis">세종대</span>
+            <span className="areaAnalysis">강남</span>
             <span className="areaAnalysis2">상권 분석 결과입니다.</span>
           </h1>
         </div>
@@ -34,8 +34,8 @@ export const AreaAnalysisPart = () => {
         <div className="mt-6 h-[50vh]">
           <div className="flex justify-between items-center">
             <div className="flex flex-col gap-4">
-              <h3 className="areaAnalysis3 ml-8">세종대 상권 유형</h3>
-              <h3 className="areaAnalysis4 ml-8">학생 중심 상권</h3>
+              <h3 className="areaAnalysis3 ml-8">강남 상권 유형</h3>
+              <h3 className="areaAnalysis4 ml-8">번화가 중심 상권</h3>
             </div>
             <motion.button
               className="areaAnalysis10 w-[30%] py-2 mr-12 rounded-md border-2 border-violet-400"
@@ -66,22 +66,21 @@ export const AreaAnalysisPart = () => {
               />
             </span>
             <p className="flex items-center gap-3">
-              <span className="areaAnalysis5">시간대별 방문자 수 증가율</span>
+              <span className="areaAnalysis5">평균 체류시간 변화율</span>
               <span className="areaAnalysis6">이 가장 높아요</span>
             </p>
           </div>
 
           <div className="w-[90%] mt-3 mx-auto py-2">
             <p className="areaAnalysis8 w-full m-1">
-              서울시 광진구에 위치한 세종대 상권의 2024년 시간대별 방문자 수
-              증가율은 약<span className="areaAnalysis7 m-1">75%</span>입니다.
+              강남 상권의 2024년 평균 체류시간 변화율은 약
+              <span className="areaAnalysis7 m-1">75%</span>입니다.
             </p>
             <p className="areaAnalysis8 w-full m-1">
-              <span className="areaAnalysis7 mr-1">
-                시간대별 방문자 수 증가율
-              </span>
-              과<span className="areaAnalysis7 m-1">체류 방문 비율</span>이 높은
-              것으로 보아 학생 중심 상권입니다.
+              <span className="areaAnalysis7 mr-1">평균 체류시간 변화율</span>과
+              <span className="areaAnalysis7 m-1">체류 방문 비율</span>이 높은
+              것으로 보아{" "}
+              <span className="areaAnalysis7 m-1">번화가 중심 상권</span>입니다.
             </p>
           </div>
 

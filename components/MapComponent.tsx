@@ -11,7 +11,7 @@ const MapComponent: React.FC = () => {
   const initializeMap = () => {
     if (window.naver) {
       const mapOptions = {
-        center: new window.naver.maps.LatLng(37.549186395087, 127.07505567644),
+        center: new window.naver.maps.LatLng(37.497942, 127.027636),
         zoom: 15,
       };
       const map = new window.naver.maps.Map("map", mapOptions); // 지도 생성
@@ -38,7 +38,7 @@ const MapComponent: React.FC = () => {
     <>
       <Script
         src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_API_KEY}`}
-        strategy="beforeInteractive"
+        strategy="afterInteractive"
         type="text/javascript"
         onLoad={() => {
           console.log("Naver Map script loaded successfully");
