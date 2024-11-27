@@ -18,6 +18,7 @@ import { MoonLoader } from "react-spinners";
 import { useAuth } from "@/api/useAuth";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/lib/store";
 
 interface userInput {
   email: string;
@@ -25,6 +26,7 @@ interface userInput {
 }
 
 export function CardForm() {
+  const { loginSuccess, setLoginSuccess } = useAuthStore();
   const router = useRouter();
   const [userInfo, setUserInfo] = useState<userInput>({
     email: "",
@@ -53,6 +55,7 @@ export function CardForm() {
     try {
       setIsLoading(true);
       setError(null);
+      setLoginSuccess();
       router.push("/inputArea");
       // const data = await login(userInfo.email, userInfo.password);
       // console.log(data); 다시 돌려놓을 것!!
