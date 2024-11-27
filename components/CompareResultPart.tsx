@@ -24,7 +24,7 @@ export const CompareResultPart = () => {
       <div className="w-[42%] h-[90vh] flex flex-col">
         <div className="w-full h-[10vh] border-2 border-gray-100 flex justify-center items-center">
           <h1 className="flex items-center gap-2 areaAnalysis_black">
-            <span className="areaAnalysis">세종대</span> vs
+            <span className="areaAnalysis">강남</span> vs
             <span className="areaAnalysis_purple">이태원</span>
           </h1>
         </div>
@@ -65,7 +65,7 @@ export const CompareResultPart = () => {
                   style={{ backgroundColor: "#FFE9D9", width: "33.33%" }}
                   className="py-3 areaAnalysis5_center border border-gray-300"
                 >
-                  세종대
+                  강남
                 </th>
                 <th
                   align="center"
@@ -89,7 +89,7 @@ export const CompareResultPart = () => {
                   align="center"
                   className="py-2 areaAnalysis8_center border border-gray-300"
                 >
-                  20
+                  60
                 </td>
                 <td
                   align="center"
@@ -101,7 +101,7 @@ export const CompareResultPart = () => {
                   align="center"
                   className="py-2 areaAnalysis8_center border border-gray-300"
                 >
-                  70
+                  40
                 </td>
               </tr>
               <tr>
@@ -109,7 +109,7 @@ export const CompareResultPart = () => {
                   align="center"
                   className="py-2 areaAnalysis8_center border border-gray-300"
                 >
-                  30
+                  70
                 </td>
                 <td
                   align="center"
@@ -121,7 +121,7 @@ export const CompareResultPart = () => {
                   align="center"
                   className="py-2 areaAnalysis8_center border border-gray-300"
                 >
-                  50
+                  70
                 </td>
               </tr>
               <tr>
@@ -141,7 +141,7 @@ export const CompareResultPart = () => {
                   align="center"
                   className="py-2 areaAnalysis8_center border border-gray-300"
                 >
-                  70
+                  80
                 </td>
               </tr>
               <tr>
@@ -149,7 +149,7 @@ export const CompareResultPart = () => {
                   align="center"
                   className="py-2 areaAnalysis8_center border border-gray-300"
                 >
-                  50
+                  39
                 </td>
                 <td
                   align="center"
@@ -161,7 +161,7 @@ export const CompareResultPart = () => {
                   align="center"
                   className="py-2 areaAnalysis8_center border border-gray-300"
                 >
-                  70
+                  39
                 </td>
               </tr>
               <tr>
@@ -169,7 +169,7 @@ export const CompareResultPart = () => {
                   align="center"
                   className="py-2 areaAnalysis8_center border border-gray-300"
                 >
-                  40
+                  50
                 </td>
                 <td
                   align="center"
@@ -191,7 +191,7 @@ export const CompareResultPart = () => {
         <div className="w-[90%] mx-auto flex flex-col mt-6">
           <div>
             <p className="areaAnaysis_ptagb">
-              <span className="areaAnalysis_ptag">세종대</span> 상권과{" "}
+              <span className="areaAnalysis_ptag">강남</span> 상권과{" "}
               <span className="areaAnalysis_ptagp">이태원</span> 상권의 주요
               특징 비교는 다음과 같습니다.
             </p>
@@ -202,18 +202,18 @@ export const CompareResultPart = () => {
               <span>
                 <LuDot />
               </span>
-              세종대 상권의 유동 인구 수는 70이며, 이태원 상권의 유동 인구 수는
-              90입니다.
+              강남 상권의 유동 인구 수는 60이며, 이태원 상권의 유동 인구 수는
+              40입니다.
             </p>
           </div>
           <div className="mt-3">
-            <p className="areaAnalysis_smallp">2. 체류/방문 비율</p>
+            <p className="areaAnalysis_smallp">2. 혼잡도 변화율</p>
             <p className="flex items-center gap-1 areaAnalysis_xsmallp">
               <span>
                 <LuDot />
               </span>
-              세종대 상권의 체류/방문 비율은 30이며, 이태원 상권의 유동 인구
-              수는 60입니다.
+              강남 상권의 체류/방문 비율은 60이며, 이태원 상권의 유동 인구
+              수는 80입니다.
             </p>
           </div>
           <div className="mt-3">
@@ -222,8 +222,8 @@ export const CompareResultPart = () => {
               <span>
                 <LuDot />
               </span>
-              세종대 상권의 방문 집중도는 70이며, 이태원 상권의 방문 집중도는
-              90입니다.
+              강남 상권의 체류 방문 비율은 70이며, 이태원 상권의 방문 집중도는
+              70입니다.
             </p>
           </div>
           {/* <div className="mt-3">

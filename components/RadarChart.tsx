@@ -1,4 +1,10 @@
-import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
+import {
+  PolarAngleAxis,
+  PolarGrid,
+  PolarRadiusAxis,
+  Radar,
+  RadarChart,
+} from "recharts";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   ChartConfig,
@@ -7,14 +13,12 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-const chartData = [ // -> 이거 수정할 것
-  { standard: "유동 인구 수", ratio: 60 },
-  { standard: "체류/방문 비율", ratio: 70 },
-  { standard: "혼잡도 변화율", ratio: 60 },
-  { standard: "체류시간 대비 방문자 수", ratio: 39 },
-  { standard: "방문 집중도", ratio: 50 },
-  { standard: "평균 체류시간 변화율", ratio: 75 },
-];
+interface RadarChartPropsType {
+  chartData?: {
+    standard: string;
+    ratio: number;
+  }[];
+}
 
 const chartConfig = {
   standard: {
@@ -23,14 +27,24 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function RadarChartComponent() {
+export function RadarChartComponent({ chartData }: RadarChartPropsType) {
+  if (!chartData)
+    chartData = [
+      { standard: "유동 인구 수", ratio: 60 },
+      { standard: "체류/방문 비율", ratio: 70 },
+      { standard: "혼잡도 변화율", ratio: 60 },
+      { standard: "체류시간 대비 방문자 수", ratio: 39 },
+      { standard: "방문 집중도", ratio: 50 },
+      { standard: "평균 체류시간 변화율", ratio: 75 },
+    ];
+
   return (
     <Card className="border-0 outline-none">
       <CardContent className="pb-0">
         <ChartContainer
           config={chartConfig}
           className="mx-auto"
-          style={{ width: "100%", height: "40vh" }} // 세로 크기 상대 단위로 설정
+          style={{ width: "100%", height: "40vh" }}
         >
           <RadarChart
             data={chartData}
@@ -41,11 +55,16 @@ export function RadarChartComponent() {
               dataKey="standard"
               tickSize={15}
               tick={{ fontSize: 14, fill: "black" }}
-              // 텍스트와 그래프 사이의 거리 조정 (x축)
-              dy={4} // 텍스트와 그래프 사이의 거리 조정 (y축)
+              dy={4}
               className="areaAnalysis8"
             />
             <PolarGrid />
+            <PolarRadiusAxis
+              domain={[0, 100]} // 반지름 축의 최소값과 최댓값을 설정
+              // tick={{ fontSize: 12, fill: "gray" }} // 눈금 스타일 설정
+              axisLine={false} // 반지름 축 라인 제거
+              // tickCount={6} // 눈금 개수 설정
+            />
             <Radar dataKey="ratio" fill="#FC8E3F" fillOpacity={0.6} />
           </RadarChart>
         </ChartContainer>

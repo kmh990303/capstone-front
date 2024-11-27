@@ -16,15 +16,15 @@ export default function CompareResultPage() {
         <div className="w-[58%] h-[90vh]">
           <div className="w-full h-[10vh] border-2 border-gray-100 flex justify-center items-center">
             <h1 className="flex items-center gap-2 areaAnalysis_black">
-              <span className="areaAnalysis">세종대</span>가
+              <span className="areaAnalysis">강남</span>에서
               <span className="areaAnalysis_purple">이태원</span>처럼 되려면?
             </h1>
           </div>
           <div className="w-full h-[80vh] flex items-center">
             <div className="w-1/2 h-full border-2 border-gray-100">
               <div className="flex flex-col gap-4 h-[10vh] mt-10">
-                <h3 className="areaAnalysis3 ml-8">세종대 상권 유형</h3>
-                <h3 className="areaAnalysis4 ml-8">학생 중심 상권</h3>
+                <h3 className="areaAnalysis3 ml-8">강남 상권 유형</h3>
+                <h3 className="areaAnalysis4 ml-8">번화가 중심 상권</h3>
               </div>
 
               <div>
@@ -53,7 +53,7 @@ export default function CompareResultPage() {
                 <p className="areaAnalysis8 w-full m-1">
                   <span className="areaAnalysis7 mr-1">체류시간 변화율</span>과
                   <span className="areaAnalysis7 m-1">체류 방문 비율</span>이
-                  높은 것으로 보아 <span>학생</span> 중심 상권입니다.
+                  높은 것으로 보아 <span>번화가</span> 중심 상권입니다.
                 </p>
               </div>
             </div>
@@ -81,7 +81,7 @@ export default function CompareResultPage() {
                   />
                 </span>
                 <p className="flex items-center gap-3">
-                  <span className="areaAnalysis5_purple">국적별 체류 패턴</span>
+                  <span className="areaAnalysis5_purple">혼잡도 변화율</span>
                   <span className="areaAnalysis6">이 가장 높아요</span>
                 </p>
               </div>

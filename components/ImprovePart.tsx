@@ -27,7 +27,10 @@ export const ImprovePart = () => {
           <div className="flex flex-col gap-2 mt-7 w-[90%] mx-auto">
             <p className="areaAnalysis_smallp">설명</p>
             <p className="areaAnalysis_smallp">
-              [특정 파생 피처] 값 수치를 20 상승시킨 것에 기여했습니다.
+              <span className="areaAnalysis7 mr-1">
+                [혼잡도 변화율, 국적별 체류 패턴]
+              </span>{" "}
+              값 수치를 <span className="areaAnalysis7 mr-1">각각 50, 30</span> 상승시킨 것에 기여했습니다.
             </p>
           </div>
         </div>

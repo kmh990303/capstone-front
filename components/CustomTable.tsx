@@ -11,46 +11,46 @@ import {
 
 const features = [
   {
-    name: "피처1",
+    name: "new_feature1",
     id: "1",
-    place: "산업공단",
-    formula: "a / b * c",
+    place: "user1",
+    formula: "혼잡도 변화율 / 체류 방문 비율 * 유동인구 수",
   },
   {
-    name: "피처2",
+    name: "new_feature2",
     id: "2",
-    place: "연구단지",
-    formula: "x + y - z",
+    place: "user2",
+    formula: "체류시간 대비 방문자 수 + 유동인구 수",
   },
   {
     name: "피처3",
     id: "3",
-    place: "상업지구",
+    place: "user3",
     formula: "p * q / r",
   },
   {
     name: "피처1",
     id: "4",
-    place: "산업공단",
+    place: "user4",
     formula: "a / b * c",
   },
   {
     name: "피처2",
     id: "5",
-    place: "연구단지",
+    place: "user5",
     formula: "x + y - z",
   },
   {
     name: "피처3",
     id: "6",
-    place: "상업지구",
+    place: "user6",
     formula: "p * q / r",
   },
 ];
 
 export function CustomTable() {
   return (
-    <div className="w-[80%] mx-auto max-h-[25vh] overflow-y-auto areaAnalysis_ptagl">
+    <div className="w-[80%] mx-auto max-h-[20vh] overflow-y-auto areaAnalysis_ptagl">
       <Table className="w-full border-2 border-gray-100">
         <TableHeader>
           <TableRow>

@@ -11,12 +11,21 @@ import { useAreaStore } from "@/lib/store";
 
 interface DateComparePartPropsType {
   date: string;
+  chartData?: {
+    standard: string;
+    ratio: number;
+  }[];
   //   featuresData : string[] 피처들 데이터
 }
 
-export const DateComparePart = ({ date }: DateComparePartPropsType) => {
+export const DateComparePart = ({
+  date,
+  chartData,
+}: DateComparePartPropsType) => {
   const router = useRouter();
   const { name, setName } = useAreaStore();
+  let featureName;
+  let featureValue;
 
   const handleCompareButton = () => {
     router.push("/marketAreaAnalysis/compare");
@@ -25,6 +34,12 @@ export const DateComparePart = ({ date }: DateComparePartPropsType) => {
   const handleDateCompareButton = () => {
     router.push("/marketAreaAnalysis/dateCompare");
   };
+
+  if (chartData) chartData = chartData.sort((a, b) => b.ratio - a.ratio);
+  if (chartData) {
+    featureName = chartData[0].standard;
+    featureValue = chartData[0].ratio;
+  }
 
   return (
     <>
@@ -38,7 +53,7 @@ export const DateComparePart = ({ date }: DateComparePartPropsType) => {
 
         <div className="mt-6 h-[50vh]">
           <div className="mt-6">
-            <RadarChartComponent />
+            <RadarChartComponent chartData={chartData} />
           </div>
 
           <div
@@ -55,22 +70,21 @@ export const DateComparePart = ({ date }: DateComparePartPropsType) => {
               />
             </span>
             <p className="flex items-center gap-3">
-              <span className="areaAnalysis5">시간대별 방문자 수 증가율</span>
+              <span className="areaAnalysis5">{featureName}</span>
               <span className="areaAnalysis6">이 가장 높아요</span>
             </p>
           </div>
 
           <div className="w-[90%] mt-3 mx-auto py-2">
             <p className="areaAnalysis8 w-full m-1">
-              서울시 광진구에 위치한 세종대 상권의 2024년 시간대별 방문자 수
-              증가율은 약<span className="areaAnalysis7 m-1">75%</span>입니다.
+              <span className="areaAnalysis7 m-1">강남</span> 상권의{" "}
+              <span className="areaAnalysis7 m-1">{date}</span> 분석 결과
+              입니다.
             </p>
             <p className="areaAnalysis8 w-full m-1">
-              <span className="areaAnalysis7 mr-1">
-                시간대별 방문자 수 증가율
-              </span>
-              과<span className="areaAnalysis7 m-1">체류 방문 비율</span>이 높은
-              것으로 보아 학생 중심 상권입니다.
+              <span className="areaAnalysis7 m-1">{featureName}</span>
+              값이<span className="areaAnalysis7 m-1">{featureValue}</span> 의
+              수치로 가장 높게 나타나고 있습니다.
             </p>
           </div>
         </div>
