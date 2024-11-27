@@ -12,9 +12,15 @@ import { useAuthStore } from "@/lib/store";
 
 const NavBar: React.FC = () => {
   const router = useRouter();
-  const { loginSuccess } = useAuthStore();
+  const { loginSuccess, setLoginSuccess } = useAuthStore();
 
   const handleLogoClick = () => {
+    router.push("/");
+  };
+
+  const handleLogout = () => {
+    // 로그아웃 로직 작성
+    setLoginSuccess();
     router.push("/");
   };
 
@@ -34,6 +40,7 @@ const NavBar: React.FC = () => {
             style={{ backgroundColor: "#FFFFFF" }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
+            onClick={handleLogout}
           >
             로그아웃
           </motion.button>

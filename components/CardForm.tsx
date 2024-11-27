@@ -117,80 +117,100 @@ export function CardForm() {
               <h4 className="my-text2 mx-4 my-2">
                 로컬렌즈를 찾아주셔서 감사합니다.
               </h4>
+              {loginSuccess && (
+                <>
+                  <h4 className="my-text2 mx-4 my-10">
+                    <span className="areaAnalysis5">root04</span> 님 오늘도 좋은
+                    하루 되세요!
+                  </h4>
+                </>
+              )}
             </div>
-            <div className="flex justify-center gap-2 input-field w-[30rem] h-14 items-center rounded-md m-1 mx-auto">
-              <div className="border-r-2 border-gray-100 flex items-center mr-2">
-                <Image src={emailImage} alt="emailImage" className="w-7 ml-2" />
-              </div>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                placeholder="이메일을 입력해 주세요."
-                className="input-text outline-none h-full border-gray-100 flex w-full bg-gray-100 rounded-md px-2 py-1 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
-                value={userInfo.email}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="flex justify-center gap-2 input-field w-[30rem] h-14 items-center rounded-md m-1 mx-auto">
-              <div className="border-r-2 border-gray-100 flex items-center mr-2">
-                <Image src={lockImage} alt="lockImage" className="w-7 ml-2" />
-              </div>
-              <input
-                id="password"
-                type="password"
-                name="password"
-                placeholder="비밀번호를 입력해 주세요."
-                className="input-text outline-none h-full border-gray-100 flex w-full bg-gray-100 rounded-md px-2 py-1 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
-                value={userInfo.password}
-                onChange={handleChange}
-              />
-            </div>
-            <CardFooter className="flex flex-col justify-center items-center m-2 px-2">
-              <motion.button
-                type="submit"
-                style={{
-                  backgroundColor: validateSubmit ? "#6536BF" : "#8949FF",
-                  opacity: validateSubmit ? 0.4 : 1,
-                }}
-                className="loginButton rounded-lg w-full text-white py-4 flex justify-center items-center"
-                disabled={validateSubmit}
-              >
-                {isLoading ? (
-                  <MoonLoader color="#FFFFFF" size={20} />
-                ) : (
-                  "로그인"
-                )}
-              </motion.button>
-              <div className="flex justify-between w-full px-2 mt-4">
-                <motion.button
-                  type="button"
-                  className="smallButton"
-                  style={{
-                    opacity: isLoading ? 0.5 : 1,
-                  }}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  disabled={isLoading}
-                  onClick={handleClickSignUp}
-                >
-                  회원가입
-                </motion.button>
-                <motion.button
-                  type="button"
-                  className="smallButton"
-                  style={{
-                    opacity: isLoading ? 0.5 : 1,
-                  }}
-                  disabled={isLoading}
-                  onClick={handleClickFindUserInfo}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  이메일 &middot; 비밀번호 찾기
-                </motion.button>
-              </div>
-            </CardFooter>
+            {!loginSuccess && (
+              <>
+                <div className="flex justify-center gap-2 input-field w-[30rem] h-14 items-center rounded-md m-1 mx-auto">
+                  <div className="border-r-2 border-gray-100 flex items-center mr-2">
+                    <Image
+                      src={emailImage}
+                      alt="emailImage"
+                      className="w-7 ml-2"
+                    />
+                  </div>
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder="이메일을 입력해 주세요."
+                    className="input-text outline-none h-full border-gray-100 flex w-full bg-gray-100 rounded-md px-2 py-1 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                    value={userInfo.email}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="flex justify-center gap-2 input-field w-[30rem] h-14 items-center rounded-md m-1 mx-auto">
+                  <div className="border-r-2 border-gray-100 flex items-center mr-2">
+                    <Image
+                      src={lockImage}
+                      alt="lockImage"
+                      className="w-7 ml-2"
+                    />
+                  </div>
+                  <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    placeholder="비밀번호를 입력해 주세요."
+                    className="input-text outline-none h-full border-gray-100 flex w-full bg-gray-100 rounded-md px-2 py-1 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                    value={userInfo.password}
+                    onChange={handleChange}
+                  />
+                </div>
+                <CardFooter className="flex flex-col justify-center items-center m-2 px-2">
+                  <motion.button
+                    type="submit"
+                    style={{
+                      backgroundColor: validateSubmit ? "#6536BF" : "#8949FF",
+                      opacity: validateSubmit ? 0.4 : 1,
+                    }}
+                    className="loginButton rounded-lg w-full text-white py-4 flex justify-center items-center"
+                    disabled={validateSubmit}
+                  >
+                    {isLoading ? (
+                      <MoonLoader color="#FFFFFF" size={20} />
+                    ) : (
+                      "로그인"
+                    )}
+                  </motion.button>
+                  <div className="flex justify-between w-full px-2 mt-4">
+                    <motion.button
+                      type="button"
+                      className="smallButton"
+                      style={{
+                        opacity: isLoading ? 0.5 : 1,
+                      }}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      disabled={isLoading}
+                      onClick={handleClickSignUp}
+                    >
+                      회원가입
+                    </motion.button>
+                    <motion.button
+                      type="button"
+                      className="smallButton"
+                      style={{
+                        opacity: isLoading ? 0.5 : 1,
+                      }}
+                      disabled={isLoading}
+                      onClick={handleClickFindUserInfo}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      이메일 &middot; 비밀번호 찾기
+                    </motion.button>
+                  </div>
+                </CardFooter>
+              </>
+            )}
           </div>
         </form>
       </CardContent>
