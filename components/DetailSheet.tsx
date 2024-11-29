@@ -57,7 +57,7 @@ export function DetailSheet() {
           <VisitConcentrationChart />
           <PeakTimeChart />
           <StayTimeChangeChart />
-          <VisitorIncreaseChart />
+          {/* <VisitorIncreaseChart /> */}
           <AgeGroupStayPatternChart />
           <CountryPatternChart />
         </div>

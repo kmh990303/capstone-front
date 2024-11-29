@@ -54,7 +54,7 @@ export function CustomTable() {
       <Table className="w-full border-2 border-gray-100">
         <TableHeader>
           <TableRow>
-            <TableHead>사용자</TableHead>
+            {/* <TableHead>사용자</TableHead> */}
             <TableHead>피처명</TableHead>
             <TableHead>계산식</TableHead>
           </TableRow>
@@ -62,7 +62,7 @@ export function CustomTable() {
         <TableBody>
           {features.map((feature) => (
             <TableRow key={feature.id}>
-              <TableCell>{feature.place}</TableCell>
+              {/* <TableCell>{feature.place}</TableCell> */}
               <TableCell>{feature.name}</TableCell>
               <TableCell>{feature.formula}</TableCell>
             </TableRow>

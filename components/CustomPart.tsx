@@ -5,6 +5,8 @@ import { Input } from "./ui/input";
 import React, { useState } from "react";
 
 import { CustomTable } from "./CustomTable";
+import { CustomGraphChart } from "./CustomGraphChart";
+import { useRouter } from "next/navigation";
 
 interface optionType {
   feature: string;
@@ -49,6 +51,7 @@ export const CustomPart = () => {
   const [formula, setFormula] = useState<string>("");
   const [turn, setTurn] = useState<boolean>(true);
   const [result, setResult] = useState({}); // 커스텀 피처 생성 클릭시 결과로 받는 데이터를 저장
+  const router = useRouter();
 
   //   const handleKeyWordClick = (keyword: string) => {
   //     setKeywords((prev) => [...prev, keyword]);
@@ -209,6 +212,19 @@ export const CustomPart = () => {
               계산식 초기화
             </motion.button>
             <motion.button
+              type="button"
+              onClick={() =>
+                router.push(
+                  "/marketAreaAnalysis/compare/compareResult/custom/customGraph"
+                )
+              }
+              whileHover={{ scale: 1.1 }}
+              className="areaAnalysis3_white px-5 py-5 rounded-2xl"
+              style={{ backgroundColor: "#8949FF" }}
+            >
+              피처 반영
+            </motion.button>
+            <motion.button
               type="submit"
               whileHover={{ scale: 1.1 }}
               className="areaAnalysis3_white px-6 py-5 rounded-2xl"
@@ -232,8 +248,10 @@ export const CustomPart = () => {
             <div className="w-[80%] mx-auto my-4">
               <h1 className="areaAnalysis_ptagl">
                 아래는{" "}
-                <span className="areaAnalysis_ptag mr-1 mt-3 ml-1">new_custom_feature</span>
-                을 활용한 데이터 분석 지표 추천입니다.
+                <span className="areaAnalysis_ptag mr-1 mt-3 ml-1">
+                  new_custom_feature
+                </span>
+                을 활용한 데이터 분석 지표입니다.
               </h1>
             </div>
             <CustomTable />
