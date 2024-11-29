@@ -192,7 +192,7 @@ export const CustomPart = () => {
               ))}
             </div>
           )}
-          <Input
+          {/* <Input
             type="text"
             placeholder="값을 활용한 수식을 입력해 주세요."
             className="w-[80%] border-2 border-gray-300 mx-auto px-2 py-6 focus:border-orange-300 areaAnalysis_ptago"
@@ -200,7 +200,7 @@ export const CustomPart = () => {
             // value={formula}
             // onBlur={handleBlur}
             // onChange={handleChangeFormula}
-          />
+          /> */}
           <div className="flex justify-between w-[80%] mx-auto gap-4">
             <motion.button
               type="button"
