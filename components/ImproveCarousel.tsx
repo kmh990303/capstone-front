@@ -15,7 +15,7 @@ import Image from "next/image";
 
 export function ImproveCarousel() {
   return (
-    <Carousel className="flex items-center mt-4 max-h-[80vh] max-w-[25vw] shadow-xl ml-16 transform transition-transform hover:scale-110">
+    <Carousel className="flex items-center mt-4 max-h-[80vh] max-w-[25vw] shadow-xl ml-16">
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem key={index}>
