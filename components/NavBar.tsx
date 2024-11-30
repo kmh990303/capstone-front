@@ -13,8 +13,8 @@ import { useAreaStore } from "@/lib/store";
 
 const NavBar: React.FC = () => {
   const router = useRouter();
-  const { loginSuccess, setLoginSuccess } = useAuthStore();
-  const { name, setName } = useAreaStore();
+  const { loginSuccess, setLoginSuccess, logout } = useAuthStore();
+  const { name, setName, compareName, setCompareName } = useAreaStore();
 
   const handleLogoClick = () => {
     router.push("/");
@@ -24,6 +24,9 @@ const NavBar: React.FC = () => {
     // 로그아웃 로직 작성
     setLoginSuccess();
     setName("");
+    setCompareName("");
+    logout();
+    localStorage.removeItem("auth-storage");
     router.push("/");
   };
 
