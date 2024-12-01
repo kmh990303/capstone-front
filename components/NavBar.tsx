@@ -27,6 +27,7 @@ const NavBar: React.FC = () => {
     setCompareName("");
     logout();
     localStorage.removeItem("auth-storage");
+    localStorage.removeItem("area-storage");
     router.push("/");
   };
 

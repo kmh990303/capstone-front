@@ -26,7 +26,9 @@ interface userInput {
 }
 
 export function CardForm() {
-  const { loginSuccess, setLoginSuccess } = useAuthStore();
+  const { login } = useAuth();
+  const { loginSuccess, setLoginSuccess, setAccessToken, setRefreshToken } =
+    useAuthStore();
   const router = useRouter();
   const [userInfo, setUserInfo] = useState<userInput>({
     email: "",
@@ -40,7 +42,7 @@ export function CardForm() {
   const validateSubmit = isLoading || !isValidEmail || !isValidPassword;
 
   const validateEmail = (email: string) => {
-    const emailRegex = /^[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]+$/;
+    const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]+$/;
     return emailRegex.test(email);
   };
 
@@ -55,10 +57,13 @@ export function CardForm() {
     try {
       setIsLoading(true);
       setError(null);
+      const data = await login(userInfo.email, userInfo.password);
+      console.log(data, "api 요청 성공!");
+      setAccessToken(data.accessToken);
+      setRefreshToken(data.refreshToken);
       setLoginSuccess();
+      console.log(loginSuccess);
       router.push("/inputArea");
-      // const data = await login(userInfo.email, userInfo.password);
-      // console.log(data); 다시 돌려놓을 것!!
     } catch (e) {
       const errorMessage = e instanceof Error ? e.message : "알 수 없는 에러";
       setError("로그인 실패: " + errorMessage);

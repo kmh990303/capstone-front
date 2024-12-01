@@ -75,23 +75,29 @@ export function SignUpForm() {
     }
 
     try {
-      const response = await fetch("http://backEnd/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: userInfo.name,
-          email: userInfo.email,
-          password: userInfo.password,
-        }),
-      });
+      const response = await fetch(
+        "http://13.125.95.219:8080/api/member/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: userInfo.name,
+            email: userInfo.email,
+            password: userInfo.password,
+            passwordCheck: userInfo.rePassword,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("[ERROR] 데이터 페칭에 실패했습니다.");
       }
 
       const data = await response.json();
+      console.log(data);
+      window.alert("회원가입에 성공했습니다!");
 
       return data;
     } catch (e) {

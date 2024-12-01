@@ -5,7 +5,7 @@ import { MdInfoOutline } from "react-icons/md";
 import { motion } from "framer-motion";
 import { CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import Image from "next/image";
-import ModalLogo from "@/images/ModalLogo2.png"; // Update this path if necessary
+import ModalLogo from "@/images/ModalLogo2.png";
 import lockImage from "@/images/lock2.png";
 import emailImage from "@/images/email.png";
 import { MoonLoader } from "react-spinners";
@@ -26,12 +26,24 @@ interface findInfoType {
   pEmail: string;
 }
 
+interface findPasswordType {
+  newPassword: string;
+  newPasswordCheck: string;
+}
+
 export function FindUserForm() {
   const [findInfo, setFindInfo] = useState<findInfoType>({
     eName: "",
     pName: "",
     pEmail: "",
   });
+
+  const [findPassword, setFindPassword] = useState<findPasswordType>({
+    newPassword: "",
+    newPasswordCheck: "",
+  });
+
+  const [resetToken, setResetToken] = useState<string | null>(null);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -45,28 +57,41 @@ export function FindUserForm() {
     }));
   };
 
+  const handleNewPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFindPassword((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   const handleSubmitFindEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
+    console.log(findInfo.eName);
 
     try {
-      const response = await fetch("http://backEnd/findEmail", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: findInfo.eName,
-        }),
-      });
+      const response = await fetch(
+        `http://13.125.95.219:8080/api/member/find-email/${findInfo.eName}`,
+        {
+          method: "GET",
+          // headers: {
+          //   "Content-Type": "application/json",
+          // },
+          // body: JSON.stringify({
+          //   name: findInfo.eName,
+          // }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("[ERROR] 데이터 페칭에 실패했습니다.");
       }
 
       const data = await response.json();
-      window.alert(`회원님의 이메일은 ${data} 입니다.`);
+      console.log(data);
+      window.alert(`회원님의 이메일은 ${data.email} 입니다.`);
     } catch (e) {
       const errorMessage = e instanceof Error ? e.message : "알 수 없는 에러";
       setError("이메일 찾기 실패: " + errorMessage);
@@ -79,41 +104,68 @@ export function FindUserForm() {
     e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
-    // setIsLoading(true);
-    // setError(null);
-    setIsDialogOpen(true);
+    setIsLoading(true);
+    setError(null);
 
-    // try {
-    //   const response = await fetch("http://backEnd/findPassword", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       name: findInfo.pName,
-    //       email: findInfo.pEmail,
-    //     }),
-    //   });
+    try {
+      const response = await fetch(
+        "http://13.125.95.219:8080/api/member/validate-member",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: findInfo.pName,
+            email: findInfo.pEmail,
+          }),
+        }
+      );
 
-    //   if (!response.ok) {
-    //     throw new Error("[ERROR] 데이터 페칭에 실패했습니다.");
-    //   }
+      if (!response.ok) {
+        throw new Error("[ERROR] 데이터 페칭에 실패했습니다.");
+      }
 
-    //   const data = await response.json();
-    //   window.alert(`회원님의 비밀번호는 ${data} 입니다.`);
-    // } catch (e) {
-    //   const errorMessage = e instanceof Error ? e.message : "알 수 없는 에러";
-    //   setError("비밀번호 찾기 실패: " + errorMessage);
-    // } finally {
-    //   setIsLoading(false);
-    // }
+      const data = await response.json();
+
+      setResetToken(data.resetToken);
+
+      setIsDialogOpen(true);
+      return data;
+    } catch (e) {
+      const errorMessage = e instanceof Error ? e.message : "알 수 없는 에러";
+      setError("비밀번호 찾기 실패: " + errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleResetPassword = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleResetPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const response = await fetch(
+      "http://13.125.95.219:8080/api/member/reset-password",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          newPassword: findPassword.newPassword,
+          newPasswordCheck: findPassword.newPasswordCheck,
+        }),
+      }
+    );
+
+    if (!response.ok) throw new Error("Failed to fetch data...");
+
+    const data = await response.json();
+
     window.alert("비밀번호가 성공적으로 재설정되었습니다!");
+    setResetToken(null);
     setIsDialogOpen(false);
+
+    return data;
   };
 
   return (
@@ -233,11 +285,17 @@ export function FindUserForm() {
                 type="password"
                 placeholder="새 비밀번호"
                 className="input-text outline-none h-12 border-gray-100 flex w-full bg-gray-100 rounded-md px-2 py-1 text-sm"
+                name="newPassword"
+                value={findPassword.newPassword}
+                onChange={handleNewPasswordChange}
               />
               <input
                 type="password"
-                placeholder="비밀번호 확인"
+                placeholder="새 비밀번호 확인"
                 className="input-text outline-none h-12 border-gray-100 flex w-full bg-gray-100 rounded-md px-2 py-1 text-sm"
+                name="newPasswordCheck"
+                value={findPassword.newPasswordCheck}
+                onChange={handleNewPasswordChange}
               />
             </div>
             <DialogFooter>
