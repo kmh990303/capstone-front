@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MdInfoOutline } from "react-icons/md";
 import { motion } from "framer-motion";
 import { CardContent, CardFooter, CardHeader } from "@/components/ui/card";
@@ -9,6 +9,8 @@ import ModalLogo from "@/images/ModalLogo2.png";
 import lockImage from "@/images/lock2.png";
 import emailImage from "@/images/email.png";
 import { MoonLoader } from "react-spinners";
+
+import { useRouter } from "next/navigation";
 
 import {
   Dialog,
@@ -32,6 +34,8 @@ interface findPasswordType {
 }
 
 export function FindUserForm() {
+  let tempToken: string;
+  const router = useRouter();
   const [findInfo, setFindInfo] = useState<findInfoType>({
     eName: "",
     pName: "",
@@ -48,6 +52,12 @@ export function FindUserForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+
+  // useEffect(() => {
+  //   if (resetToken) {
+  //     console.log("리셋토큰 변경이요");
+  //   }
+  // }, [resetToken]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -127,11 +137,9 @@ export function FindUserForm() {
       }
 
       const data = await response.json();
-
-      setResetToken(data.resetToken);
-
-      setIsDialogOpen(true);
-      return data;
+      console.log(data);
+      setResetToken(data.resetToken); // 상태 업데이트
+      setIsDialogOpen(true); // 다이얼로그 열기
     } catch (e) {
       const errorMessage = e instanceof Error ? e.message : "알 수 없는 에러";
       setError("비밀번호 찾기 실패: " + errorMessage);
@@ -139,33 +147,47 @@ export function FindUserForm() {
       setIsLoading(false);
     }
   };
-
   const handleResetPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
+    setError(null);
 
-    const response = await fetch(
-      "http://13.125.95.219:8080/api/member/reset-password",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          newPassword: findPassword.newPassword,
-          newPasswordCheck: findPassword.newPasswordCheck,
-        }),
+    try {
+      if (!resetToken) {
+        throw new Error("Reset token이 존재하지 않습니다.");
       }
-    );
 
-    if (!response.ok) throw new Error("Failed to fetch data...");
+      const response = await fetch(
+        "http://13.125.95.219:8080/api/member/reset-password",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            resetToken, // 상태값 사용
+            newPassword: findPassword.newPassword,
+            newPasswordCheck: findPassword.newPasswordCheck,
+          }),
+        }
+      );
 
-    const data = await response.json();
+      if (!response.ok) {
+        throw new Error("Failed to fetch data...");
+      }
 
-    window.alert("비밀번호가 성공적으로 재설정되었습니다!");
-    setResetToken(null);
-    setIsDialogOpen(false);
-
-    return data;
+      const data = await response.json();
+      console.log(data);
+      window.alert("비밀번호가 성공적으로 재설정되었습니다!");
+      setResetToken(null);
+      setIsDialogOpen(false);
+      router.push("/");
+    } catch (e) {
+      const errorMessage = e instanceof Error ? e.message : "알 수 없는 에러";
+      setError("비밀번호 재설정 실패: " + errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
