@@ -15,10 +15,9 @@ import ModalLogo from "@/images/ModalLogo2.png";
 
 import { MoonLoader } from "react-spinners";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { useStore } from "zustand";
 import { useAreaStore } from "@/lib/store";
 
 export function InputAreaForm() {

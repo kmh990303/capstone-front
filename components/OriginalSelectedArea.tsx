@@ -19,8 +19,6 @@ interface SelectedAreaProps {
 }
 
 export function OriginalSelectedArea({ setSelectedArea }: SelectedAreaProps) {
-//   const { name } = useAreaStore();
-
   return (
     <Select onValueChange={(value) => setSelectedArea(value)}>
       <SelectTrigger className="h-full bg-gray-100">

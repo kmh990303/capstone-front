@@ -7,11 +7,16 @@ declare global {
   }
 }
 
-const MapComponent: React.FC = () => {
+interface areaPropsType {
+  latitude: number;
+  longitude: number;
+}
+
+const MapComponent = ({ latitude, longitude }: areaPropsType) => {
   const initializeMap = () => {
     if (window.naver) {
       const mapOptions = {
-        center: new window.naver.maps.LatLng(37.497942, 127.027636),
+        center: new window.naver.maps.LatLng(latitude, longitude),
         zoom: 15,
       };
       const map = new window.naver.maps.Map("map", mapOptions); // 지도 생성
@@ -29,10 +34,16 @@ const MapComponent: React.FC = () => {
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined" && window.naver) {
+    // 지도 로딩이 완료되면 initializeMap 호출
+    if (
+      typeof window !== "undefined" &&
+      window.naver &&
+      latitude !== 0 &&
+      longitude !== 0
+    ) {
       initializeMap();
     }
-  }, []);
+  }, [latitude, longitude]); // latitude, longitude 변경 시마다 실행 -> useEffect에 의존성 배열을 작성해놓는게 핵심
 
   return (
     <>
