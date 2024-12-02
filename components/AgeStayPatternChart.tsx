@@ -18,15 +18,73 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-// 연령대별 체류시간 데이터 (성별 포함)
-const chartData = [
-  { ageGroup: "10대", male: 5.2, female: 4.8 },
-  { ageGroup: "20대", male: 6.5, female: 5.9 },
-  { ageGroup: "30대", male: 7.1, female: 6.2 },
-  { ageGroup: "40대", male: 6.4, female: 5.8 },
-  { ageGroup: "50대", male: 6.0, female: 5.4 },
-  { ageGroup: "60대", male: 5.5, female: 5.0 },
-];
+// 기존 형식에 맞는 데이터 구조
+interface ageStayPatternPropsType {
+  chartData: {
+    Teenagers: {
+      FEMALE: number;
+      MALE: number;
+    };
+    Twenties: {
+      FEMALE: number;
+      MALE: number;
+    };
+    Thirties: {
+      FEMALE: number;
+      MALE: number;
+    };
+    Forties: {
+      FEMALE: number;
+      MALE: number;
+    };
+    Fifties: {
+      FEMALE: number;
+      MALE: number;
+    };
+    Sixties: {
+      FEMALE: number;
+      MALE: number;
+    };
+  };
+}
+
+// 기존 데이터 형식으로 변환
+const transformChartData = (
+  chartData: ageStayPatternPropsType["chartData"]
+) => {
+  return [
+    {
+      ageGroup: "10대",
+      male: chartData.Teenagers.MALE,
+      female: chartData.Teenagers.FEMALE,
+    },
+    {
+      ageGroup: "20대",
+      male: chartData.Twenties.MALE,
+      female: chartData.Twenties.FEMALE,
+    },
+    {
+      ageGroup: "30대",
+      male: chartData.Thirties.MALE,
+      female: chartData.Thirties.FEMALE,
+    },
+    {
+      ageGroup: "40대",
+      male: chartData.Forties.MALE,
+      female: chartData.Forties.FEMALE,
+    },
+    {
+      ageGroup: "50대",
+      male: chartData.Fifties.MALE,
+      female: chartData.Fifties.FEMALE,
+    },
+    {
+      ageGroup: "60대",
+      male: chartData.Sixties.MALE,
+      female: chartData.Sixties.FEMALE,
+    },
+  ];
+};
 
 const chartConfig = {
   male: {
@@ -39,7 +97,12 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function AgeGroupStayPatternChart() {
+export function AgeGroupStayPatternChart({
+  chartData,
+}: ageStayPatternPropsType) {
+  // chartData를 변환
+  const transformedData = transformChartData(chartData);
+
   return (
     <Card className="mt-7 w-full transform transition-transform hover:scale-110">
       <CardHeader>
@@ -47,7 +110,7 @@ export function AgeGroupStayPatternChart() {
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
+          <BarChart accessibilityLayer data={transformedData}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="ageGroup"

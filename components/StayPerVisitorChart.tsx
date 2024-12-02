@@ -16,41 +16,76 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-const chartData = [
-  { hour: "0시", people: 50 },
-  { hour: "1시", people: 40 },
-  { hour: "2시", people: 30 },
-  { hour: "3시", people: 20 },
-  { hour: "4시", people: 15 },
-  { hour: "5시", people: 25 },
-  { hour: "6시", people: 60 },
-  { hour: "7시", people: 120 },
-  { hour: "8시", people: 200 },
-  { hour: "9시", people: 250 },
-  { hour: "10시", people: 300 },
-  { hour: "11시", people: 320 },
-  { hour: "12시", people: 400 },
-  { hour: "13시", people: 390 },
-  { hour: "14시", people: 350 },
-  { hour: "15시", people: 340 },
-  { hour: "16시", people: 360 },
-  { hour: "17시", people: 380 },
-  { hour: "18시", people: 400 },
-  { hour: "19시", people: 420 },
-  { hour: "20시", people: 380 },
-  { hour: "21시", people: 340 },
-  { hour: "22시", people: 280 },
-  { hour: "23시", people: 200 },
-];
+interface stayPerVisitorPropsType {
+  chartData: {
+    zero: number;
+    one: number;
+    two: number;
+    three: number;
+    four: number;
+    five: number;
+    six: number;
+    seven: number;
+    eight: number;
+    nine: number;
+    ten: number;
+    eleven: number;
+    twelve: number;
+    thirteen: number;
+    fourteen: number;
+    fifteen: number;
+    sixteen: number;
+    seventeen: number;
+    eighteen: number;
+    nineteen: number;
+    twenty: number;
+    twentyOne: number;
+    twentyTwo: number;
+    twentyThree: number;
+  };
+}
 
 const chartConfig = {
-  people: {
-    label: "People",
+  ratio: {
+    label: "Change Ratio",
     color: "#FC8E3F",
   },
 } satisfies ChartConfig;
 
-export function StayPerVisitorChart() {
+export function StayPerVisitorChart({ chartData }: stayPerVisitorPropsType) {
+  const formattedData = Object.entries(chartData).map(([key, value]) => {
+    const hourMap: { [key: string]: string } = {
+      zero: "0시",
+      one: "1시",
+      two: "2시",
+      three: "3시",
+      four: "4시",
+      five: "5시",
+      six: "6시",
+      seven: "7시",
+      eight: "8시",
+      nine: "9시",
+      ten: "10시",
+      eleven: "11시",
+      twelve: "12시",
+      thirteen: "13시",
+      fourteen: "14시",
+      fifteen: "15시",
+      sixteen: "16시",
+      seventeen: "17시",
+      eighteen: "18시",
+      nineteen: "19시",
+      twenty: "20시",
+      twentyOne: "21시",
+      twentyTwo: "22시",
+      twentyThree: "23시",
+    };
+
+    return {
+      hour: hourMap[key] || key, // 키를 한글 시간대 형식으로 변환
+      ratio: value, // 인원 수 값 유지
+    };
+  });
   return (
     <Card className="mt-7 w-full transform transition-transform hover:scale-110">
       <CardHeader>
@@ -59,7 +94,7 @@ export function StayPerVisitorChart() {
       <CardContent className="relative w-full">
         <ChartContainer config={chartConfig}>
           <LineChart
-            data={chartData}
+            data={formattedData}
             margin={{
               top: 16,
               left: 16,
@@ -86,14 +121,14 @@ export function StayPerVisitorChart() {
               content={
                 <ChartTooltipContent
                   formatter={(value, name, props) =>
-                    `${props.payload.hour}: ${value}명`
+                    `${props.payload.hour}: ${value}%`
                   } // 툴팁에서 시간대와 인원수 표시
                   hideLabel // People 대신 시간대 표시
                 />
               }
             />
             <Line
-              dataKey="people"
+              dataKey="ratio"
               type="monotone"
               stroke="#FC8E3F"
               strokeWidth={2}

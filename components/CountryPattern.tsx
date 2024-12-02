@@ -19,27 +19,41 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-// 방문자 수 데이터 (내국인, 외국인)
-const chartData = [
-  { country: "내국인", visitors: 75, fill: "#FC8E3F" },
-  { country: "외국인", visitors: 25, fill: "#F5A16F" },
-];
+interface countryPatternPropsType {
+  chartData: {
+    Foreigner: number;
+    Local: number;
+  };
+}
 
 const chartConfig = {
   visitors: {
-    label: "Visitors",
-    color: "#FC8E3F", // 진한 주황색
+    label: "Local Visitors",
+    color: "#FC8E3F", // 진한 주황색 (내국인)
   },
   foreign: {
     label: "Foreign Visitors",
-    color: "#F5A16F", // 연한 주황색
+    color: "#F5A16F", // 연한 주황색 (외국인)
   },
 } satisfies ChartConfig;
 
-export function CountryPatternChart() {
+export function CountryPatternChart({ chartData }: countryPatternPropsType) {
   const totalVisitors = React.useMemo(() => {
-    return chartData.reduce((acc, curr) => acc + curr.visitors, 0);
-  }, []);
+    return chartData.Foreigner + chartData.Local;
+  }, [chartData]);
+
+  const data = [
+    {
+      country: "내국인",
+      visitors: chartData.Local,
+      fill: chartConfig.visitors.color,
+    },
+    {
+      country: "외국인",
+      visitors: chartData.Foreigner,
+      fill: chartConfig.foreign.color,
+    },
+  ];
 
   return (
     <Card className="mt-7 w-full transform transition-transform hover:scale-110">
@@ -57,12 +71,13 @@ export function CountryPatternChart() {
               content={<ChartTooltipContent hideLabel />}
             />
             <Pie
-              data={chartData}
+              data={data}
               dataKey="visitors"
               nameKey="country"
               innerRadius={60}
               outerRadius={80}
               strokeWidth={5}
+              labelLine={false}
             >
               <Label
                 content={({ viewBox }) => {

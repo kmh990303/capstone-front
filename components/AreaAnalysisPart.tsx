@@ -26,6 +26,7 @@ interface areaAnalysisPropsType {
     visitConcentration: number;
     stayTimeChange: number;
   };
+  idx: number;
 }
 
 export const AreaAnalysisPart = ({
@@ -35,6 +36,7 @@ export const AreaAnalysisPart = ({
   second,
   overallData,
   firstValue,
+  idx,
 }: areaAnalysisPropsType) => {
   const router = useRouter();
   const { authFetch } = useAuthenticatedFetch();
@@ -83,7 +85,9 @@ export const AreaAnalysisPart = ({
         <div className="mt-6 h-[50vh]">
           <div className="flex justify-between items-center">
             <div className="flex flex-col gap-4">
-              <h3 className="areaAnalysis3 ml-8">{districtName} 상권 유형</h3>
+              <h3 className="areaAnalysis3 ml-8 mb-1">
+                {districtName} 상권 유형
+              </h3>
               <h3 className="areaAnalysis4 ml-8">{clusterName}</h3>
             </div>
             <motion.button
@@ -123,7 +127,7 @@ export const AreaAnalysisPart = ({
           <div className="w-[90%] mt-3 mx-auto py-2">
             <p className="areaAnalysis8 w-full m-1">
               {name} 상권의 2024년 {first}은 약
-              <span className="areaAnalysis7 m-1">{firstValue}</span>입니다.
+              <span className="areaAnalysis7 m-1">{firstValue}</span>%입니다.
             </p>
             <p className="areaAnalysis8 w-full m-1">
               <span className="areaAnalysis7 mr-1">{first}</span>과
@@ -134,7 +138,7 @@ export const AreaAnalysisPart = ({
           </div>
 
           <div className="flex items-center justify-between mx-auto w-[90%] mt-4">
-            <DetailSheet />
+            <DetailSheet areaIdx={idx} areaName={districtName} />
             <motion.button
               className="areaAnalysis10 w-[45%] py-3 rounded-md border-2 border-violet-400"
               style={{ backgroundColor: "#FFFFFF" }}

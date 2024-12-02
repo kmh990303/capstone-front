@@ -65,7 +65,7 @@ export default function MarketAreaAnalysisPage() {
     },
   });
 
-  let idx: number;
+  const [areaIdx, setAreaIdx] = useState<number>(0);
 
   // for (let i = 0; i < dummyAreas.length; i++) {
   //   if (name === dummyAreas[i]) {
@@ -82,6 +82,7 @@ export default function MarketAreaAnalysisPage() {
     }
 
     const idx = dummyAreas.indexOf(name) + 1;
+    setAreaIdx(idx);
     if (idx === -1) {
       console.error("Invalid area name:", name);
       return;
@@ -127,6 +128,7 @@ export default function MarketAreaAnalysisPage() {
           firstValue={topTwoData.first.value}
           second={topTwoData.second.name}
           overallData={overallData}
+          idx={areaIdx}
         />
       </div>
     </>

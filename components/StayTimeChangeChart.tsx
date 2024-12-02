@@ -16,51 +16,87 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-// 변화율(ratio) 데이터로 계산한 값
-const chartData = [
-  { hour: "0시", ratio: 0 },
-  { hour: "1시", ratio: -20 },
-  { hour: "2시", ratio: -25 },
-  { hour: "3시", ratio: -33.33 },
-  { hour: "4시", ratio: -25 },
-  { hour: "5시", ratio: 60 },
-  { hour: "6시", ratio: 140 },
-  { hour: "7시", ratio: 100 },
-  { hour: "8시", ratio: 66.67 },
-  { hour: "9시", ratio: 25 },
-  { hour: "10시", ratio: 20 },
-  { hour: "11시", ratio: 6.67 },
-  { hour: "12시", ratio: 25 },
-  { hour: "13시", ratio: -2.5 },
-  { hour: "14시", ratio: -10.26 },
-  { hour: "15시", ratio: -2.86 },
-  { hour: "16시", ratio: 5.88 },
-  { hour: "17시", ratio: 5.56 },
-  { hour: "18시", ratio: 5.26 },
-  { hour: "19시", ratio: 5 },
-  { hour: "20시", ratio: -9.52 },
-  { hour: "21시", ratio: -11.76 },
-  { hour: "22시", ratio: -17.65 },
-  { hour: "23시", ratio: -28.57 },
-];
+interface stayTimeChangePropsType {
+  chartData: {
+    zero: number;
+    one: number;
+    two: number;
+    three: number;
+    four: number;
+    five: number;
+    six: number;
+    seven: number;
+    eight: number;
+    nine: number;
+    ten: number;
+    eleven: number;
+    twelve: number;
+    thirteen: number;
+    fourteen: number;
+    fifteen: number;
+    sixteen: number;
+    seventeen: number;
+    eighteen: number;
+    nineteen: number;
+    twenty: number;
+    twentyOne: number;
+    twentyTwo: number;
+    twentyThree: number;
+  };
+}
 
 const chartConfig = {
   ratio: {
-    label: "Ratio",
+    label: "Change Ratio",
     color: "#FC8E3F",
   },
 } satisfies ChartConfig;
 
-export function StayTimeChangeChart() {
+export function StayTimeChangeChart({ chartData }: stayTimeChangePropsType) {
+  const formattedData = Object.entries(chartData).map(([key, value]) => {
+    const hourMap: { [key: string]: string } = {
+      zero: "0시",
+      one: "1시",
+      two: "2시",
+      three: "3시",
+      four: "4시",
+      five: "5시",
+      six: "6시",
+      seven: "7시",
+      eight: "8시",
+      nine: "9시",
+      ten: "10시",
+      eleven: "11시",
+      twelve: "12시",
+      thirteen: "13시",
+      fourteen: "14시",
+      fifteen: "15시",
+      sixteen: "16시",
+      seventeen: "17시",
+      eighteen: "18시",
+      nineteen: "19시",
+      twenty: "20시",
+      twentyOne: "21시",
+      twentyTwo: "22시",
+      twentyThree: "23시",
+    };
+
+    return {
+      hour: hourMap[key] || key, // 키를 한글 시간대 형식으로 변환
+      ratio: value, // 인원 수 값 유지
+    };
+  });
   return (
     <Card className="mt-7 w-full transform transition-transform hover:scale-110">
       <CardHeader>
-        <CardTitle className="areaAnalysis5">시간대별 평균 체류시간 변화율</CardTitle>
+        <CardTitle className="areaAnalysis5">
+          시간대별 평균 체류시간 변화율
+        </CardTitle>
       </CardHeader>
       <CardContent className="relative w-full">
         <ChartContainer config={chartConfig}>
           <LineChart
-            data={chartData}
+            data={formattedData}
             margin={{
               top: 16,
               left: 16,
