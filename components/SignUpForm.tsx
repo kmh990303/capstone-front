@@ -17,6 +17,7 @@ import emailImage from "@/images/email.png";
 import { MoonLoader } from "react-spinners";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 interface userInput {
   name: string;
@@ -36,7 +37,7 @@ export function SignUpForm() {
   const [error, setError] = useState<string | null>(null);
   const [isValidEmail, setIsValidEmail] = useState<boolean>(false);
   const [isValidPassword, setIsValidPassword] = useState<boolean>(false);
-
+  const router = useRouter();
   const validateSubmit = isLoading || !isValidEmail || !isValidPassword;
 
   const validateEmail = (email: string) => {
@@ -98,6 +99,7 @@ export function SignUpForm() {
       const data = await response.json();
       console.log(data);
       window.alert("회원가입에 성공했습니다!");
+      router.push("/");
 
       return data;
     } catch (e) {

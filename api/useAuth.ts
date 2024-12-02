@@ -2,16 +2,16 @@
 
 import { useAuthenticatedFetch } from "@/hooks/useAuthenticatedFetch";
 
-interface LoginResponse {
-    code: number;
-    isSuccess: boolean;
-    message: string;
-    data: {
-        grantType: string;
-        accessToken: string;
-        refreshToken: string;
-    }
-}
+// interface LoginResponse {
+//     code: number;
+//     isSuccess: boolean;
+//     message: string;
+//     data: {
+//         grantType: string;
+//         accessToken: string;
+//         refreshToken: string;
+//     }
+// }
 
 export const useAuth = () => {
     const authFetch = useAuthenticatedFetch();
@@ -35,9 +35,9 @@ export const useAuth = () => {
         return data;
     }
 
-    const logout = async () => {
-        return authFetch('http://backend-api/logout', { method: 'POST' });
-    }
+    // const logout = async () => {
+    //     return authFetch('http://backend-api/logout', { method: 'POST' });
+    // }
 
-    return { login, logout };
+    return { login };
 }

@@ -15,10 +15,10 @@ import { PeopleNumLineChart } from "./PeopleNumLineChart";
 import { StayVisitRatioChart } from "./StayVisitRatioChart";
 import { CongestionChangeChart } from "./CongestionChangeChart";
 import { StayPerVisitorChart } from "./StayPerVisitorChart";
-import { VisitConcentrationChart } from "./VisitConcentrationChart";
-import { PeakTimeChart } from "./PeakTimeChart";
+// import { VisitConcentrationChart } from "./VisitConcentrationChart";
+// import { PeakTimeChart } from "./PeakTimeChart";
 import { StayTimeChangeChart } from "./StayTimeChangeChart";
-import { VisitorIncreaseChart } from "./VisitorIncreaseChart";
+// import { VisitorIncreaseChart } from "./VisitorIncreaseChart";
 import { AgeGroupStayPatternChart } from "./AgeStayPatternChart";
 import { CountryPatternChart } from "./CountryPattern";
 
@@ -282,7 +282,9 @@ export function DetailSheet({ areaIdx, areaName }: detailPropsType) {
       return data;
     };
 
-    getData();
+    if (areaIdx !== 0) {
+      getData();
+    }
   }, [areaIdx]);
 
   return (

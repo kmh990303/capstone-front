@@ -85,9 +85,7 @@ export const AreaAnalysisPart = ({
         <div className="mt-6 h-[50vh]">
           <div className="flex justify-between items-center">
             <div className="flex flex-col gap-4">
-              <h3 className="areaAnalysis3 ml-8 mb-1">
-                {districtName} 상권 유형
-              </h3>
+              <h3 className="areaAnalysis3 ml-8">{districtName} 상권 유형</h3>
               <h3 className="areaAnalysis4 ml-8">{clusterName}</h3>
             </div>
             <motion.button
