@@ -34,7 +34,6 @@ interface findPasswordType {
 }
 
 export function FindUserForm() {
-  let tempToken: string;
   const router = useRouter();
   const [findInfo, setFindInfo] = useState<findInfoType>({
     eName: "",
@@ -52,12 +51,6 @@ export function FindUserForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
-
-  // useEffect(() => {
-  //   if (resetToken) {
-  //     console.log("리셋토큰 변경이요");
-  //   }
-  // }, [resetToken]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
