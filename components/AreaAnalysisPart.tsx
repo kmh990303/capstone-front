@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { RadarChartComponent } from "./RadarChart";
 import { DetailSheet } from "./DetailSheet";
 
@@ -6,11 +8,13 @@ import personLogo from "@/images/person.png";
 
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { useAuthenticatedFetch } from "@/hooks/useAuthenticatedFetch";
 
 import { useAreaStore } from "@/lib/store";
 
 export const AreaAnalysisPart = () => {
   const router = useRouter();
+  const { authFetch } = useAuthenticatedFetch();
   const { name, setName } = useAreaStore();
 
   const handleCompareButton = () => {
@@ -21,12 +25,29 @@ export const AreaAnalysisPart = () => {
     router.push("/marketAreaAnalysis/dateCompare");
   };
 
+  useEffect(() => {
+    const authFetchGetData = async () => {
+      const response = await authFetch("http://backend", {
+        method: "GET",
+      });
+
+      if (!response.ok) throw new Error("Failed to fetch data...");
+
+      const data = await response.json();
+      console.log(data);
+
+      return data;
+    };
+
+    authFetchGetData();
+  }, []);
+
   return (
     <>
       <div className="w-[42%] h-[90vh] flex flex-col">
         <div className="w-full h-[10vh] border-2 border-gray-100 flex justify-center items-center">
           <h1 className="flex items-center gap-2">
-            <span className="areaAnalysis">강남</span>
+            <span className="areaAnalysis">{name}</span>
             <span className="areaAnalysis2">상권 분석 결과입니다.</span>
           </h1>
         </div>
@@ -34,7 +55,7 @@ export const AreaAnalysisPart = () => {
         <div className="mt-6 h-[50vh]">
           <div className="flex justify-between items-center">
             <div className="flex flex-col gap-4">
-              <h3 className="areaAnalysis3 ml-8">강남 상권 유형</h3>
+              <h3 className="areaAnalysis3 ml-8">{name} 상권 유형</h3>
               <h3 className="areaAnalysis4 ml-8">번화가 중심 상권</h3>
             </div>
             <motion.button
@@ -73,7 +94,7 @@ export const AreaAnalysisPart = () => {
 
           <div className="w-[90%] mt-3 mx-auto py-2">
             <p className="areaAnalysis8 w-full m-1">
-              강남 상권의 2024년 평균 체류시간 변화율은 약
+              {name} 상권의 2024년 평균 체류시간 변화율은 약
               <span className="areaAnalysis7 m-1">75%</span>입니다.
             </p>
             <p className="areaAnalysis8 w-full m-1">

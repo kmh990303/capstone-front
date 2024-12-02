@@ -33,5 +33,5 @@ export const useAuthenticatedFetch = () => {
         return response;
     }
 
-    return authFetch;
+    return { authFetch };
 };

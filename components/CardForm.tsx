@@ -124,9 +124,10 @@ export function CardForm() {
               </h4>
               {loginSuccess && (
                 <>
-                  <h4 className="my-text2 mx-4 my-10">
-                    저희 서비스를 찾아주셔서 감사합니다. 오늘도 좋은 하루
-                    되세요!
+                  <h4 className="my-text2 mx-4 my-10 space-y-1">
+                    저희 서비스를 찾아주셔서 감사합니다.
+                    <br />
+                    오늘도 좋은 하루 되세요!
                   </h4>
                 </>
               )}

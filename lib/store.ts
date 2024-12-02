@@ -38,14 +38,15 @@ export const useAuthStore = create<AuthState>()(
             logout: () => set({ accessToken: null, refreshToken: null }),
 
             refreshAccessToken: async () => {
-                const { refreshToken, setAccessToken, setLoginSuccess } = get();
+                const { accessToken, refreshToken, setAccessToken, setLoginSuccess } = get();
 
                 if (refreshToken) {
                     try {
-                        const response = await fetch('/api/refresh', {
+                        const response = await fetch('http://13.125.95.219:8080/api/member/reissue', {
                             method: 'POST',
                             body: JSON.stringify({
-                                refreshToken
+                                accessToken,
+                                refreshToken,
                             }),
                             headers: {
                                 'Content-Type': 'application/json'
