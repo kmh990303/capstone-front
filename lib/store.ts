@@ -19,6 +19,10 @@ interface AreaState {
     compareName: string | null;
     setName: (name: string | null) => void;
     setCompareName: (name: string | null) => void;
+    prevDate: Date | null;
+    curDate: Date | null;
+    setPrevDate: (date: Date | null) => void;
+    setCurDate: (date: Date | null) => void;
 }
 
 const decodeJwt = (token: string) => {
@@ -90,11 +94,15 @@ export const useAreaStore = create<AreaState>()(
         (set) => ({
             name: null,
             compareName: null,
+            prevDate: null,
+            curDate: null,
             setName: (name) => set({ name }),
             setCompareName: (name) => set({ compareName: name }),
+            setPrevDate: (date) => set({ prevDate: date }),
+            setCurDate: (date) => set({ curDate: date }),
         }),
         {
-            name: 'area-storage'
+            name: 'area-storage',
         }
     )
-)
+);

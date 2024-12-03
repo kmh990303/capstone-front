@@ -30,10 +30,11 @@ export function DateCompareForm() {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const { name, setName, setCompareName } = useAreaStore();
+  const { name, setName, setCompareName, setPrevDate, setCurDate } =
+    useAreaStore();
 
-  const [prevDate, setPrevDate] = useState<Date | undefined>();
-  const [curDate, setCurDate] = useState<Date | undefined>();
+  const [prevDate, setPrevDateData] = useState<Date | undefined>();
+  const [curDate, setCurDateData] = useState<Date | undefined>();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -41,8 +42,8 @@ export function DateCompareForm() {
     setIsLoading(true);
     setError(null);
 
-    console.log(prevDate);
-    console.log(curDate);
+    if (prevDate) setPrevDate(prevDate);
+    if (curDate) setCurDate(curDate);
 
     // setIsLoading(false);
 
@@ -105,10 +106,13 @@ export function DateCompareForm() {
               <>
                 <div className="flex justify-center gap-2 w-[30rem] h-14 items-center rounded-md m-1 mx-auto mt-3">
                   <DatePicker
-                    setDateData={setPrevDate}
+                    setDateData={setPrevDateData}
                     caption={PREV_MESSAGE}
                   />
-                  <DatePicker setDateData={setCurDate} caption={NEXT_MESSAGE} />
+                  <DatePicker
+                    setDateData={setCurDateData}
+                    caption={NEXT_MESSAGE}
+                  />
                 </div>
 
                 <CardFooter className="flex justify-end items-center m-2 px-2">
