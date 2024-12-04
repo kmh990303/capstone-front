@@ -14,7 +14,7 @@ const options = [
   { feature: "유동 인구 수", id: 2, per: "명" },
   { feature: "체류/방문 비율", id: 3, per: "%" },
   { feature: "혼잡도 변화율", id: 4, per: "%" },
-  { feature: "체류시간 대비 방문자 수", per: "명" },
+  { feature: "체류시간 대비 방문자 수", id: 5, per: "명" },
   { feature: "평균 체류시간 변화율", id: 6, per: "명" },
   { feature: "시간대별 방문자 수 증가율", id: 7, per: "명" },
 ];

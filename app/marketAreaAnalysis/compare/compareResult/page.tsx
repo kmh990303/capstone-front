@@ -77,7 +77,8 @@ interface chartType {
 }
 
 export default function CompareResultPage() {
-  const { name, compareName } = useAreaStore();
+  const { name, compareName, setGlobalAreaIdx, setGlobalCompareAreaIdx } =
+    useAreaStore();
   const [areaData, setAreaData] = useState<districtType>({
     districtInfo: {
       districtName: "",
@@ -196,11 +197,17 @@ export default function CompareResultPage() {
   useEffect(() => {
     if (name) {
       const index = dummyAreas.indexOf(name) + 1;
-      if (index > 0) setAreaIdx(index); // areaIdx 업데이트
+      if (index > 0) {
+        setAreaIdx(index);
+        setGlobalAreaIdx(index);
+      } // areaIdx 업데이트
     }
     if (compareName) {
       const index = dummyAreas.indexOf(compareName) + 1;
-      if (index > 0) setCompareAreaIdx(index); // compareAreaIdx 업데이트
+      if (index > 0) {
+        setCompareAreaIdx(index);
+        setGlobalCompareAreaIdx(index);
+      } // compareAreaIdx 업데이트
     }
   }, [name, compareName]);
 

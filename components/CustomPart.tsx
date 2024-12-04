@@ -2,11 +2,15 @@
 
 import { motion } from "framer-motion";
 import { Input } from "./ui/input";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { CustomTable } from "./CustomTable";
 import { CustomGraphChart } from "./CustomGraphChart";
 import { useRouter } from "next/navigation";
+import { useAreaStore } from "@/lib/store";
+import { dummyAreas } from "@/dummy/dummy";
+import { useAuthenticatedFetch } from "@/hooks/useAuthenticatedFetch";
+import { useAuthStore } from "@/lib/store";
 
 interface optionType {
   feature: string;
@@ -40,7 +44,7 @@ const cal_options = [
 
 export const CustomPart = () => {
   // 계산식 유효성 검증은 매번 키워드 선택 시 keywords에 추가해 개수를 세야 함
-  const [keywords, setKeywords] = useState<string[]>([]);
+  const [keywords, setKeywords] = useState<string[]>([]); // 활용한 지표들만을 저장해놓는 배열
   const [optionCnt, setOptionCnt] = useState<number>(0);
   const [calOptionCnt, setCalOptionCnt] = useState<number>(0);
   const [isSubmit, setIsSubmit] = useState<boolean>(false); // 폼 제출 여부에 따른 상태
@@ -52,11 +56,11 @@ export const CustomPart = () => {
   const [turn, setTurn] = useState<boolean>(true);
   const [result, setResult] = useState({}); // 커스텀 피처 생성 클릭시 결과로 받는 데이터를 저장
   const router = useRouter();
-
-  //   const handleKeyWordClick = (keyword: string) => {
-  //     setKeywords((prev) => [...prev, keyword]);
-  //     setShowOptions(false);
-  //   };
+  const { globalAreaIdx, globalCompareAreaIdx } = useAreaStore();
+  const [areaName, setAreaName] = useState<string>("");
+  const [compareAreaName, setCompareAreaName] = useState<string>("");
+  const { authFetch } = useAuthenticatedFetch();
+  const { accessToken } = useAuthStore();
 
   const handleFocus = () => {
     setShowOptions(true);
@@ -85,17 +89,38 @@ export const CustomPart = () => {
       return;
     }
 
+    if (globalAreaIdx < 1 || globalCompareAreaIdx < 1) {
+      return;
+    }
+
+    if (!accessToken) {
+      return;
+    }
+
     try {
-      const response = await fetch("http://backend", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          newFeat,
-          formula,
-        }),
-      });
+      console.log(
+        globalAreaIdx,
+        globalCompareAreaIdx,
+        "body에 지역 인덱스 잘 넣었는지 확인",
+        accessToken
+      );
+      setAreaName(dummyAreas[globalAreaIdx - 1]);
+      setCompareAreaName(dummyAreas[globalCompareAreaIdx - 1]);
+      const response = await authFetch(
+        "http://13.125.95.219:8080/api/customFeatures/calculate",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            formula,
+            featureName: newFeat,
+            areaId: globalAreaIdx,
+            compareAreaId: globalCompareAreaIdx,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("failed to fetch data...");
@@ -122,6 +147,7 @@ export const CustomPart = () => {
     setShowOptions(false);
     setTurn(false);
     setOptionCnt((prevState) => prevState + 1);
+    setKeywords((prevState) => [...prevState, option.feature]);
   };
 
   const handleCalOptionClick = (option: calOptionType) => {
@@ -133,6 +159,7 @@ export const CustomPart = () => {
 
   const handleInit = () => {
     setFormula(""); // 계산식 초기화
+    setNewFeat("");
     setTurn(true);
     setOptionCnt(0);
     setCalOptionCnt(0);
@@ -192,15 +219,6 @@ export const CustomPart = () => {
               ))}
             </div>
           )}
-          {/* <Input
-            type="text"
-            placeholder="값을 활용한 수식을 입력해 주세요."
-            className="w-[80%] border-2 border-gray-300 mx-auto px-2 py-6 focus:border-orange-300 areaAnalysis_ptago"
-            // onFocus={handleFocus}
-            // value={formula}
-            // onBlur={handleBlur}
-            // onChange={handleChangeFormula}
-          /> */}
           <div className="flex justify-between w-[80%] mx-auto gap-4">
             <motion.button
               type="button"
@@ -209,7 +227,7 @@ export const CustomPart = () => {
               className="areaAnalysis3_white px-5 py-5 rounded-2xl"
               style={{ backgroundColor: "#8949FF" }}
             >
-              계산식 초기화
+              초기화
             </motion.button>
             <motion.button
               type="button"
@@ -241,15 +259,25 @@ export const CustomPart = () => {
               className="w-[80%] border-2 border-gray-300 mx-auto px-2 py-4 areaAnalysis_ptagl rounded-lg mt-4"
               // style={{ backgroundColor: "#8949FF" }}
             >
-              <span className="areaAnalysis_ptag mr-1">new_custom_feature</span>
-              의 결과 값은 <span className="areaAnalysis_ptag mr-1">15</span>
+              <span className="areaAnalysis_ptag mr-1">{areaName}</span>의
+              <span className="areaAnalysis_ptag mr-1 ml-2">{newFeat}</span>{" "}
+              결과 값은 <span className="areaAnalysis_ptag mr-1">{15}</span>
+              입니다.
+            </div>
+            <div
+              className="w-[80%] border-2 border-gray-300 mx-auto px-2 py-4 areaAnalysis_ptagl rounded-lg mt-4"
+              // style={{ backgroundColor: "#8949FF" }}
+            >
+              <span className="areaAnalysis_ptag mr-1">{compareAreaName}</span>
+              의<span className="areaAnalysis_ptag mr-1 ml-2">{newFeat}</span>{" "}
+              결과 값은 <span className="areaAnalysis_ptag mr-1">{15}</span>
               입니다.
             </div>
             <div className="w-[80%] mx-auto my-4">
               <h1 className="areaAnalysis_ptagl">
                 아래는{" "}
                 <span className="areaAnalysis_ptag mr-1 mt-3 ml-1">
-                  new_custom_feature
+                  {keywords.join(", ")}
                 </span>
                 을 활용한 데이터 분석 지표입니다.
               </h1>

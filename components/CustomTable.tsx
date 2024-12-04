@@ -8,6 +8,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useEffect } from "react";
+import { useAuthenticatedFetch } from "@/hooks/useAuthenticatedFetch";
+import { useAuthStore } from "@/lib/store";
 
 const features = [
   {
@@ -49,6 +52,31 @@ const features = [
 ];
 
 export function CustomTable() {
+  const { authFetch } = useAuthenticatedFetch();
+  const { accessToken } = useAuthStore();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // 개인이 만든 커스텀 피처 리스트 불러오기
+      const response = await authFetch(
+        "http://13.125.95.219:8080/api/customFeatures/list",
+        {
+          method: "GET",
+        }
+      );
+
+      if (!response.ok) throw new Error("Failed to fetch data...");
+
+      const data = await response.json();
+      console.log(data);
+      return data;
+    };
+
+    if (accessToken) {
+      fetchData();
+    }
+  }, [accessToken]);
+
   return (
     <div className="w-[80%] mx-auto max-h-[20vh] overflow-y-auto areaAnalysis_ptagl">
       <Table className="w-full border-2 border-gray-100">

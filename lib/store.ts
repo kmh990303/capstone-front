@@ -10,19 +10,23 @@ interface AuthState {
     setLoginSuccess: () => void;
     logout: () => void;
 
-    refreshAccessToken: () => Promise<void>;
-    checkAccessTokenExpiration: () => void;
+    // refreshAccessToken: () => Promise<void>;
+    // checkAccessTokenExpiration: () => void;
 }
 
 interface AreaState {
     name: string | null;
     compareName: string | null;
+    globalAreaIdx: number;
+    globalCompareAreaIdx: number;
     setName: (name: string | null) => void;
     setCompareName: (name: string | null) => void;
     prevDate: Date | null;
     curDate: Date | null;
     setPrevDate: (date: Date | null) => void;
     setCurDate: (date: Date | null) => void;
+    setGlobalAreaIdx: (idx: number) => void;
+    setGlobalCompareAreaIdx: (idx: number) => void;
 }
 
 const decodeJwt = (token: string) => {
@@ -41,47 +45,47 @@ export const useAuthStore = create<AuthState>()(
             setRefreshToken: (token) => set({ refreshToken: token }),
             logout: () => set({ accessToken: null, refreshToken: null }),
 
-            refreshAccessToken: async () => {
-                const { accessToken, refreshToken, setAccessToken, setLoginSuccess } = get();
+            // refreshAccessToken: async () => {
+            //     const { accessToken, refreshToken, setAccessToken, setLoginSuccess } = get();
 
-                if (refreshToken) {
-                    try {
-                        const response = await fetch('http://13.125.95.219:8080/api/member/reissue', {
-                            method: 'POST',
-                            body: JSON.stringify({
-                                accessToken,
-                                refreshToken,
-                            }),
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        });
+            //     if (refreshToken) {
+            //         try {
+            //             const response = await fetch('http://13.125.95.219:8080/api/member/reissue', {
+            //                 method: 'POST',
+            //                 body: JSON.stringify({
+            //                     accessToken,
+            //                     refreshToken,
+            //                 }),
+            //                 headers: {
+            //                     'Content-Type': 'application/json'
+            //                 }
+            //             });
 
-                        if (response.ok) {
-                            const data = await response.json();
-                            setAccessToken(data.accessToken)
-                        } else {
-                            setLoginSuccess(); // 로그인 실패 시 상태 변경
-                            throw new Error('Refresh Token is invalid');
-                        }
-                    } catch (error) {
-                        console.error('Error refreshing access token:', error);
-                        setLoginSuccess(); // 로그인 실패 시 상태 변경
-                    }
-                }
-            },
-            checkAccessTokenExpiration: async () => {
-                const { accessToken, refreshAccessToken } = get();
-                if (accessToken) {
-                    const decodedToken = decodeJwt(accessToken);
-                    const currentTime = Math.floor(Date.now() / 1000);
-                    const expirationTime = decodedToken.exp;
+            //             if (response.ok) {
+            //                 const data = await response.json();
+            //                 setAccessToken(data.accessToken)
+            //             } else {
+            //                 setLoginSuccess(); // 로그인 실패 시 상태 변경
+            //                 throw new Error('Refresh Token is invalid');
+            //             }
+            //         } catch (error) {
+            //             console.error('Error refreshing access token:', error);
+            //             setLoginSuccess(); // 로그인 실패 시 상태 변경
+            //         }
+            //     }
+            // },
+            // checkAccessTokenExpiration: async () => {
+            //     const { accessToken, refreshAccessToken } = get();
+            //     if (accessToken) {
+            //         const decodedToken = decodeJwt(accessToken);
+            //         const currentTime = Math.floor(Date.now() / 1000);
+            //         const expirationTime = decodedToken.exp;
 
-                    if (expirationTime - currentTime <= 600) {
-                        refreshAccessToken(); // 액세스 토큰 갱신
-                    }
-                }
-            }
+            //         if (expirationTime - currentTime <= 600) {
+            //             refreshAccessToken(); // 액세스 토큰 갱신
+            //         }
+            //     }
+            // }
         }),
         {
             name: 'auth-storage',
@@ -96,10 +100,14 @@ export const useAreaStore = create<AreaState>()(
             compareName: null,
             prevDate: null,
             curDate: null,
+            globalAreaIdx: 0,
+            globalCompareAreaIdx: 0,
             setName: (name) => set({ name }),
             setCompareName: (name) => set({ compareName: name }),
             setPrevDate: (date) => set({ prevDate: date }),
             setCurDate: (date) => set({ curDate: date }),
+            setGlobalAreaIdx: (idx) => set({ globalAreaIdx: idx }),
+            setGlobalCompareAreaIdx: (idx) => set({ globalCompareAreaIdx: idx }),
         }),
         {
             name: 'area-storage',
