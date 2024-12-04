@@ -8,56 +8,23 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAuthenticatedFetch } from "@/hooks/useAuthenticatedFetch";
 import { useAuthStore } from "@/lib/store";
 
-const features = [
-  {
-    name: "new_feature1",
-    id: "1",
-    place: "user1",
-    formula: "혼잡도 변화율 / 체류 방문 비율 * 유동인구 수",
-  },
-  {
-    name: "new_feature2",
-    id: "2",
-    place: "user2",
-    formula: "체류시간 대비 방문자 수 + 유동인구 수",
-  },
-  {
-    name: "피처3",
-    id: "3",
-    place: "user3",
-    formula: "p * q / r",
-  },
-  {
-    name: "피처1",
-    id: "4",
-    place: "user4",
-    formula: "a / b * c",
-  },
-  {
-    name: "피처2",
-    id: "5",
-    place: "user5",
-    formula: "x + y - z",
-  },
-  {
-    name: "피처3",
-    id: "6",
-    place: "user6",
-    formula: "p * q / r",
-  },
-];
+interface customDataType {
+  featureName: string;
+  formula: string;
+  featureUuid: string;
+}
 
 export function CustomTable() {
   const { authFetch } = useAuthenticatedFetch();
   const { accessToken } = useAuthStore();
+  const [customListData, setCustomListData] = useState<customDataType[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      // 개인이 만든 커스텀 피처 리스트 불러오기
       const response = await authFetch(
         "http://13.125.95.219:8080/api/customFeatures/list",
         {
@@ -69,6 +36,7 @@ export function CustomTable() {
 
       const data = await response.json();
       console.log(data);
+      setCustomListData(data);
       return data;
     };
 
@@ -88,11 +56,10 @@ export function CustomTable() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {features.map((feature) => (
-            <TableRow key={feature.id}>
-              {/* <TableCell>{feature.place}</TableCell> */}
-              <TableCell>{feature.name}</TableCell>
-              <TableCell>{feature.formula}</TableCell>
+          {customListData.map((customData) => (
+            <TableRow key={customData.featureUuid}>
+              <TableCell>{customData.featureName}</TableCell>
+              <TableCell>{customData.formula}</TableCell>
             </TableRow>
           ))}
         </TableBody>

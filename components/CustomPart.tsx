@@ -25,12 +25,12 @@ interface calOptionType {
 
 const options = [
   { feature: "방문 집중도", id: 1 },
-  { feature: "유동 인구 수", id: 2 },
-  { feature: "체류/방문 비율", id: 3 },
+  { feature: "유동인구 수", id: 2 },
+  { feature: "체류 방문 비율", id: 3 },
   { feature: "혼잡도 변화율", id: 4 },
   { feature: "체류시간 대비 방문자 수", id: 5 },
   { feature: "평균 체류시간 변화율", id: 6 },
-  { feature: "시간대별 방문자 수 증가율", id: 7 },
+  // { feature: "시간대별 방문자 수 증가율", id: 7 },
 ];
 
 const cal_options = [
@@ -48,13 +48,14 @@ export const CustomPart = () => {
   const [optionCnt, setOptionCnt] = useState<number>(0);
   const [calOptionCnt, setCalOptionCnt] = useState<number>(0);
   const [isSubmit, setIsSubmit] = useState<boolean>(false); // 폼 제출 여부에 따른 상태
+  const [customResultData1, setCustomResultData1] = useState<number>(0);
+  const [customResultData2, setCustomResultData2] = useState<number>(0);
 
   const [showOptions, setShowOptions] = useState(false);
 
   const [newFeat, setNewFeat] = useState<string>("");
   const [formula, setFormula] = useState<string>("");
   const [turn, setTurn] = useState<boolean>(true);
-  const [result, setResult] = useState({}); // 커스텀 피처 생성 클릭시 결과로 받는 데이터를 저장
   const router = useRouter();
   const { globalAreaIdx, globalCompareAreaIdx } = useAreaStore();
   const [areaName, setAreaName] = useState<string>("");
@@ -106,29 +107,34 @@ export const CustomPart = () => {
       );
       setAreaName(dummyAreas[globalAreaIdx - 1]);
       setCompareAreaName(dummyAreas[globalCompareAreaIdx - 1]);
-      const response = await authFetch(
-        "http://13.125.95.219:8080/api/customFeatures/calculate",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            formula,
-            featureName: newFeat,
-            areaId: globalAreaIdx,
-            compareAreaId: globalCompareAreaIdx,
-          }),
+
+      if (accessToken && globalAreaIdx > 0 && globalCompareAreaIdx > 0) {
+        console.log(newFeat, formula);
+        const response = await authFetch(
+          `http://13.125.95.219:8080/api/customFeatures/calculateAndCreate/${globalAreaIdx}/${globalCompareAreaIdx}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              featureName: newFeat,
+              formula,
+            }),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("failed to fetch data...");
         }
-      );
 
-      if (!response.ok) {
-        throw new Error("failed to fetch data...");
+        const data = await response.json();
+        setCustomResultData1(data.district1_result);
+        setCustomResultData2(data.district2_result);
+        console.log(data);
+
+        return data;
       }
-
-      const data = await response.json();
-
-      return data;
     } catch (error) {
       console.error(error);
     }
@@ -261,16 +267,22 @@ export const CustomPart = () => {
             >
               <span className="areaAnalysis_ptag mr-1">{areaName}</span>의
               <span className="areaAnalysis_ptag mr-1 ml-2">{newFeat}</span>{" "}
-              결과 값은 <span className="areaAnalysis_ptag mr-1">{15}</span>
+              결과 값은{" "}
+              <span className="areaAnalysis_ptag mr-1">
+                {customResultData1}
+              </span>
               입니다.
             </div>
             <div
               className="w-[80%] border-2 border-gray-300 mx-auto px-2 py-4 areaAnalysis_ptagl rounded-lg mt-4"
               // style={{ backgroundColor: "#8949FF" }}
             >
-              <span className="areaAnalysis_ptag mr-1">{compareAreaName}</span>
-              의<span className="areaAnalysis_ptag mr-1 ml-2">{newFeat}</span>{" "}
-              결과 값은 <span className="areaAnalysis_ptag mr-1">{15}</span>
+              <span className="areaAnalysis_ptagp mr-1">{compareAreaName}</span>
+              의<span className="areaAnalysis_ptagp mr-1 ml-2">{newFeat}</span>{" "}
+              결과 값은{" "}
+              <span className="areaAnalysis_ptagp mr-1">
+                {customResultData2}
+              </span>
               입니다.
             </div>
             <div className="w-[80%] mx-auto my-4">
