@@ -1,5 +1,11 @@
+"use client";
+
 import NavBar from "@/components/NavBar";
 import { CustomGraphPart } from "@/components/CustomGraphPart";
+import { useEffect } from "react";
+import { useAuthStore } from "@/lib/store";
+import { useAreaStore } from "@/lib/store";
+import { useAuthenticatedFetch } from "@/hooks/useAuthenticatedFetch";
 
 const chartData = [
   { standard: "유동 인구 수", ratio: 60 },
@@ -12,6 +18,32 @@ const chartData = [
 ];
 
 export default function CustomGraphPage() {
+  const { accessToken } = useAuthStore();
+  const { globalAreaIdx, globalCompareAreaIdx } = useAreaStore();
+  const { authFetch } = useAuthenticatedFetch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await authFetch(
+        `http://13.125.95.219:8080/api/customFeatures/compare/${globalAreaIdx}/${globalCompareAreaIdx}`,
+        {
+          method: "GET",
+        }
+      );
+
+      if (!response.ok) throw new Error("Failed to fetch data...");
+
+      const data = await response.json();
+      console.log(data);
+
+      return data;
+    };
+
+    if (accessToken) {
+      fetchData();
+    }
+  }, [accessToken]);
+
   return (
     <>
       <NavBar />

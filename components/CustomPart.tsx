@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Input } from "./ui/input";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { CustomTable } from "./CustomTable";
 import { CustomGraphChart } from "./CustomGraphChart";
@@ -21,6 +21,12 @@ interface calOptionType {
   name: string;
   mark: string;
   id: number;
+}
+
+interface customArrayType {
+  featureName: string;
+  formula: string;
+  featureUuid: string;
 }
 
 const options = [
@@ -62,6 +68,8 @@ export const CustomPart = () => {
   const [compareAreaName, setCompareAreaName] = useState<string>("");
   const { authFetch } = useAuthenticatedFetch();
   const { accessToken } = useAuthStore();
+  const [addCustomData, setAddCustomData] = useState<customArrayType[]>([]);
+  const [clickState, setClickState] = useState<number>(0);
 
   const handleFocus = () => {
     setShowOptions(true);
@@ -82,6 +90,12 @@ export const CustomPart = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (clickState == 0) {
+      setClickState(1);
+    } else {
+      setClickState((prevState) => -prevState);
+    }
 
     setIsSubmit(true);
 
@@ -170,6 +184,8 @@ export const CustomPart = () => {
     setOptionCnt(0);
     setCalOptionCnt(0);
     setIsSubmit(false);
+    setKeywords([]);
+    setClickState(0);
   };
 
   return (
@@ -287,16 +303,12 @@ export const CustomPart = () => {
             </div>
             <div className="w-[80%] mx-auto my-4">
               <h1 className="areaAnalysis_ptagl">
-                아래는{" "}
-                <span className="areaAnalysis_ptag mr-1 mt-3 ml-1">
-                  {keywords.join(", ")}
-                </span>
-                을 활용한 데이터 분석 지표입니다.
+                아래는 생성한 커스텀 지표 리스트입니다.
               </h1>
             </div>
-            <CustomTable />
           </>
         )}
+        <CustomTable />
       </div>
     </>
   );

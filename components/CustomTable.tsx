@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useImperativeHandle, forwardRef } from "react";
 import { useAuthenticatedFetch } from "@/hooks/useAuthenticatedFetch";
 import { useAuthStore } from "@/lib/store";
 
@@ -18,7 +18,15 @@ interface customDataType {
   featureUuid: string;
 }
 
-export function CustomTable() {
+interface customDataPropsType {
+  newData?: {
+    featureName: string;
+    formula: string;
+    featureUuid: string;
+  }[];
+}
+
+export function CustomTable({ newData }: customDataPropsType) {
   const { authFetch } = useAuthenticatedFetch();
   const { accessToken } = useAuthStore();
   const [customListData, setCustomListData] = useState<customDataType[]>([]);
@@ -35,9 +43,7 @@ export function CustomTable() {
       if (!response.ok) throw new Error("Failed to fetch data...");
 
       const data = await response.json();
-      console.log(data);
-      setCustomListData(data);
-      return data;
+      setCustomListData((prevData) => [...prevData, ...data]); // 기존 데이터와 합치기
     };
 
     if (accessToken) {
@@ -46,11 +52,10 @@ export function CustomTable() {
   }, [accessToken]);
 
   return (
-    <div className="w-[80%] mx-auto max-h-[20vh] overflow-y-auto areaAnalysis_ptagl">
+    <div className="w-[80%] mx-auto max-h-[20vh] overflow-y-auto areaAnalysis_ptagl mt-4">
       <Table className="w-full border-2 border-gray-100">
         <TableHeader>
           <TableRow>
-            {/* <TableHead>사용자</TableHead> */}
             <TableHead>피처명</TableHead>
             <TableHead>계산식</TableHead>
           </TableRow>
