@@ -1,4 +1,10 @@
-import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
+import {
+  PolarAngleAxis,
+  PolarGrid,
+  Radar,
+  RadarChart,
+  PolarRadiusAxis,
+} from "recharts";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   ChartConfig,
@@ -7,15 +13,22 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-const chartData = [
-  // -> 이거 수정할 것
-  { standard: "유동 인구 수", ratio: 40 },
-  { standard: "체류/방문 비율", ratio: 70 },
-  { standard: "혼잡도 변화율", ratio: 80 },
-  { standard: "체류시간 대비 방문자 수", ratio: 39 },
-  { standard: "방문 집중도", ratio: 50 },
-  { standard: "평균 체류시간 변화율", ratio: 60 },
-];
+interface RadarChartPropsType {
+  chartData?: {
+    standard: string;
+    ratio: number;
+  }[];
+}
+
+// 영문 속성명과 한글 속성명 매핑
+const standardMapping: { [key: string]: string } = {
+  population: "유동 인구 수",
+  stayVisit: "체류/방문 비율",
+  congestion: "혼잡도 변화율",
+  stayPerVisitor: "체류시간 대비 방문자 수",
+  visitConcentration: "방문 집중도",
+  stayTimeChange: "평균 체류시간 변화율",
+};
 
 const chartConfig = {
   standard: {
@@ -24,7 +37,13 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function CompareRadarChartComponent() {
+export function CompareRadarChartComponent({ chartData }: RadarChartPropsType) {
+  // chartData를 한글로 변환
+  const transformedData = chartData?.map((data) => ({
+    ...data,
+    standard: standardMapping[data.standard] || data.standard, // 매핑된 한글 값으로 변환
+  }));
+
   return (
     <Card className="border-0 outline-none">
       <CardContent className="pb-0">
@@ -34,7 +53,7 @@ export function CompareRadarChartComponent() {
           style={{ width: "100%", height: "40vh" }} // 세로 크기 상대 단위로 설정
         >
           <RadarChart
-            data={chartData}
+            data={transformedData}
             style={{ width: "100%", height: "100%" }}
           >
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
@@ -47,6 +66,9 @@ export function CompareRadarChartComponent() {
               className="areaAnalysis8"
             />
             <PolarGrid />
+            <PolarRadiusAxis
+              domain={[0, 100]} // 반지름 축의 최소값과 최댓값을 설정
+            />
             <Radar dataKey="ratio" fill="#8949ff" fillOpacity={0.6} />
           </RadarChart>
         </ChartContainer>

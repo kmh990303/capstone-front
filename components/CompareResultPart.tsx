@@ -1,14 +1,54 @@
-import { RadarChartComponent } from "./RadarChart";
-import Image from "next/image";
-import personLogo from "@/images/person.png";
-
 import { LuDot } from "react-icons/lu";
 
 import { motion } from "framer-motion";
 
 import { useRouter } from "next/navigation";
 
-export const CompareResultPart = () => {
+interface resultPropsType {
+  arrangedData1: {
+    population: number;
+    stayVisit: number;
+    congestion: number;
+    stayPerVisitor: number;
+    visitConcentration: number;
+    stayTimeChange: number;
+  };
+  arrangedData2: {
+    population: number;
+    stayVisit: number;
+    congestion: number;
+    stayPerVisitor: number;
+    visitConcentration: number;
+    stayTimeChange: number;
+  };
+  differenceData: {
+    key1: {
+      name: string;
+      value1: number;
+      value2: number;
+    };
+    key2: {
+      name: string;
+      value1: number;
+      value2: number;
+    };
+    key3: {
+      name: string;
+      value1: number;
+      value2: number;
+    };
+  };
+  name: string;
+  compareName: string;
+}
+
+export const CompareResultPart = ({
+  arrangedData1,
+  arrangedData2,
+  compareName,
+  name,
+  differenceData,
+}: resultPropsType) => {
   const router = useRouter();
 
   const handleCustomButton = () => {
@@ -24,8 +64,8 @@ export const CompareResultPart = () => {
       <div className="w-[42%] h-[90vh] flex flex-col">
         <div className="w-full h-[10vh] border-2 border-gray-100 flex justify-center items-center">
           <h1 className="flex items-center gap-2 areaAnalysis_black">
-            <span className="areaAnalysis">강남</span> vs
-            <span className="areaAnalysis_purple">이태원</span>
+            <span className="areaAnalysis">{name}</span> vs
+            <span className="areaAnalysis_purple">{compareName}</span>
           </h1>
         </div>
 
@@ -65,7 +105,7 @@ export const CompareResultPart = () => {
                   style={{ backgroundColor: "#FFE9D9", width: "33.33%" }}
                   className="py-3 areaAnalysis5_center border border-gray-300"
                 >
-                  강남
+                  {name}
                 </th>
                 <th
                   align="center"
@@ -79,7 +119,7 @@ export const CompareResultPart = () => {
                   style={{ backgroundColor: "#EBE0FF", width: "33.33%" }}
                   className="py-3 areaAnalysis5_centerp border border-gray-300"
                 >
-                  이태원
+                  {compareName}
                 </th>
               </tr>
             </thead>
@@ -89,7 +129,7 @@ export const CompareResultPart = () => {
                   align="center"
                   className="py-2 areaAnalysis8_center border border-gray-300"
                 >
-                  60
+                  {arrangedData1.population}
                 </td>
                 <td
                   align="center"
@@ -101,7 +141,7 @@ export const CompareResultPart = () => {
                   align="center"
                   className="py-2 areaAnalysis8_center border border-gray-300"
                 >
-                  40
+                  {arrangedData2.population}
                 </td>
               </tr>
               <tr>
@@ -109,7 +149,7 @@ export const CompareResultPart = () => {
                   align="center"
                   className="py-2 areaAnalysis8_center border border-gray-300"
                 >
-                  70
+                  {arrangedData1.stayVisit}
                 </td>
                 <td
                   align="center"
@@ -121,7 +161,7 @@ export const CompareResultPart = () => {
                   align="center"
                   className="py-2 areaAnalysis8_center border border-gray-300"
                 >
-                  70
+                  {arrangedData2.stayVisit}
                 </td>
               </tr>
               <tr>
@@ -129,7 +169,7 @@ export const CompareResultPart = () => {
                   align="center"
                   className="py-2 areaAnalysis8_center border border-gray-300"
                 >
-                  60
+                  {arrangedData1.congestion}
                 </td>
                 <td
                   align="center"
@@ -141,7 +181,7 @@ export const CompareResultPart = () => {
                   align="center"
                   className="py-2 areaAnalysis8_center border border-gray-300"
                 >
-                  80
+                  {arrangedData2.congestion}
                 </td>
               </tr>
               <tr>
@@ -149,7 +189,7 @@ export const CompareResultPart = () => {
                   align="center"
                   className="py-2 areaAnalysis8_center border border-gray-300"
                 >
-                  39
+                  {arrangedData1.stayPerVisitor}
                 </td>
                 <td
                   align="center"
@@ -161,7 +201,7 @@ export const CompareResultPart = () => {
                   align="center"
                   className="py-2 areaAnalysis8_center border border-gray-300"
                 >
-                  39
+                  {arrangedData2.stayPerVisitor}
                 </td>
               </tr>
               <tr>
@@ -169,7 +209,7 @@ export const CompareResultPart = () => {
                   align="center"
                   className="py-2 areaAnalysis8_center border border-gray-300"
                 >
-                  50
+                  {arrangedData1.visitConcentration}
                 </td>
                 <td
                   align="center"
@@ -181,7 +221,27 @@ export const CompareResultPart = () => {
                   align="center"
                   className="py-2 areaAnalysis8_center border border-gray-300"
                 >
-                  50
+                  {arrangedData2.visitConcentration}
+                </td>
+              </tr>
+              <tr>
+                <td
+                  align="center"
+                  className="py-2 areaAnalysis8_center border border-gray-300"
+                >
+                  {arrangedData1.stayTimeChange}
+                </td>
+                <td
+                  align="center"
+                  className="py-2 areaAnalysis8_centerbold border border-gray-300"
+                >
+                  체류시간 변화율
+                </td>
+                <td
+                  align="center"
+                  className="py-2 areaAnalysis8_center border border-gray-300"
+                >
+                  {arrangedData2.stayTimeChange}
                 </td>
               </tr>
             </tbody>
@@ -191,61 +251,44 @@ export const CompareResultPart = () => {
         <div className="w-[90%] mx-auto flex flex-col mt-6">
           <div>
             <p className="areaAnaysis_ptagb">
-              <span className="areaAnalysis_ptag">강남</span> 상권과{" "}
-              <span className="areaAnalysis_ptagp">이태원</span> 상권의 주요
-              특징 비교는 다음과 같습니다.
+              <span className="areaAnalysis_ptag">{name}</span> 상권과{" "}
+              <span className="areaAnalysis_ptagp">{compareName}</span> 상권의
+              주요 특징 비교는 다음과 같습니다.
             </p>
           </div>
           <div className="mt-3">
-            <p className="areaAnalysis_smallp">1. 유동 인구 수</p>
+            <p className="areaAnalysis_smallp">1. {differenceData.key1.name}</p>
             <p className="flex items-center gap-1 areaAnalysis_xsmallp">
               <span>
                 <LuDot />
               </span>
-              강남 상권의 유동 인구 수는 60이며, 이태원 상권의 유동 인구 수는
-              40입니다.
+              {name} 상권의 {differenceData.key1.name}는{" "}
+              {differenceData.key1.value1}이며, {compareName} 상권의{" "}
+              {differenceData.key1.name}는 {differenceData.key1.value2}입니다.
             </p>
           </div>
           <div className="mt-3">
-            <p className="areaAnalysis_smallp">2. 혼잡도 변화율</p>
+            <p className="areaAnalysis_smallp">2. {differenceData.key2.name}</p>
             <p className="flex items-center gap-1 areaAnalysis_xsmallp">
               <span>
                 <LuDot />
               </span>
-              강남 상권의 체류/방문 비율은 60이며, 이태원 상권의 유동 인구
-              수는 80입니다.
+              {name} 상권의 {differenceData.key2.name}은{" "}
+              {differenceData.key2.value1}이며, {compareName} 상권의{" "}
+              {differenceData.key2.name}는 {differenceData.key2.value2}입니다.
             </p>
           </div>
           <div className="mt-3">
-            <p className="areaAnalysis_smallp">3. 방문 집중도</p>
+            <p className="areaAnalysis_smallp">3. {differenceData.key3.name}</p>
             <p className="flex items-center gap-1 areaAnalysis_xsmallp">
               <span>
                 <LuDot />
               </span>
-              강남 상권의 체류 방문 비율은 70이며, 이태원 상권의 방문 집중도는
-              70입니다.
+              {name} 상권의 {differenceData.key3.name}은{" "}
+              {differenceData.key3.value1}이며, {compareName} 상권의{" "}
+              {differenceData.key3.name}는 {differenceData.key3.value2}입니다.
             </p>
           </div>
-          {/* <div className="mt-3">
-            <p className="areaAnalysis_smallp">4. 혼잡도 변화율</p>
-            <p className="flex items-center gap-1 areaAnalysis_xsmallp">
-              <span>
-                <LuDot />
-              </span>
-              세종대 상권의 혼잡도 변화율는 70이며, 이태원 상권의 혼잡도
-              변화율는 90입니다.
-            </p>
-          </div>
-          <div className="mt-3">
-            <p className="areaAnalysis_smallp">5. 평균 체류시간 변화율</p>
-            <p className="flex items-center gap-1 areaAnalysis_xsmallp">
-              <span>
-                <LuDot />
-              </span>
-              세종대 상권의 평균 체류시간 변화율은 70이며, 이태원 상권의 평균
-              체류시간 변화율은 90입니다.
-            </p>
-          </div> */}
         </div>
       </div>
     </>
