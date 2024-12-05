@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  LabelList,
-  XAxis,
-  YAxis,
-} from "recharts";
-
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import {
   Card,
   CardContent,
@@ -23,41 +15,55 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-const chartData = [
-  { feature: "유동 인구 수", prev: 186, cur: 80 },
-  { feature: "체류/방문 비율", prev: 305, cur: 200 },
-  { feature: "혼잡도 변화율", prev: 237, cur: 120 },
-  { feature: "체류시간 대비 방문자 수", prev: 73, cur: 190 },
-  { feature: "방문 집중도", prev: 209, cur: 130 },
-  { feature: "평균 체류시간 변화율", prev: 214, cur: 140 },
-];
+interface propsType {
+  overallData: {
+    population: number;
+    stayVisit: number;
+    congestion: number;
+    stayPerVisitor: number;
+    visitConcentration: number;
+    stayTimeChange: number;
+  };
+  date: string;
+}
+
+// chartData와 chartConfig 타입 정의
+interface ChartData {
+  category: string;
+  value: number;
+}
 
 const chartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "hsl(var(--chart-1))",
+  population: { label: "Population", color: "hsl(var(--chart-1))" },
+  stayVisit: { label: "Stay Visit", color: "hsl(var(--chart-2))" },
+  congestion: { label: "Congestion", color: "hsl(var(--chart-3))" },
+  stayPerVisitor: { label: "Stay/Visitor", color: "hsl(var(--chart-4))" },
+  visitConcentration: {
+    label: "Visit Concentration",
+    color: "hsl(var(--chart-5))",
   },
-  mobile: {
-    label: "Mobile",
-    color: "hsl(var(--chart-2))",
-  },
-  label: {
-    color: "hsl(var(--background))",
-  },
+  stayTimeChange: { label: "Stay Time Change", color: "hsl(var(--chart-6))" },
 } satisfies ChartConfig;
 
-export function ImproveRightChart() {
+export function ImproveRightChart({ overallData, date }: propsType) {
+  // chartData로 변환할 때, chartConfig의 키와 일치하는 값만 매핑
+  const chartData: ChartData[] = Object.keys(overallData)
+    .filter((key) => key in chartConfig) // chartConfig에 키가 존재하는 경우에만 처리
+    .map((key) => ({
+      category: chartConfig[key as keyof typeof chartConfig].label,
+      value: overallData[key as keyof typeof overallData],
+    }));
+
   return (
     <Card className="w-[50%] transform transition-transform hover:scale-110">
       <CardHeader>
         <CardTitle>방안 이후 데이터</CardTitle>
-        <CardDescription>2024년 6월</CardDescription>
+        <CardDescription>{date}</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
           <BarChart
-            accessibilityLayer
-            data={chartData}
+            data={chartData} // 부모에서 전달받은 데이터를 사용
             layout="vertical"
             margin={{
               right: 16,
@@ -65,40 +71,22 @@ export function ImproveRightChart() {
           >
             <CartesianGrid horizontal={false} />
             <YAxis
-              dataKey="feature" // feature로 수정
+              dataKey="category"
               type="category"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
-              tickFormatter={(value) => value.slice(0, 3)}
-              hide
             />
-            <XAxis dataKey="prev" type="number" hide /> {/* prev로 수정 */}
+            <XAxis dataKey="value" type="number" reversed hide={false} />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent indicator="line" />}
             />
             <Bar
-              dataKey="cur" // prev로 수정
-              layout="vertical"
-              fill="var(--color-desktop)"
-              radius={4}
-            >
-              {/* <LabelList
-                dataKey="feature" // feature로 수정
-                position="insideLeft"
-                offset={8}
-                className="fill-[--color-label]"
-                fontSize={12}
-              /> */}
-              {/* <LabelList
-                dataKey="prev" // prev로 수정
-                position="right"
-                offset={8}
-                className="fill-foreground"
-                fontSize={12}
-              /> */}
-            </Bar>
+              dataKey="value"
+              fill="hsl(var(--chart-1))"
+              radius={[4, 4, 0, 0]}
+            />
           </BarChart>
         </ChartContainer>
       </CardContent>
