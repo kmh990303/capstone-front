@@ -40,12 +40,12 @@ const options = [
 ];
 
 const cal_options = [
-  { name: "덧셈", mark: "+", id: 1 },
-  { name: "뺄셈", mark: "-", id: 2 },
-  { name: "곱셈", mark: "*", id: 3 },
-  { name: "나눗셈", mark: "/", id: 4 },
-  { name: "나머지 연산", mark: "%", id: 5 },
-  { name: "제곱 연산", mark: "**", id: 6 },
+  { name: "덧셈", mark: "+", id: 20 },
+  { name: "뺄셈", mark: "-", id: 21 },
+  { name: "곱셈", mark: "*", id: 22 },
+  { name: "나눗셈", mark: "/", id: 23 },
+  { name: "나머지 연산", mark: "%", id: 24 },
+  { name: "제곱 연산", mark: "**", id: 25 },
 ];
 
 export const CustomPart = () => {
@@ -252,19 +252,6 @@ export const CustomPart = () => {
               초기화
             </motion.button>
             <motion.button
-              type="button"
-              onClick={() =>
-                router.push(
-                  "/marketAreaAnalysis/compare/compareResult/custom/customGraph"
-                )
-              }
-              whileHover={{ scale: 1.1 }}
-              className="areaAnalysis3_white px-5 py-5 rounded-2xl"
-              style={{ backgroundColor: "#8949FF" }}
-            >
-              피처 반영
-            </motion.button>
-            <motion.button
               type="submit"
               whileHover={{ scale: 1.1 }}
               className="areaAnalysis3_white px-6 py-5 rounded-2xl"
@@ -301,13 +288,13 @@ export const CustomPart = () => {
               </span>
               입니다.
             </div>
-            <div className="w-[80%] mx-auto my-4">
-              <h1 className="areaAnalysis_ptagl">
-                아래는 생성한 커스텀 지표 리스트입니다.
-              </h1>
-            </div>
           </>
         )}
+        <div className="w-[80%] mx-auto my-5">
+          <h1 className="areaAnalysis_ptagl">
+            아래는 사용자가 생성한 커스텀 지표 리스트입니다.
+          </h1>
+        </div>
         <CustomTable />
       </div>
     </>

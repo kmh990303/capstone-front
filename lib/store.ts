@@ -29,6 +29,11 @@ interface AreaState {
     setGlobalCompareAreaIdx: (idx: number) => void;
 }
 
+interface customFeatureState {
+    featureUuid: string;
+    setFeatureUuid: (uuid: string) => void;
+}
+
 const decodeJwt = (token: string) => {
     const payload = token.split('.')[1];
     return JSON.parse(atob(payload));
@@ -114,3 +119,15 @@ export const useAreaStore = create<AreaState>()(
         }
     )
 );
+
+export const useCustomFeatureStore = create<customFeatureState>()(
+    persist(
+        (set) => ({
+            featureUuid: '',
+            setFeatureUuid: (uuid) => set({ featureUuid: uuid })
+        }),
+        {
+            name: 'custom-storage',
+        }
+    )
+)

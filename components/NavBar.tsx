@@ -11,12 +11,14 @@ import { motion } from "framer-motion";
 import { useAuthStore } from "@/lib/store";
 import { useAreaStore } from "@/lib/store";
 import { useAuthenticatedFetch } from "@/hooks/useAuthenticatedFetch";
+import { useCustomFeatureStore } from "@/lib/store";
 
 const NavBar: React.FC = () => {
   const router = useRouter();
   const { authFetch } = useAuthenticatedFetch();
   const { loginSuccess, setLoginSuccess, logout } = useAuthStore();
   const { name, setName, compareName, setCompareName } = useAreaStore();
+  const { setFeatureUuid } = useCustomFeatureStore();
 
   const handleLogoClick = () => {
     router.push("/");
@@ -41,9 +43,11 @@ const NavBar: React.FC = () => {
       setLoginSuccess();
       setName("");
       setCompareName("");
+      setFeatureUuid("");
       logout();
       localStorage.removeItem("auth-storage");
       localStorage.removeItem("area-storage");
+      localStorage.removeItem("custom-storage");
       router.push("/");
     } catch (error) {
       console.log(error);
