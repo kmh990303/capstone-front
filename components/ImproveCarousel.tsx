@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import festImg from "@/images/fest.png";
+import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -21,34 +21,54 @@ interface CarouselPropsType {
     detail: string;
     uuid: string;
   }[];
-  onItemSelect: (index: number) => void; // index를 넘겨주도록 수정
+  setSelectedImproveIndex: React.Dispatch<React.SetStateAction<number>>; // setSelectedImproveIndex를 prop으로 받음
 }
 
 export function ImproveCarousel({
   improveMethod,
-  onItemSelect,
+  setSelectedImproveIndex,
 }: CarouselPropsType) {
+  const [slideIdx, setSlideIdx] = useState<number>(0);
+
+  useEffect(() => {
+    setSelectedImproveIndex(slideIdx); // slideIdx가 변경될 때마다 부모 컴포넌트로 전달
+  }, [slideIdx, setSelectedImproveIndex]);
+
+  const handleNext = () => {
+    // Next 버튼 클릭 시, 인덱스 증가 후 부모에게 업데이트
+    const nextIdx = (slideIdx + 1) % improveMethod.length; // 배열의 끝에 도달하면 처음으로 돌아갑니다.
+    setSlideIdx(nextIdx);
+  };
+
+  const handlePrev = () => {
+    // Previous 버튼 클릭 시, 인덱스 감소 후 부모에게 업데이트
+    const prevIdx =
+      (slideIdx - 1 + improveMethod.length) % improveMethod.length; // 배열의 처음에 도달하면 끝으로 돌아갑니다.
+    setSlideIdx(prevIdx);
+  };
+
   return (
-    <Carousel className="flex items-center mt-4 max-h-[80vh] max-w-[25vw] shadow-xl ml-16">
+    <Carousel className="flex items-center mt-16 max-h-[80vh] max-w-[25vw] shadow-xl ml-14">
       <CarouselContent>
         {improveMethod.map((item, index) => (
-          <CarouselItem key={item.uuid} onClick={() => onItemSelect(index)}>
-            {" "}
-            {/* 인덱스 넘기기 */}
+          <CarouselItem key={item.uuid}>
             <Card className="h-full w-full">
               <CardContent className="h-full w-full">
                 <Image
-                  src={item.image}
+                  key={slideIdx} // key 속성으로 슬라이드 인덱스를 사용해 새로 렌더링하도록 함
+                  src={improveMethod[slideIdx].image}
                   alt={item.uuid}
                   className="max-h-[100%] w-full translate-y-4"
+                  width={300}
+                  height={300}
                 />
               </CardContent>
             </Card>
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      {/* <CarouselPrevious onClick={handlePrev} /> */}
+      <CarouselNext onClick={handleNext} />
     </Carousel>
   );
 }

@@ -34,15 +34,15 @@ interface ChartData {
 }
 
 const chartConfig = {
-  population: { label: "Population", color: "hsl(var(--chart-1))" },
-  stayVisit: { label: "Stay Visit", color: "hsl(var(--chart-2))" },
-  congestion: { label: "Congestion", color: "hsl(var(--chart-3))" },
-  stayPerVisitor: { label: "Stay/Visitor", color: "hsl(var(--chart-4))" },
-  visitConcentration: {
-    label: "Visit Concentration",
-    color: "hsl(var(--chart-5))",
+  population: { label: "유동인구 수", color: "hsl(var(--chart-1))" },
+  stayVisit: { label: "체류 방문 비율", color: "hsl(var(--chart-2))" },
+  congestion: { label: "방문 혼잡도", color: "hsl(var(--chart-3))" },
+  stayPerVisitor: {
+    label: "체류시간 당 방문자 수",
+    color: "hsl(var(--chart-4))",
   },
-  stayTimeChange: { label: "Stay Time Change", color: "hsl(var(--chart-6))" },
+  visitConcentration: { label: "방문 집중도", color: "hsl(var(--chart-5))" },
+  stayTimeChange: { label: "체류 시간 변화율", color: "hsl(var(--chart-6))" },
 } satisfies ChartConfig;
 
 export function ImproveLeftChart({ overallData, date }: propsType) {
@@ -50,7 +50,7 @@ export function ImproveLeftChart({ overallData, date }: propsType) {
   const chartData: ChartData[] = Object.keys(overallData)
     .filter((key) => key in chartConfig) // chartConfig에 키가 존재하는 경우에만 처리
     .map((key) => ({
-      category: chartConfig[key as keyof typeof chartConfig].label,
+      category: chartConfig[key as keyof typeof chartConfig].label, // 한글 레이블 사용
       value: overallData[key as keyof typeof overallData],
     }));
 
@@ -74,11 +74,19 @@ export function ImproveLeftChart({ overallData, date }: propsType) {
             <YAxis
               dataKey="category"
               type="category"
-              tickLine={false}
+              tick={false} // y축 값 숨기기
+              tickLine={false} // y축 tick 선 숨기기
+              axisLine={false} // y축 선 숨기기
               tickMargin={10}
-              axisLine={false}
             />
-            <XAxis dataKey="value" type="number" reversed hide={false} />
+            <XAxis
+              dataKey="value"
+              type="number"
+              reversed
+              tick={true} // x축 값 숨기기
+              tickLine={true} // x축 tick 선 숨기기
+              axisLine={true} // x축 선 숨기기
+            />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent indicator="line" />}

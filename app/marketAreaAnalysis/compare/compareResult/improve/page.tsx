@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useAreaStore } from "@/lib/store";
 
 interface ImproveDataType {
-  improveMethod: {
+  ImproveMethod: {
     image: string;
     name: string;
     date: string;
@@ -48,7 +48,7 @@ interface ImproveDataType {
 export default function ImprovePage() {
   const { globalAreaIdx, globalCompareAreaIdx } = useAreaStore();
   const [improveData, setImproveData] = useState<ImproveDataType>({
-    improveMethod: [
+    ImproveMethod: [
       {
         image: "",
         name: "",
@@ -105,11 +105,9 @@ export default function ImprovePage() {
       if (!response.ok) throw new Error("Failed to fetch data...");
 
       const data = await response.json();
-      console.log(data);
+      console.log(data.ImproveMethod);
 
-      setImproveData(data);
-
-      return data;
+      setImproveData(data); // 상태 업데이트
     };
 
     if (globalAreaIdx > 0 && globalCompareAreaIdx > 0) {
@@ -128,27 +126,28 @@ export default function ImprovePage() {
             </h1>
           </div>
           <div className="w-full mx-auto flex justify-between items-center">
+            {/* 상태로 직접 전달 */}
             <ImproveCarousel
-              improveMethod={improveData.improveMethod}
-              onItemSelect={(index) => setSelectedImproveIndex(index)} // 인덱스 넘겨받기
+              improveMethod={improveData.ImproveMethod} // dataArr 사용하지 않고 improveData를 직접 전달
+              setSelectedImproveIndex={setSelectedImproveIndex} // setSelectedImproveIndex 전달
             />
-            <div className="flex flex-col areaAnalysis_ptaglw translate-y-3 py-24 px-6 max-w-[20vw] mr-10 border-2 border-gray-100 shadow-lg">
+            <div className="flex flex-col areaAnalysis_ptaglw translate-y-3 py-24 px-6 max-w-[20vw] mr-10 mt-6 border-2 border-gray-100 shadow-lg">
               <p className="flex flex-col gap-1 mb-2">
                 지역{" "}
                 <span className="mb-2 areaAnalysis_ptagl">
-                  {improveData.improveMethod[selectedImproveIndex]?.area}
+                  {improveData.ImproveMethod[selectedImproveIndex]?.area}
                 </span>
               </p>
               <p className="flex flex-col gap-1 mb-2">
                 기간{" "}
                 <span className="mb-2 areaAnalysis_ptagl">
-                  {improveData.improveMethod[selectedImproveIndex]?.date}
+                  {improveData.ImproveMethod[selectedImproveIndex]?.date}
                 </span>
               </p>
               <p className="flex flex-col gap-1 mb-2">
                 성격
                 <span className="mb-2 areaAnalysis_ptagl">
-                  {improveData.improveMethod[selectedImproveIndex]?.detail}
+                  {improveData.ImproveMethod[selectedImproveIndex]?.detail}
                 </span>
               </p>
             </div>
@@ -160,7 +159,7 @@ export default function ImprovePage() {
           before={improveData.beforeAndAfter.before}
           after={improveData.beforeAndAfter.after}
           changedFeature={improveData.beforeAndAfter.changedFeature}
-          selectedImproveIndex={selectedImproveIndex} //현재 가리키는 carousel 아이템 인덱스
+          selectedImproveIndex={selectedImproveIndex} // 현재 가리키는 carousel 아이템 인덱스
         />
       </div>
     </>

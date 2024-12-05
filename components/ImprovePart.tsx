@@ -57,7 +57,7 @@ export const ImprovePart = ({
     return (
       <span>
         <span className="areaAnalysis7 mr-1">{names}</span> 값 수치를{" "}
-        <span className="areaAnalysis7 mr-1">{values}</span> 상승시킨 것에
+        <span className="areaAnalysis7 mx-1">{values}</span> 상승시킨 것에
         기여했습니다.
       </span>
     );
