@@ -118,7 +118,7 @@ export const AreaAnalysisPart = ({
             </span>
             <p className="flex items-center gap-3">
               <span className="areaAnalysis5">{first}</span>
-              <span className="areaAnalysis6">이 가장 높아요</span>
+              <span className="areaAnalysis6">이/가 가장 높아요</span>
             </p>
           </div>
 

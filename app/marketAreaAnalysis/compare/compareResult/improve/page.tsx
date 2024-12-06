@@ -98,7 +98,7 @@ export default function ImprovePage() {
     setImproveData({
       ImproveMethod: [
         {
-          date: "2024-01-01T00:00 ~ 2024-01-09T23:59:59",
+          date: "2024-01-01 ~ 2024-01-09",
           area: "종로",
           image:
             "https://localens-image.s3.ap-northeast-2.amazonaws.com/jongnoInwangMountainSunriseFestival.jpg",
@@ -107,7 +107,7 @@ export default function ImprovePage() {
           uuid: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
         },
         {
-          date: "2023-10-05T00:00 ~ 2023-10-20T23:59:59",
+          date: "2023-10-05 ~ 2023-10-20",
           area: "여의도 한강공원",
           image:
             "https://localens-image.s3.ap-northeast-2.amazonaws.com/seoulLanternAndGwanghwamunMarket.jpg",
@@ -117,7 +117,7 @@ export default function ImprovePage() {
           uuid: "550e8400-e29b-41d4-a716-446655440000",
         },
         {
-          date: "2024-03-27T00:00 ~ 2024-04-10T23:59:59",
+          date: "2024-03-27 ~ 2024-04-10",
           area: "송파나루공원(석촌호수)",
           image:
             "https://localens-image.s3.ap-northeast-2.amazonaws.com/lakeCherryBlossomFestival.jpg",
