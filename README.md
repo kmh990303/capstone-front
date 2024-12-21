@@ -1,4 +1,4 @@
-# 🌇 상권 분석 프로젝트 (LG 유플러스 연계 캡스톤 프로젝트)
+# 🌇 상권 분석 프로젝트 (LG 유플러스 기업 과제)
 
 <div align="center">
   <img src="images/logo.png" alt="로고" width="300">
