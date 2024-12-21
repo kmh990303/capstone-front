@@ -78,4 +78,6 @@
 
 <p>서비스의 아키텍쳐와 유스케이스 명세서입니다.</p>
 
+<img src="architec.png" alt="아키텍쳐">
+<br/>
 <img src="images/capstone_usecase.png" alt="유스케이스">
