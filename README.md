@@ -1,7 +1,7 @@
 # 🌇 상권 분석 프로젝트 (LG 유플러스 기업 과제)
 
 <div align="center">
-  <img src="images/logo.png" alt="로고" width="300">
+  <img src="images/navLogo2.png" alt="로고" width="300">
 </div>
 
 ## 👏 프로젝트 배경
