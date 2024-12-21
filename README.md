@@ -34,29 +34,39 @@
 ## 🔃 주요 기능
 
 <h3>✔️ 로그인</h3>
+<p>로그인을 통해 회원이 사용할 수 있는 여러 기능들을 사용할 수 있어요.</p>
 <img src="images/login.png" alt="로그인">
 
 <h3>✔️ 상권 선택</h3>
+<p>서울 지역에 있는 12개의 상권 중 하나를 클릭해주세요.</p>
 <img src="images/choose.png" alt="상권 선택">
 
 <h3>✔️ 상권 분석 결과</h3>
+<p>선택한 상권에 대한 기본 분석 결과를 제공해요.</p>
 <img src="images/result1.png" alt="결과1">
 
 <h3>✔️ 상권 상세 분석</h3>
+<p>상권 유형을 정하는데 사용한 파생피처와 관련 지표들에 대한 수치를 시각화해서 보여줘요.</p>
 <img src="images/detail.png" alt="상세">
 
 <h3>✔️ 비교할 상권 선택</h3>
+<p>현재 선택한 상권과 비교할 상권을 선택해주세요.</p>
 <img src="images/choose2.png" alt="비교 선택">
 
 <h3>✔️ 상권 비교 분석</h3>
+<p>상권 간의 주요 차이점을 비교해서 제시해줘요.</p>
 <img src="images/result2.png" alt="결과2">
 
 <h3>✔️ 개선 방향 제시</h3>
+<p>상권의 유형을 변화시키려면 어떤 지표에 주목해야 하고 어떤 방안이 실제로 효과가 있었는지를 제시해줘요.</p>
 <img src="images/improve.png" alt="개선">
 
 <h3>✔️ 지표 커스텀</h3>
+<p>서비스 내에 갖고 있는 파생 피처 데이터들을 활용해 사용자가 알고 싶어하는 지표 값을 커스텀하여 생성할 수 있어요.</p>
 <img src="images/custom.png" alt="커스텀">
 
 ## 🚧 아키텍쳐
+
+<p>서비스의 아키텍쳐와 유스케이스 명세서입니다.</p>
 
 <img src="images/capstone_usecase.png" alt="유스케이스">
