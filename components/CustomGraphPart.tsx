@@ -49,13 +49,13 @@ export const CustomGraphPart = ({
   const { name, compareName } = useAreaStore();
 
   // 스타일 조건에 따른 클래스 설정
-  let analysis = idx === 1 ? "areaAnalysis" : "areaAnalysis_purple";
-  let analysis5 = idx === 1 ? "areaAnalysis5" : "areaAnalysis5_purple";
-  let analysis7 = idx === 1 ? "areaAnalysis7" : "areaAnalysis7p";
+  const analysis = idx === 1 ? "areaAnalysis" : "areaAnalysis_purple";
+  const analysis5 = idx === 1 ? "areaAnalysis5" : "areaAnalysis5_purple";
+  const analysis7 = idx === 1 ? "areaAnalysis7" : "areaAnalysis7p";
 
   // 배경색 설정
-  let backGround = idx === 1 ? "#FFE9D9" : "#EBE0FF";
-  let color = idx === 1 ? "#FC8E3F" : "#8C4FFF";
+  const backGround = idx === 1 ? "#FFE9D9" : "#EBE0FF";
+  const color = idx === 1 ? "#FC8E3F" : "#8C4FFF";
 
   // 현재 상권 이름
   const area = idx === 1 ? name : compareName;

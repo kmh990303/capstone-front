@@ -34,14 +34,14 @@ interface customFeatureState {
     setFeatureUuid: (uuid: string) => void;
 }
 
-const decodeJwt = (token: string) => {
-    const payload = token.split('.')[1];
-    return JSON.parse(atob(payload));
-}
+// const decodeJwt = (token: string) => {
+//     const payload = token.split('.')[1];
+//     return JSON.parse(atob(payload));
+// }
 
 export const useAuthStore = create<AuthState>()(
     persist(
-        (set, get) => ({
+        (set) => ({
             accessToken: null,
             refreshToken: null,
             loginSuccess: false,
@@ -130,4 +130,4 @@ export const useCustomFeatureStore = create<customFeatureState>()(
             name: 'custom-storage',
         }
     )
-)
+);

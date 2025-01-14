@@ -12,8 +12,6 @@ import {
 
 import { dummyAreas } from "@/dummy/dummy.js";
 
-import { useAreaStore } from "@/lib/store";
-
 interface SelectedAreaProps {
   setSelectedArea: React.Dispatch<React.SetStateAction<string>>;
 }

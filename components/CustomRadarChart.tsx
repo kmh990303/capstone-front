@@ -1,5 +1,4 @@
 import {
-  PolarAngleAxis,
   PolarGrid,
   PolarRadiusAxis,
   Radar,

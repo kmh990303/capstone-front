@@ -2,15 +2,9 @@
 
 import { MdInfoOutline } from "react-icons/md";
 import { motion } from "framer-motion";
-import {
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 
 import Image from "next/image";
-import ModalLogo from "@/images/ModalLogo2.png";
 import lockImage from "@/images/lock2.png";
 import emailImage from "@/images/email.png";
 
@@ -34,7 +28,7 @@ export function SignUpForm() {
     rePassword: "",
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  // const [error, setError] = useState<string | null>(null);
   const [isValidEmail, setIsValidEmail] = useState<boolean>(false);
   const [isValidPassword, setIsValidPassword] = useState<boolean>(false);
   const router = useRouter();
@@ -53,7 +47,7 @@ export function SignUpForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    setError(null);
+    // setError(null);
 
     if (userInfo.password !== userInfo.rePassword) {
       window.alert("두 번의 패스워드 입력이 일치하지 않습니다.");
@@ -103,8 +97,7 @@ export function SignUpForm() {
 
       return data;
     } catch (e) {
-      const errorMessage = e instanceof Error ? e.message : "알 수 없는 에러";
-      setError("회원가입 실패: " + errorMessage);
+      console.error(e);
     } finally {
       setIsLoading(false);
     }

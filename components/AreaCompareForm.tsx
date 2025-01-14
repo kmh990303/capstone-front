@@ -15,7 +15,7 @@ import ModalLogo from "@/images/ModalLogo2.png";
 
 import { MoonLoader } from "react-spinners";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { useAreaStore } from "@/lib/store";
@@ -25,14 +25,14 @@ export function AreaCompareForm() {
 
   const [selectedArea, setSelectedArea] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const { name, setName, setCompareName } = useAreaStore();
+  // const [error, setError] = useState<string | null>(null);
+  const { setCompareName } = useAreaStore();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     setIsLoading(true);
-    setError(null);
+    // setError(null);
 
     console.log(selectedArea);
     setCompareName(selectedArea);

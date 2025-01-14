@@ -112,7 +112,7 @@ export function CongestionChangeChart({
               axisLine={false}
               tickMargin={8}
               interval={0}
-              tickFormatter={(value, index) => {
+              tickFormatter={(value) => {
                 const hour = parseInt(value.replace("시", ""));
                 return hour % 3 === 0 ? value : "";
               }}

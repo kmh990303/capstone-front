@@ -1,4 +1,4 @@
-"use client";  // 유지 보수용 컴포넌트 리팩토링 필요!!
+"use client"; // 유지 보수용 컴포넌트 리팩토링 필요!!
 
 import { TrendingUp } from "lucide-react";
 import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
@@ -16,14 +16,14 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-interface LineChartPropsType {
-  data: {
-    hour: string | null;
-    people: number | 0;
-  };
-  areaName: string;
-  feature: string;
-}
+// interface LineChartPropsType {
+//   data: {
+//     hour: string | null;
+//     people: number | 0;
+//   };
+//   areaName: string;
+//   feature: string;
+// }
 
 const chartData = [
   { hour: "0시", people: 50 },
@@ -84,7 +84,7 @@ export function PeopleNumLineChart() {
               axisLine={false}
               tickMargin={8}
               interval={0}
-              tickFormatter={(value, index) => {
+              tickFormatter={(value) => {
                 // 시간 값을 3으로 나누어 3시간 단위만 표시
                 const hour = parseInt(value.replace("시", ""));
                 return hour % 3 === 0 ? value : "";

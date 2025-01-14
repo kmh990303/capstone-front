@@ -7,15 +7,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { SelectArea } from "./SelectArea";
 
 import Image from "next/image";
-import SearchImage from "@/images/search.png";
 import ModalLogo from "@/images/ModalLogo2.png";
 
 import { MoonLoader } from "react-spinners";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { DatePicker } from "./DatePicker";
@@ -29,9 +27,8 @@ export function DateCompareForm() {
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const { name, setName, setCompareName, setPrevDate, setCurDate } =
-    useAreaStore();
+  // const [error, setError] = useState<string | null>(null);
+  const { setPrevDate, setCurDate } = useAreaStore();
 
   const [prevDate, setPrevDateData] = useState<Date | undefined>();
   const [curDate, setCurDateData] = useState<Date | undefined>();
@@ -40,7 +37,7 @@ export function DateCompareForm() {
     e.preventDefault();
 
     setIsLoading(true);
-    setError(null);
+    // setError(null);
 
     if (prevDate) setPrevDate(prevDate);
     if (curDate) setCurDate(curDate);

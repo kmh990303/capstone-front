@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 import { RadarChartComponent } from "./RadarChart";
 import { DetailSheet } from "./DetailSheet";
@@ -8,7 +8,7 @@ import personLogo from "@/images/person.png";
 
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { useAuthenticatedFetch } from "@/hooks/useAuthenticatedFetch";
+// import { useAuthenticatedFetch } from "@/hooks/useAuthenticatedFetch";
 
 import { useAreaStore } from "@/lib/store";
 
@@ -39,8 +39,9 @@ export const AreaAnalysisPart = ({
   idx,
 }: areaAnalysisPropsType) => {
   const router = useRouter();
-  const { authFetch } = useAuthenticatedFetch();
-  const { name, setName } = useAreaStore();
+  // const { authFetch } = useAuthenticatedFetch();
+  // const { name, setName } = useAreaStore();
+  const { name } = useAreaStore();
 
   const handleCompareButton = () => {
     router.push("/marketAreaAnalysis/compare");

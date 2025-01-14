@@ -1,12 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { MdInfoOutline } from "react-icons/md";
 import { motion } from "framer-motion";
 import { CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import Image from "next/image";
-import ModalLogo from "@/images/ModalLogo2.png";
-import lockImage from "@/images/lock2.png";
 import emailImage from "@/images/email.png";
 import { MoonLoader } from "react-spinners";
 
@@ -19,7 +17,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 
 interface findInfoType {
@@ -49,7 +46,7 @@ export function FindUserForm() {
   const [resetToken, setResetToken] = useState<string | null>(null);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  // const [error, setError] = useState<string | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,7 +68,7 @@ export function FindUserForm() {
   const handleSubmitFindEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    setError(null);
+    // setError(null);
     console.log(findInfo.eName);
 
     try {
@@ -96,8 +93,9 @@ export function FindUserForm() {
       console.log(data);
       window.alert(`회원님의 이메일은 ${data.email} 입니다.`);
     } catch (e) {
-      const errorMessage = e instanceof Error ? e.message : "알 수 없는 에러";
-      setError("이메일 찾기 실패: " + errorMessage);
+      // const errorMessage = e instanceof Error ? e.message : "알 수 없는 에러";
+      // setError("이메일 찾기 실패: " + errorMessage);
+      console.error(e);
     } finally {
       setIsLoading(false);
     }
@@ -108,7 +106,7 @@ export function FindUserForm() {
   ) => {
     e.preventDefault();
     setIsLoading(true);
-    setError(null);
+    // setError(null);
 
     try {
       const response = await fetch(
@@ -134,8 +132,7 @@ export function FindUserForm() {
       setResetToken(data.resetToken); // 상태 업데이트
       setIsDialogOpen(true); // 다이얼로그 열기
     } catch (e) {
-      const errorMessage = e instanceof Error ? e.message : "알 수 없는 에러";
-      setError("비밀번호 찾기 실패: " + errorMessage);
+      console.error(e);
     } finally {
       setIsLoading(false);
     }
@@ -143,7 +140,7 @@ export function FindUserForm() {
   const handleResetPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    setError(null);
+    // setError(null);
 
     try {
       if (!resetToken) {
@@ -176,8 +173,7 @@ export function FindUserForm() {
       setIsDialogOpen(false);
       router.push("/");
     } catch (e) {
-      const errorMessage = e instanceof Error ? e.message : "알 수 없는 에러";
-      setError("비밀번호 재설정 실패: " + errorMessage);
+      console.error(e);
     } finally {
       setIsLoading(false);
     }

@@ -209,7 +209,7 @@ export default function CompareResultPage() {
         setGlobalCompareAreaIdx(index);
       } // compareAreaIdx 업데이트
     }
-  }, [name, compareName]);
+  }, [name, compareName, setGlobalAreaIdx, setGlobalCompareAreaIdx]);
 
   useEffect(() => {
     if (areaIdx && compareAreaIdx) {

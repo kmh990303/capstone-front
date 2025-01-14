@@ -110,7 +110,7 @@ export function StayPerVisitorChart({ chartData }: stayPerVisitorPropsType) {
               axisLine={false}
               tickMargin={8}
               interval={0}
-              tickFormatter={(value, index) => {
+              tickFormatter={(value) => {
                 // 시간 값을 3으로 나누어 3시간 단위만 표시
                 const hour = parseInt(value.replace("시", ""));
                 return hour % 3 === 0 ? value : "";

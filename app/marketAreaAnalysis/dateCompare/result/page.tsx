@@ -110,10 +110,9 @@ export default function DateCompareResultPage() {
       prevFormattedDate !== "" &&
       curFormattedDate !== ""
     ) {
-      // console.log(prevDate, curDate, name);
       fetchData();
     }
-  }, [name, prevFormattedDate, curFormattedDate]);
+  }, [name, prevFormattedDate, curFormattedDate, prevDate, curDate]);
   return (
     <>
       <NavBar />

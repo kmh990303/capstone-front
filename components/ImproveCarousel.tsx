@@ -8,7 +8,6 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import Image from "next/image";
 
@@ -40,17 +39,17 @@ export function ImproveCarousel({
     setSlideIdx(nextIdx);
   };
 
-  const handlePrev = () => {
-    // Previous 버튼 클릭 시, 인덱스 감소 후 부모에게 업데이트
-    const prevIdx =
-      (slideIdx - 1 + improveMethod.length) % improveMethod.length; // 배열의 처음에 도달하면 끝으로 돌아갑니다.
-    setSlideIdx(prevIdx);
-  };
+  // const handlePrev = () => {
+  //   // Previous 버튼 클릭 시, 인덱스 감소 후 부모에게 업데이트
+  //   const prevIdx =
+  //     (slideIdx - 1 + improveMethod.length) % improveMethod.length; // 배열의 처음에 도달하면 끝으로 돌아갑니다.
+  //   setSlideIdx(prevIdx);
+  // };
 
   return (
     <Carousel className="flex items-center mt-16 max-h-[80vh] max-w-[25vw] shadow-xl ml-14">
       <CarouselContent>
-        {improveMethod.map((item, index) => (
+        {improveMethod.map((item) => (
           <CarouselItem key={item.uuid}>
             <Card className="h-full w-full">
               <CardContent className="h-full w-full">

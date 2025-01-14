@@ -2,11 +2,9 @@
 
 import { motion } from "framer-motion";
 import { Input } from "./ui/input";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 
 import { CustomTable } from "./CustomTable";
-import { CustomGraphChart } from "./CustomGraphChart";
-import { useRouter } from "next/navigation";
 import { useAreaStore } from "@/lib/store";
 import { dummyAreas } from "@/dummy/dummy";
 import { useAuthenticatedFetch } from "@/hooks/useAuthenticatedFetch";
@@ -21,12 +19,6 @@ interface calOptionType {
   name: string;
   mark: string;
   id: number;
-}
-
-interface customArrayType {
-  featureName: string;
-  formula: string;
-  featureUuid: string;
 }
 
 const options = [
@@ -62,13 +54,11 @@ export const CustomPart = () => {
   const [newFeat, setNewFeat] = useState<string>("");
   const [formula, setFormula] = useState<string>("");
   const [turn, setTurn] = useState<boolean>(true);
-  const router = useRouter();
   const { globalAreaIdx, globalCompareAreaIdx } = useAreaStore();
   const [areaName, setAreaName] = useState<string>("");
   const [compareAreaName, setCompareAreaName] = useState<string>("");
   const { authFetch } = useAuthenticatedFetch();
   const { accessToken } = useAuthStore();
-  const [addCustomData, setAddCustomData] = useState<customArrayType[]>([]);
   const [clickState, setClickState] = useState<number>(0);
 
   const handleFocus = () => {
@@ -113,12 +103,7 @@ export const CustomPart = () => {
     }
 
     try {
-      console.log(
-        globalAreaIdx,
-        globalCompareAreaIdx,
-        "body에 지역 인덱스 잘 넣었는지 확인",
-        accessToken
-      );
+      console.log(keywords);
       setAreaName(dummyAreas[globalAreaIdx - 1]);
       setCompareAreaName(dummyAreas[globalCompareAreaIdx - 1]);
 

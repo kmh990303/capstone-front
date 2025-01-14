@@ -35,7 +35,7 @@ export function CardForm() {
     password: "",
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  // const [error, setError] = useState<string | null>(null);
   const [isValidEmail, setIsValidEmail] = useState<boolean>(false);
   const [isValidPassword, setIsValidPassword] = useState<boolean>(false);
 
@@ -56,7 +56,7 @@ export function CardForm() {
 
     try {
       setIsLoading(true);
-      setError(null);
+      // setError(null);
       const data = await login(userInfo.email, userInfo.password);
       console.log(data, "api 요청 성공!");
       setAccessToken(data.accessToken);
@@ -65,8 +65,9 @@ export function CardForm() {
       console.log(loginSuccess);
       router.push("/inputArea");
     } catch (e) {
-      const errorMessage = e instanceof Error ? e.message : "알 수 없는 에러";
-      setError("로그인 실패: " + errorMessage);
+      // const errorMessage = e instanceof Error ? e.message : "알 수 없는 에러";
+      // setError("로그인 실패: " + errorMessage);
+      console.error(e);
     } finally {
       setIsLoading(false);
     }

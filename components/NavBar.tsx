@@ -17,7 +17,7 @@ const NavBar: React.FC = () => {
   const router = useRouter();
   const { authFetch } = useAuthenticatedFetch();
   const { loginSuccess, setLoginSuccess, logout } = useAuthStore();
-  const { name, setName, compareName, setCompareName } = useAreaStore();
+  const { name, setName, setCompareName } = useAreaStore();
   const { setFeatureUuid } = useCustomFeatureStore();
 
   const handleLogoClick = () => {

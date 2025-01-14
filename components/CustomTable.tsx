@@ -1,14 +1,12 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useEffect, useState, useImperativeHandle, forwardRef } from "react";
+import { useEffect, useState } from "react";
 import { useAuthenticatedFetch } from "@/hooks/useAuthenticatedFetch";
 import { useAuthStore } from "@/lib/store";
 import { useCustomFeatureStore } from "@/lib/store";
@@ -21,15 +19,16 @@ interface customDataType {
   featureUuid: string;
 }
 
-interface customDataPropsType {
-  newData?: {
-    featureName: string;
-    formula: string;
-    featureUuid: string;
-  }[];
-}
+// interface customDataPropsType {
+//   newData?: {
+//     featureName: string;
+//     formula: string;
+//     featureUuid: string;
+//   }[];
+// }
 
-export function CustomTable({ newData }: customDataPropsType) {
+export function CustomTable() {
+  // { newData }: customDataPropsType 인자에 집어넣기
   const { authFetch } = useAuthenticatedFetch();
   const { accessToken } = useAuthStore();
   const { setFeatureUuid } = useCustomFeatureStore();
@@ -54,7 +53,7 @@ export function CustomTable({ newData }: customDataPropsType) {
     if (accessToken) {
       fetchData();
     }
-  }, [accessToken]);
+  }, [accessToken, authFetch]);
 
   const handleClick = (uuid: string) => {
     setFeatureUuid(uuid);

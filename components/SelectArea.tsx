@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import {
   Select,
   SelectContent,
@@ -21,7 +19,7 @@ interface SelectedAreaProps {
 export function SelectArea({ setSelectedArea }: SelectedAreaProps) {
   const { name } = useAreaStore();
   console.log(name);
-  let CompareAreaList = dummyAreas.filter((area) => area !== name);
+  const CompareAreaList = dummyAreas.filter((area) => area !== name);
 
   return (
     <Select onValueChange={(value) => setSelectedArea(value)}>

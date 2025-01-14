@@ -37,7 +37,6 @@ interface TopTwoDataType {
 
 export default function MarketAreaAnalysisPage() {
   const name = useAreaStore((state) => state.name);
-  const { getState } = useAreaStore;
   const [districtData, setDistrictData] = useState<districtInfoType>({
     districtName: "",
     clusterName: "",
@@ -66,13 +65,6 @@ export default function MarketAreaAnalysisPage() {
   });
 
   const [areaIdx, setAreaIdx] = useState<number>(0);
-
-  // for (let i = 0; i < dummyAreas.length; i++) {
-  //   if (name === dummyAreas[i]) {
-  //     idx = i;
-  //     return;
-  //   }
-  // }
 
   useEffect(() => {
     const rehydrate = useAreaStore.persist.hasHydrated();
