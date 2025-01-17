@@ -257,7 +257,7 @@ export function DetailSheet({ areaIdx, areaName }: detailPropsType) {
   useEffect(() => {
     const getData = async () => {
       const response = await fetch(
-        `http://13.125.95.219:8080/api/details/${areaIdx}`,
+        `http://3.228.160.217:8080/api/details/${areaIdx}`,
         {
           method: "GET",
         }

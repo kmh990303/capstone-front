@@ -1,18 +1,5 @@
 'use client';
 
-import { useAuthenticatedFetch } from "@/hooks/useAuthenticatedFetch";
-
-// interface LoginResponse {
-//     code: number;
-//     isSuccess: boolean;
-//     message: string;
-//     data: {
-//         grantType: string;
-//         accessToken: string;
-//         refreshToken: string;
-//     }
-// }
-
 export const useAuth = () => {
     const login = async (email: string, password: string) => {
         console.log(email, password);
@@ -29,10 +16,6 @@ export const useAuth = () => {
         const data = await response.json();
         return data;
     }
-
-    // const logout = async () => {
-    //     return authFetch('http://backend-api/logout', { method: 'POST' });
-    // }
-
+    
     return { login };
 }
