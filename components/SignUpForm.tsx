@@ -71,7 +71,7 @@ export function SignUpForm() {
 
     try {
       const response = await fetch(
-        "http://13.125.95.219:8080/api/member/signup",
+        "http://3.228.160.217:8080/api/member/signup",
         {
           method: "POST",
           headers: {

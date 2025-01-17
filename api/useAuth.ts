@@ -14,24 +14,19 @@ import { useAuthenticatedFetch } from "@/hooks/useAuthenticatedFetch";
 // }
 
 export const useAuth = () => {
-    const authFetch = useAuthenticatedFetch();
-
     const login = async (email: string, password: string) => {
         console.log(email, password);
-        const response = await fetch('http://13.125.95.219:8080/api/member/login', {
+        const response = await fetch('http://3.228.160.217:8080/api/member/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ email, password })
         })
-        console.log(response);
         if (!response.ok) {
             throw new Error('Login Failed');
         }
-        // console.log(response);
         const data = await response.json();
-        console.log(data, 'auth에서 잘 불러왔음!');
         return data;
     }
 

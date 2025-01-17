@@ -25,39 +25,18 @@ export function InputAreaForm() {
 
   const [selectedArea, setSelectedArea] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  // const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const { setName } = useAreaStore();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     setIsLoading(true);
-    // setError(null);
+    setError(null);
 
     console.log(selectedArea);
     setName(selectedArea);
-    // setIsLoading(false);
-
-    // try {
-    //   //   const response = await fetch("http://backEnd-api/getAreaData", {
-    //   //     method: "GET",
-    //   //     headers: {
-    //   //       "Content-Type": "application/json",
-    //   //     },
-    //   //     body: JSON.stringify({
-    //   //       selectedArea,
-    //   //     }),
-    //   //   });
-    //   //   if (!response.ok) {
-    //   //     throw new Error("[ERROR] 데이터 페칭에 실패했습니다.");
-    //   //   }
-    //   //   const data = await response.json();
-    //   //   return data;
-    // } catch (error) {
-    //   throw new Error("[ERROR] 데이터 페칭에 실패했습니다.");
-    // } finally {
-    //   setIsLoading(false);
-    // }
+    setIsLoading(false);
 
     router.push("/marketAreaAnalysis");
   };

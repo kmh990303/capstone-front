@@ -83,7 +83,7 @@ export default function MarketAreaAnalysisPage() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://13.125.95.219:8080/api/main/${idx}`,
+          `http://3.228.160.217:8080/api/main/${idx}`,
           {
             method: "GET",
           }
