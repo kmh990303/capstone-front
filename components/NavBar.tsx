@@ -27,7 +27,7 @@ const NavBar: React.FC = () => {
   const handleLogout = async () => {
     try {
       const response = await authFetch(
-        "http://13.125.95.219:8080/api/member/logout",
+        "http://3.228.160.217:8080/api/member/logout",
         {
           method: "POST",
           headers: {

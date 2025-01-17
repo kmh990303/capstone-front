@@ -73,7 +73,7 @@ export function FindUserForm() {
 
     try {
       const response = await fetch(
-        `http://13.125.95.219:8080/api/member/find-email/${findInfo.eName}`,
+        `http://3.228.160.217:8080/api/member/find-email/${findInfo.eName}`,
         {
           method: "GET",
           // headers: {
@@ -110,7 +110,7 @@ export function FindUserForm() {
 
     try {
       const response = await fetch(
-        "http://13.125.95.219:8080/api/member/validate-member",
+        "http://3.228.160.217:8080/api/member/validate-member",
         {
           method: "POST",
           headers: {
@@ -148,7 +148,7 @@ export function FindUserForm() {
       }
 
       const response = await fetch(
-        "http://13.125.95.219:8080/api/member/reset-password",
+        "http://3.228.160.217:8080/api/member/reset-password",
         {
           method: "POST",
           headers: {

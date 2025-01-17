@@ -5,7 +5,7 @@ import { useAuthStore } from "@/lib/store";
 export const useAuthenticatedFetch = () => {
     const accessToken = useAuthStore((state) => state.accessToken);
     const logout = useAuthStore((state) => state.logout); // logout 액션 가져오기
-    // const refreshAccessToken = useAuthStore((state) => state.refreshAccessToken);
+    const refreshAccessToken = useAuthStore((state) => state.refreshAccessToken);
     // const checkAccessTokenExpiration = useAuthStore((state) => state.checkAccessTokenExpiration);
 
     const authFetch = async (url: string, options: RequestInit = {}) => {
@@ -19,15 +19,15 @@ export const useAuthenticatedFetch = () => {
 
         const response = await fetch(url, { ...options, headers });
 
-        // if (response.status === 401) {
-        //     try {
-        //         await refreshAccessToken();
-        //         return authFetch(url, options);
-        //     } catch (error) {
-        //         logout(); // 직접 상태 호출 대신 함수로
-        //         throw new Error('Token Expired!');
-        //     }
-        // }
+        if (response.status === 401) {
+            try {
+                await refreshAccessToken();
+                return authFetch(url, options);
+            } catch (error) {
+                logout(); // 직접 상태 호출 대신 함수로
+                throw new Error('Token Expired!');
+            }
+        }
 
         return response;
     }
