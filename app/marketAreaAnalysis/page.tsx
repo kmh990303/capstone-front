@@ -73,7 +73,7 @@ export default function MarketAreaAnalysisPage() {
       return;
     }
 
-    const idx = dummyAreas.indexOf(name) + 1;
+    const idx = dummyAreas.indexOf(name);
     setAreaIdx(idx);
     if (idx === -1) {
       console.error("Invalid area name:", name);

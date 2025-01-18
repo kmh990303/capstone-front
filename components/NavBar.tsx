@@ -58,6 +58,10 @@ const NavBar: React.FC = () => {
     router.push("/marketAreaAnalysis");
   };
 
+  const handleReselectArea = () => {
+    router.push("/inputArea");
+  };
+
   return (
     <menu className="w-full h-[10vh] bg-white flex items-center border-b-2 border-gray-100 justify-between">
       <Image
@@ -67,6 +71,19 @@ const NavBar: React.FC = () => {
         onClick={handleLogoClick}
       />
       <div>
+        {name && (
+          <>
+            <motion.button
+              className="areaAnalysis10 px-6 py-2 mr-8 rounded-md border-2 border-violet-400"
+              style={{ backgroundColor: "#FFFFFF" }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleReselectArea}
+            >
+              상권 재선택
+            </motion.button>
+          </>
+        )}
         {name && (
           <>
             <motion.button
