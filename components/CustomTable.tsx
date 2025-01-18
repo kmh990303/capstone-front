@@ -38,7 +38,7 @@ export function CustomTable() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await authFetch(
-        "http://13.125.95.219:8080/api/customFeatures/list",
+        "http://3.228.160.217:8080/api/customFeatures/list",
         {
           method: "GET",
         }

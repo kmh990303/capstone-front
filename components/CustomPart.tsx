@@ -110,7 +110,7 @@ export const CustomPart = () => {
       if (accessToken && globalAreaIdx > 0 && globalCompareAreaIdx > 0) {
         console.log(newFeat, formula);
         const response = await authFetch(
-          `http://13.125.95.219:8080/api/customFeatures/calculateAndCreate/${globalAreaIdx}/${globalCompareAreaIdx}`,
+          `http://3.228.160.217:8080/api/customFeatures/calculateAndCreate/${globalAreaIdx}/${globalCompareAreaIdx}`,
           {
             method: "POST",
             headers: {

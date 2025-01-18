@@ -92,7 +92,7 @@ export default function ImprovePage() {
   const [selectedImproveIndex, setSelectedImproveIndex] = useState(0);
 
   useEffect(() => {
-    // 더미 데이터 설정
+    // 더미 데이터 설정 => api 엔드포인트 수정 필요
     setImproveData({
       ImproveMethod: [
         {

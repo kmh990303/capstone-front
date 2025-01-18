@@ -56,23 +56,6 @@ export const AreaAnalysisPart = ({
     ratio: value,
   }));
 
-  // useEffect(() => {
-  //   const authFetchGetData = async () => {
-  //     const response = await authFetch("http://backend", {
-  //       method: "GET",
-  //     });
-
-  //     if (!response.ok) throw new Error("Failed to fetch data...");
-
-  //     const data = await response.json();
-  //     console.log(data);
-
-  //     return data;
-  //   };
-
-  //   authFetchGetData();
-  // }, []);
-
   return (
     <>
       <div className="w-[42%] h-[90vh] flex flex-col">
