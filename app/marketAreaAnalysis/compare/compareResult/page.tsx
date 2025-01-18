@@ -216,7 +216,7 @@ export default function CompareResultPage() {
       const fetchData = async () => {
         try {
           const response = await fetch(
-            `http://13.125.95.219:8080/api/compare/${areaIdx}/${compareAreaIdx}`,
+            `http://3.228.160.217:8080/api/compare/${areaIdx}/${compareAreaIdx}`,
             {
               method: "GET",
             }
@@ -225,7 +225,7 @@ export default function CompareResultPage() {
           if (!response.ok) throw new Error("Failed to fetch data...");
 
           const data = await response.json();
-
+          console.log(data);
           setAreaData(data.district1);
           setCompareAreaData(data.district2);
           setDifferenceData(data.largestDifferences);
