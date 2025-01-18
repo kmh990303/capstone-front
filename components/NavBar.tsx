@@ -17,7 +17,13 @@ const NavBar: React.FC = () => {
   const router = useRouter();
   const { authFetch } = useAuthenticatedFetch();
   const { loginSuccess, setLoginSuccess, logout } = useAuthStore();
-  const { name, setName, setCompareName } = useAreaStore();
+  const {
+    name,
+    setName,
+    setCompareName,
+    setGlobalAreaIdx,
+    setGlobalCompareAreaIdx,
+  } = useAreaStore();
   const { setFeatureUuid } = useCustomFeatureStore();
 
   const handleLogoClick = () => {
@@ -44,6 +50,8 @@ const NavBar: React.FC = () => {
       setName("");
       setCompareName("");
       setFeatureUuid("");
+      setGlobalAreaIdx(0);
+      setGlobalCompareAreaIdx(0);
       logout();
       localStorage.removeItem("auth-storage");
       localStorage.removeItem("area-storage");

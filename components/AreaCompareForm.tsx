@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { SelectArea } from "./SelectArea";
+import SelectArea from "./SelectArea";
 
 import Image from "next/image";
 import SearchImage from "@/images/search.png";

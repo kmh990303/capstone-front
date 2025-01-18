@@ -196,14 +196,14 @@ export default function CompareResultPage() {
 
   useEffect(() => {
     if (name) {
-      const index = dummyAreas.indexOf(name) + 1;
+      const index = dummyAreas.indexOf(name);
       if (index > 0) {
         setAreaIdx(index);
         setGlobalAreaIdx(index);
       } // areaIdx 업데이트
     }
     if (compareName) {
-      const index = dummyAreas.indexOf(compareName) + 1;
+      const index = dummyAreas.indexOf(compareName);
       if (index > 0) {
         setCompareAreaIdx(index);
         setGlobalCompareAreaIdx(index);

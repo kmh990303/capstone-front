@@ -11,12 +11,13 @@ import {
 import { dummyAreas } from "@/dummy/dummy.js";
 
 import { useAreaStore } from "@/lib/store";
+import { memo } from "react";
 
 interface SelectedAreaProps {
   setSelectedArea: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export function SelectArea({ setSelectedArea }: SelectedAreaProps) {
+function SelectArea({ setSelectedArea }: SelectedAreaProps) {
   const { name } = useAreaStore();
   console.log(name);
   const CompareAreaList = dummyAreas.filter((area) => area !== name);
@@ -45,3 +46,5 @@ export function SelectArea({ setSelectedArea }: SelectedAreaProps) {
     </Select>
   );
 }
+
+export default memo(SelectArea);

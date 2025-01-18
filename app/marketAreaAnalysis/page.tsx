@@ -37,6 +37,7 @@ interface TopTwoDataType {
 
 export default function MarketAreaAnalysisPage() {
   const name = useAreaStore((state) => state.name);
+  const setGlobalAreaIdx = useAreaStore((state) => state.setGlobalAreaIdx);
   const [districtData, setDistrictData] = useState<districtInfoType>({
     districtName: "",
     clusterName: "",
@@ -75,6 +76,7 @@ export default function MarketAreaAnalysisPage() {
 
     const idx = dummyAreas.indexOf(name);
     setAreaIdx(idx);
+    setGlobalAreaIdx(idx);
     if (idx === -1) {
       console.error("Invalid area name:", name);
       return;
