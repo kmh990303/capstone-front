@@ -212,7 +212,7 @@ export default function CompareResultPage() {
   }, [name, compareName, setGlobalAreaIdx, setGlobalCompareAreaIdx]);
 
   useEffect(() => {
-    if (areaIdx && compareAreaIdx) {
+    if (areaIdx !== -1 && compareAreaIdx !== -1) {
       const fetchData = async () => {
         try {
           const response = await fetch(
@@ -254,7 +254,7 @@ export default function CompareResultPage() {
         }
       };
 
-      if (areaIdx > 0 && compareAreaIdx > 0) {
+      if (areaIdx >= 0 && compareAreaIdx >= 0 && areaIdx !== compareAreaIdx) {
         fetchData();
       }
     }
