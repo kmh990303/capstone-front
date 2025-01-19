@@ -55,7 +55,7 @@ export const useAuthStore = create<AuthState>()(
 
                 if (refreshToken) {
                     try {
-                        const response = await fetch('http://3.228.160.217:8080/api/member/reissue', {
+                        const response = await fetch('https://localens.duckdns.org/api/member/reissue', {
                             method: 'POST',
                             body: JSON.stringify({
                                 accessToken,

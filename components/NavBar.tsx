@@ -33,7 +33,7 @@ const NavBar: React.FC = () => {
   const handleLogout = async () => {
     try {
       const response = await authFetch(
-        "http://3.228.160.217:8080/api/member/logout",
+        "https://localens.duckdns.org/api/member/logout",
         {
           method: "POST",
           headers: {

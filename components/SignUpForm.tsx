@@ -71,7 +71,7 @@ export function SignUpForm() {
 
     try {
       const response = await fetch(
-        "http://3.228.160.217:8080/api/member/signup",
+        "https://localens.duckdns.org/api/member/signup",
         {
           method: "POST",
           headers: {

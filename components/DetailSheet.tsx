@@ -257,7 +257,7 @@ export function DetailSheet({ areaIdx, areaName }: detailPropsType) {
   useEffect(() => {
     const getData = async () => {
       const response = await fetch(
-        `http://3.228.160.217:8080/api/details/${areaIdx}`,
+        `https://localens.duckdns.org/api/details/${areaIdx}`,
         {
           method: "GET",
         }

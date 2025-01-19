@@ -85,7 +85,7 @@ export default function MarketAreaAnalysisPage() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://3.228.160.217:8080/api/main/${idx}`,
+          `https://localens.duckdns.org/api/main/${idx}`,
           {
             method: "GET",
           }

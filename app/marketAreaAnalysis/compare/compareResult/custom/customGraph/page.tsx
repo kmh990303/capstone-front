@@ -78,7 +78,7 @@ export default function CustomGraphPage() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await authFetch(
-        `http://3.228.160.217:8080/api/customFeatures/compare/${globalAreaIdx}/${globalCompareAreaIdx}/${featureUuid}`,
+        `https://localens.duckdns.org/api/customFeatures/compare/${globalAreaIdx}/${globalCompareAreaIdx}/${featureUuid}`,
         {
           method: "GET",
         }

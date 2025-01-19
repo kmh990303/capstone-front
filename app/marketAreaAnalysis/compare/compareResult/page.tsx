@@ -216,7 +216,7 @@ export default function CompareResultPage() {
       const fetchData = async () => {
         try {
           const response = await fetch(
-            `http://3.228.160.217:8080/api/compare/${areaIdx}/${compareAreaIdx}`,
+            `https://localens.duckdns.org/api/compare/${areaIdx}/${compareAreaIdx}`,
             {
               method: "GET",
             }

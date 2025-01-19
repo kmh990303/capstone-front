@@ -3,7 +3,7 @@
 export const useAuth = () => {
     const login = async (email: string, password: string) => {
         console.log(email, password);
-        const response = await fetch('http://3.228.160.217:8080/api/member/login', {
+        const response = await fetch('https://localens.duckdns.org/api/member/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -16,6 +16,6 @@ export const useAuth = () => {
         const data = await response.json();
         return data;
     }
-    
+
     return { login };
 }
