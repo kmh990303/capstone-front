@@ -3,6 +3,7 @@ import { RadarChartComponent } from "./RadarChart";
 import Image from "next/image";
 import personLogo from "@/images/person.png";
 import { useAreaStore } from "@/lib/store";
+import { useEffect, useState } from "react";
 
 interface DateComparePartPropsType {
   date: string;
@@ -26,11 +27,22 @@ export const DateComparePart = ({
   topTwo,
 }: DateComparePartPropsType) => {
   const { name } = useAreaStore();
+  const [top, setTop] = useState<string>("");
 
   const chartData = Object.entries(overallData).map(([key, value]) => ({
     standard: key,
     ratio: value,
   }));
+
+  useEffect(() => {
+    if (topTwo.first === "population") setTop("유동 인구 수");
+    else if (topTwo.first === "stayVisit") setTop("체류/방문 비율");
+    else if (topTwo.first === "visitConcentration") setTop("방문 집중도");
+    else if (topTwo.first === "congestion") setTop("혼잡도 변화율");
+    else if (topTwo.first === "stayPerVisitor")
+      setTop("체류 시간 대비 방문자 수");
+    else if (topTwo.first === "stayTimeChange") setTop("평균 체류시간 변화율");
+  }, [topTwo.first]);
 
   return (
     <>
@@ -61,7 +73,7 @@ export const DateComparePart = ({
               />
             </span>
             <p className="flex items-center gap-3">
-              <span className="areaAnalysis5">{topTwo.first}</span>
+              <span className="areaAnalysis5">{top}</span>
               <span className="areaAnalysis6">이/가 가장 높아요</span>
             </p>
           </div>
@@ -73,7 +85,7 @@ export const DateComparePart = ({
               입니다.
             </p>
             <p className="areaAnalysis8 w-full m-1">
-              <span className="areaAnalysis7 m-1">{topTwo.first}</span>
+              <span className="areaAnalysis7 m-1">{top}</span>
               값이 가장 높게 나타나고 있습니다.
             </p>
           </div>
