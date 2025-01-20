@@ -3,7 +3,7 @@
 
 import NavBar from "@/components/NavBar";
 import MapComponent from "@/components/MapComponent";
-import { AreaAnalysisPart } from "@/components/AreaAnalysisPart";
+import AreaAnalysisPart from "@/components/AreaAnalysisPart";
 import { useAreaStore } from "@/lib/store";
 import { dummyAreas } from "@/dummy/dummy";
 import { useEffect, useState } from "react";

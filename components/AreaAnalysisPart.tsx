@@ -1,16 +1,12 @@
-// import { useEffect } from "react";
-
-import { RadarChartComponent } from "./RadarChart";
-import { DetailSheet } from "./DetailSheet";
-
 import Image from "next/image";
 import personLogo from "@/images/person.png";
 
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-// import { useAuthenticatedFetch } from "@/hooks/useAuthenticatedFetch";
-
 import { useAreaStore } from "@/lib/store";
+import { RadarChartComponent } from "./RadarChart";
+import DetailSheet from "./DetailSheet";
+import React from "react";
 
 interface areaAnalysisPropsType {
   districtName: string;
@@ -29,7 +25,7 @@ interface areaAnalysisPropsType {
   idx: number;
 }
 
-export const AreaAnalysisPart = ({
+const AreaAnalysisPart = ({
   districtName,
   clusterName,
   first,
@@ -39,8 +35,6 @@ export const AreaAnalysisPart = ({
   idx,
 }: areaAnalysisPropsType) => {
   const router = useRouter();
-  // const { authFetch } = useAuthenticatedFetch();
-  // const { name, setName } = useAreaStore();
   const { name } = useAreaStore();
 
   const handleCompareButton = () => {
@@ -136,3 +130,5 @@ export const AreaAnalysisPart = ({
     </>
   );
 };
+
+export default React.memo(AreaAnalysisPart);

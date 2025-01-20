@@ -12,15 +12,13 @@ import { PeopleNumLineChart } from "./PeopleNumLineChart";
 import { StayVisitRatioChart } from "./StayVisitRatioChart";
 import { CongestionChangeChart } from "./CongestionChangeChart";
 import { StayPerVisitorChart } from "./StayPerVisitorChart";
-// import { VisitConcentrationChart } from "./VisitConcentrationChart";
-// import { PeakTimeChart } from "./PeakTimeChart";
 import { StayTimeChangeChart } from "./StayTimeChangeChart";
-// import { VisitorIncreaseChart } from "./VisitorIncreaseChart";
 import { AgeGroupStayPatternChart } from "./AgeStayPatternChart";
 import { CountryPatternChart } from "./CountryPattern";
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import React from "react";
 
 interface detailPropsType {
   areaIdx: number;
@@ -85,7 +83,7 @@ interface nationalityPatternType {
   Local: number;
 }
 
-export function DetailSheet({ areaIdx, areaName }: detailPropsType) {
+function DetailSheet({ areaIdx, areaName }: detailPropsType) {
   const [hourlyFloatingData, setHourlyFloatingData] = useState<HourlyDataType>({
     zero: 0,
     one: 0,
@@ -279,7 +277,7 @@ export function DetailSheet({ areaIdx, areaName }: detailPropsType) {
       return data;
     };
 
-    if (areaIdx !== 0) {
+    if (areaIdx > -1) {
       getData();
     }
   }, [areaIdx]);
@@ -336,3 +334,5 @@ export function DetailSheet({ areaIdx, areaName }: detailPropsType) {
     </Sheet>
   );
 }
+
+export default React.memo(DetailSheet);
