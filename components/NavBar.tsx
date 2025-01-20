@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import NavLogo from "@/images/navLogo2.png";
+import NavLogo from "@/images/navLogo.webp";
 
 import Image from "next/image";
 
@@ -44,8 +44,6 @@ const NavBar: React.FC = () => {
 
       if (!response.ok) throw new Error("Failed to fetch data...");
 
-      const data = await response.json();
-      console.log(data.message);
       setLoginSuccess();
       setName("");
       setCompareName("");

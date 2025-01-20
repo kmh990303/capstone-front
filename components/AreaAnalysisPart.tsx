@@ -1,12 +1,14 @@
 import Image from "next/image";
 import personLogo from "@/images/person.png";
+import dynamic from "next/dynamic";
 
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useAreaStore } from "@/lib/store";
 import { RadarChartComponent } from "./RadarChart";
-import DetailSheet from "./DetailSheet";
 import React from "react";
+
+const DetailSheet = dynamic(() => import("@/components/DetailSheet"));
 
 interface areaAnalysisPropsType {
   districtName: string;

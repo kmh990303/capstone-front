@@ -96,6 +96,7 @@ export default function DateCompareResultPage() {
         }
 
         const data = await response.json();
+        console.log(data);
         setPrevDateData(data.date1);
         setCurDateData(data.date2);
       } catch (error) {

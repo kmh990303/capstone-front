@@ -2,8 +2,6 @@ import { RadarChartComponent } from "./RadarChart";
 
 import Image from "next/image";
 import personLogo from "@/images/person.png";
-
-// import { useRouter } from "next/navigation";
 import { useAreaStore } from "@/lib/store";
 
 interface DateComparePartPropsType {
@@ -27,16 +25,7 @@ export const DateComparePart = ({
   overallData,
   topTwo,
 }: DateComparePartPropsType) => {
-  // const router = useRouter();
   const { name } = useAreaStore();
-
-  // const handleCompareButton = () => {
-  //   router.push("/marketAreaAnalysis/compare");
-  // };
-
-  // // const handleDateCompareButton = () => {
-  //   router.push("/marketAreaAnalysis/dateCompare");
-  // };
 
   const chartData = Object.entries(overallData).map(([key, value]) => ({
     standard: key,
