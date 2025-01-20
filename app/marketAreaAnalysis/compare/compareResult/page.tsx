@@ -15,6 +15,8 @@ interface districtType {
   districtInfo: {
     districtName: string;
     clusterName: string;
+    latitude: number;
+    longitude: number;
   };
   overallData: {
     population: number;
@@ -34,14 +36,14 @@ interface districtType {
       name: string;
     };
   };
-  arrangedData: {
-    population: number;
-    stayVisit: number;
-    congestion: number;
-    stayPerVisitor: number;
-    visitConcentration: number;
-    stayTimeChange: number;
-  };
+  // arrangedData: {
+  //   population: number;
+  //   stayVisit: number;
+  //   congestion: number;
+  //   stayPerVisitor: number;
+  //   visitConcentration: number;
+  //   stayTimeChange: number;
+  // };
 }
 
 interface arrangedDataType {
@@ -83,6 +85,8 @@ export default function CompareResultPage() {
     districtInfo: {
       districtName: "",
       clusterName: "",
+      latitude: 0,
+      longitude: 0,
     },
     overallData: {
       population: 0,
@@ -102,19 +106,21 @@ export default function CompareResultPage() {
         name: "",
       },
     },
-    arrangedData: {
-      population: 0,
-      stayVisit: 0,
-      congestion: 0,
-      stayPerVisitor: 0,
-      visitConcentration: 0,
-      stayTimeChange: 0,
-    },
+    // arrangedData: {
+    //   population: 0,
+    //   stayVisit: 0,
+    //   congestion: 0,
+    //   stayPerVisitor: 0,
+    //   visitConcentration: 0,
+    //   stayTimeChange: 0,
+    // },
   });
   const [compareAreaData, setCompareAreaData] = useState<districtType>({
     districtInfo: {
       districtName: "",
       clusterName: "",
+      latitude: 0,
+      longitude: 0,
     },
     overallData: {
       population: 0,
@@ -134,14 +140,14 @@ export default function CompareResultPage() {
         name: "",
       },
     },
-    arrangedData: {
-      population: 0,
-      stayVisit: 0,
-      congestion: 0,
-      stayPerVisitor: 0,
-      visitConcentration: 0,
-      stayTimeChange: 0,
-    },
+    // arrangedData: {
+    //   population: 0,
+    //   stayVisit: 0,
+    //   congestion: 0,
+    //   stayPerVisitor: 0,
+    //   visitConcentration: 0,
+    //   stayTimeChange: 0,
+    // },
   });
   const [differenceData, setDifferenceData] = useState<differenceType>({
     key1: {
@@ -228,9 +234,9 @@ export default function CompareResultPage() {
           console.log(data);
           setAreaData(data.district1);
           setCompareAreaData(data.district2);
-          setDifferenceData(data.largestDifferences);
-          setArrangedData1(data.district1.arrangedData);
-          setArrangedData2(data.district2.arrangedData);
+          setDifferenceData(data.topDifferences);
+          setArrangedData1(data.district1.overallData);
+          setArrangedData2(data.district2.overallData);
 
           const chartData1 = Object.entries(data.district1.overallData).map(
             ([key, value]) => ({
