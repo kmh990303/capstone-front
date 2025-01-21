@@ -71,27 +71,28 @@ export function CustomTable() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {customListData.map(
-            (
-              customData // 커스텀 피처 하나 클릭하면 uuid를 상태값에 저장하고, 이 아이디는 전역상태로 관리해야 할 듯 => 커스텀 반영한 그래프 보여주는 쪽 진행
-            ) => (
-              <TableRow key={customData.featureUuid}>
-                <TableCell>{customData.featureName}</TableCell>
-                <TableCell>{customData.formula}</TableCell>
-                <TableCell>
-                  <motion.button
-                    type="button"
-                    onClick={() => handleClick(customData.featureUuid)}
-                    className="px-3 py-1 bg-violet-500 text-white rounded hover:bg-violet-600"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    피처 반영
-                  </motion.button>
-                </TableCell>
-              </TableRow>
-            )
-          )}
+          {customListData &&
+            customListData.map(
+              (
+                customData // 커스텀 피처 하나 클릭하면 uuid를 상태값에 저장하고, 이 아이디는 전역상태로 관리해야 할 듯 => 커스텀 반영한 그래프 보여주는 쪽 진행
+              ) => (
+                <TableRow key={customData.featureUuid}>
+                  <TableCell>{customData.featureName}</TableCell>
+                  <TableCell>{customData.formula}</TableCell>
+                  <TableCell>
+                    <motion.button
+                      type="button"
+                      onClick={() => handleClick(customData.featureUuid)}
+                      className="px-3 py-1 bg-violet-500 text-white rounded hover:bg-violet-600"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      피처 반영
+                    </motion.button>
+                  </TableCell>
+                </TableRow>
+              )
+            )}
         </TableBody>
       </Table>
     </div>
