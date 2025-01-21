@@ -47,13 +47,14 @@ export function CustomTable() {
       if (!response.ok) throw new Error("Failed to fetch data...");
 
       const data = await response.json();
-      setCustomListData((prevData) => [...prevData, ...data]); // 기존 데이터와 합치기
+      console.log(data);
+      setCustomListData(data); // 기존 데이터와 합치기
     };
 
     if (accessToken) {
       fetchData();
     }
-  }, [accessToken, authFetch]);
+  }, [accessToken]);
 
   const handleClick = (uuid: string) => {
     setFeatureUuid(uuid);

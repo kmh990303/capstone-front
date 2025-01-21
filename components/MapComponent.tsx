@@ -39,6 +39,7 @@ const MapComponent = ({ latitude, longitude }: areaPropsType) => {
       latitude !== 0 &&
       longitude !== 0
     ) {
+      console.log(longitude, latitude);
       initializeMap();
     }
   }, [latitude, longitude, initializeMap]); // latitude, longitude 변경 시마다 실행 -> useEffect에 의존성 배열을 작성해놓는게 핵심
