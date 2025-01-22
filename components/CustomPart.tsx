@@ -102,13 +102,13 @@ export const CustomPart = () => {
       return;
     }
 
-    console.log(keywords);
     setAreaName(dummyAreas[globalAreaIdx]);
     setCompareAreaName(dummyAreas[globalCompareAreaIdx]);
 
     try {
       if (accessToken && globalAreaIdx >= 0 && globalCompareAreaIdx >= 0) {
         console.log(newFeat, formula);
+        console.log(globalAreaIdx, globalCompareAreaIdx);
         const response = await authFetch(
           `https://localens.duckdns.org/api/customFeatures/calculateAndCreate/${globalAreaIdx}/${globalCompareAreaIdx}`,
           {
@@ -128,10 +128,12 @@ export const CustomPart = () => {
         }
 
         const data = await response.json();
-        setCustomResultData1(data.district1_result);
-        setCustomResultData2(data.district2_result);
         console.log(data);
+        console.log(data.data.district1_result);
+        console.log(data.data.district2_result);
 
+        setCustomResultData1(data.data.district1_result);
+        setCustomResultData2(data.data.district2_result);
         return data;
       }
     } catch (error) {
