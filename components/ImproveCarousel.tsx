@@ -47,7 +47,7 @@ export function ImproveCarousel({
   // };
 
   return (
-    <Carousel className="flex items-center mt-16 max-h-[80vh] max-w-[25vw] shadow-xl ml-14">
+    <Carousel className="flex items-center mt-10 max-h-[80vh] max-w-[25vw] shadow-xl ml-14">
       <CarouselContent>
         {recommendedEvents.length > 0 &&
           recommendedEvents[0].imageUrl !== "" &&
