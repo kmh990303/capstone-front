@@ -1,7 +1,7 @@
 "use client";
 
 import NavBar from "@/components/NavBar";
-import { CustomGraphPart } from "@/components/CustomGraphPart";
+import CustomGraphPart from "@/components/CustomGraphPart";
 import { useEffect, useState } from "react";
 import { useAuthStore } from "@/lib/store";
 import { useAreaStore } from "@/lib/store";
@@ -88,8 +88,8 @@ export default function CustomGraphPage() {
 
       const data = await response.json();
       console.log(data);
-      setDistrict1Data(data.district1);
-      setDistrict2Data(data.district2);
+      setDistrict1Data(data.data.district1);
+      setDistrict2Data(data.data.district2);
 
       return data;
     };
@@ -97,13 +97,7 @@ export default function CustomGraphPage() {
     if (accessToken && featureUuid) {
       fetchData();
     }
-  }, [
-    accessToken,
-    featureUuid,
-    authFetch,
-    globalAreaIdx,
-    globalCompareAreaIdx,
-  ]);
+  }, [accessToken, featureUuid, globalAreaIdx, globalCompareAreaIdx]);
 
   return (
     <>

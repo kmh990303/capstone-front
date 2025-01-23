@@ -3,6 +3,7 @@
 import { CustomCompareChartComponent } from "./CustomCompareChart";
 import Image from "next/image";
 import personLogo from "@/images/person.png";
+import React, { memo } from "react";
 
 import { useAreaStore } from "@/lib/store";
 
@@ -42,10 +43,7 @@ const standardNameMapping: Record<string, string> = {
 };
 
 // idx가 1이면 메인 상권, 2이면 비교 상권
-export const CustomGraphPart = ({
-  idx,
-  districtData,
-}: DateComparePartPropsType) => {
+const CustomGraphPart = ({ idx, districtData }: DateComparePartPropsType) => {
   const { name, compareName } = useAreaStore();
 
   // 스타일 조건에 따른 클래스 설정
@@ -59,7 +57,7 @@ export const CustomGraphPart = ({
 
   // 현재 상권 이름
   const area = idx === 1 ? name : compareName;
-
+  console.log("오버롤 데이터 확인용", districtData);
   // 전체 데이터 병합
   const beforeChartData = [
     ...Object.entries(districtData.overallData).map(([key, value]) => ({
@@ -137,3 +135,5 @@ export const CustomGraphPart = ({
     </div>
   );
 };
+
+export default React.memo(CustomGraphPart);
