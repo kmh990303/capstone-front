@@ -27,17 +27,17 @@ interface changedDataPropsType {
     }[]; // `overallData`는 배열
     dates: string[];
   };
-  changedFeature: {
-    name: string[];
-    value: number[];
-  };
+  changes: {
+    name: string;
+    value: number;
+  }[];
   selectedImproveIndex: number; // Carousel에서 전달받은 인덱스
 }
 
 export const ImprovePart = ({
   before,
   after,
-  changedFeature,
+  changes,
   selectedImproveIndex,
 }: changedDataPropsType) => {
   // selectedImproveIndex를 기반으로 before와 after의 overallData에서 해당 항목만 추출
@@ -47,11 +47,9 @@ export const ImprovePart = ({
   // changedFeature의 name과 value가 동적으로 변경될 때 대응
   const renderChangedFeature = () => {
     // name과 value 배열의 길이가 다를 경우 대비하여 안전하게 처리
-    const names = changedFeature.name.length
-      ? changedFeature.name[selectedImproveIndex]
-      : "없음";
-    const values = changedFeature.value.length
-      ? changedFeature.value[selectedImproveIndex]
+    const names = changes.length ? changes[selectedImproveIndex].name : "없음";
+    const values = changes.length
+      ? changes[selectedImproveIndex].value
       : "없음";
 
     return (

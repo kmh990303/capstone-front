@@ -39,9 +39,9 @@ interface ImproveDataType {
       dates: string[];
     };
     changes: {
-      name: string[];
-      value: number[];
-    };
+      name: string;
+      value: number;
+    }[];
   };
 }
 
@@ -88,10 +88,12 @@ export default function ImprovePage() {
         ],
         dates: [""],
       },
-      changes: {
-        name: [""],
-        value: [0],
-      },
+      changes: [
+        {
+          name: "",
+          value: 0,
+        },
+      ],
     },
   });
   const [selectedImproveIndex, setSelectedImproveIndex] = useState(0);
@@ -164,7 +166,7 @@ export default function ImprovePage() {
         <ImprovePart
           before={improveData.comparisonData.before}
           after={improveData.comparisonData.after}
-          changedFeature={improveData.comparisonData.changes}
+          changes={improveData.comparisonData.changes}
           selectedImproveIndex={selectedImproveIndex}
         />
       </div>

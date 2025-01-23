@@ -49,22 +49,24 @@ export function ImproveCarousel({
   return (
     <Carousel className="flex items-center mt-16 max-h-[80vh] max-w-[25vw] shadow-xl ml-14">
       <CarouselContent>
-        {recommendedEvents.map((item) => (
-          <CarouselItem key={item.uuid}>
-            <Card className="h-full w-full">
-              <CardContent className="h-full w-full">
-                <Image
-                  key={slideIdx} // key 속성으로 슬라이드 인덱스를 사용해 새로 렌더링하도록 함
-                  src={recommendedEvents[slideIdx].imageUrl}
-                  alt={item.uuid}
-                  className="max-h-[100%] w-full translate-y-4"
-                  width={300}
-                  height={300}
-                />
-              </CardContent>
-            </Card>
-          </CarouselItem>
-        ))}
+        {recommendedEvents.length > 0 &&
+          recommendedEvents[0].imageUrl !== "" &&
+          recommendedEvents.map((item) => (
+            <CarouselItem key={item.uuid}>
+              <Card className="h-full w-full">
+                <CardContent className="h-full w-full">
+                  <Image
+                    key={slideIdx} // key 속성으로 슬라이드 인덱스를 사용해 새로 렌더링하도록 함
+                    src={recommendedEvents[slideIdx].imageUrl}
+                    alt={item.uuid}
+                    className="max-h-[100%] w-full translate-y-4"
+                    width={300}
+                    height={300}
+                  />
+                </CardContent>
+              </Card>
+            </CarouselItem>
+          ))}
       </CarouselContent>
       <CarouselNext onClick={handleNext} />
     </Carousel>
