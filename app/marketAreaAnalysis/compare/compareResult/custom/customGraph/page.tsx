@@ -93,7 +93,12 @@ export default function CustomGraphPage() {
       return data;
     };
 
-    if (accessToken && featureUuid) {
+    if (
+      accessToken &&
+      featureUuid &&
+      globalAreaIdx >= 0 &&
+      globalCompareAreaIdx >= 0
+    ) {
       fetchData();
     }
   }, [accessToken, featureUuid, globalAreaIdx, globalCompareAreaIdx]);

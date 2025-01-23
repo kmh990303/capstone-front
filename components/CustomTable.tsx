@@ -87,7 +87,7 @@ export function CustomTable() {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                     >
-                      피처 반영
+                      적용
                     </motion.button>
                   </TableCell>
                 </TableRow>
