@@ -14,7 +14,7 @@ interface changedDataPropsType {
       visitConcentration: number;
       stayTimeChange: number;
     }[]; // `overallData`는 배열
-    date: string[];
+    dates: string[];
   };
   after: {
     overallData: {
@@ -25,7 +25,7 @@ interface changedDataPropsType {
       visitConcentration: number;
       stayTimeChange: number;
     }[]; // `overallData`는 배열
-    date: string[];
+    dates: string[];
   };
   changedFeature: {
     name: string[];
@@ -78,12 +78,12 @@ export const ImprovePart = ({
           {/* 왼쪽 차트에 `leftChartData` 전달 */}
           <ImproveLeftChart
             overallData={leftChartData}
-            date={before.date[selectedImproveIndex]}
+            date={before.dates[selectedImproveIndex]}
           />
           {/* 오른쪽 차트에 `rightChartData` 전달 */}
           <ImproveRightChart
             overallData={rightChartData}
-            date={after.date[selectedImproveIndex]}
+            date={after.dates[selectedImproveIndex]}
           />
         </div>
         <div className="flex flex-col gap-2 mt-7 w-[90%] mx-auto">

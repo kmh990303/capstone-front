@@ -12,19 +12,19 @@ import {
 import Image from "next/image";
 
 interface CarouselPropsType {
-  improveMethod: {
-    image: string;
-    name: string;
-    date: string;
-    area: string;
-    detail: string;
+  recommendedEvents: {
     uuid: string;
+    name: string;
+    imageUrl: string;
+    place: string;
+    period: string;
+    detail: string;
   }[];
   setSelectedImproveIndex: React.Dispatch<React.SetStateAction<number>>; // setSelectedImproveIndex를 prop으로 받음
 }
 
 export function ImproveCarousel({
-  improveMethod,
+  recommendedEvents,
   setSelectedImproveIndex,
 }: CarouselPropsType) {
   const [slideIdx, setSlideIdx] = useState<number>(0);
@@ -35,7 +35,7 @@ export function ImproveCarousel({
 
   const handleNext = () => {
     // Next 버튼 클릭 시, 인덱스 증가 후 부모에게 업데이트
-    const nextIdx = (slideIdx + 1) % improveMethod.length; // 배열의 끝에 도달하면 처음으로 돌아갑니다.
+    const nextIdx = (slideIdx + 1) % recommendedEvents.length; // 배열의 끝에 도달하면 처음으로 돌아갑니다.
     setSlideIdx(nextIdx);
   };
 
@@ -49,13 +49,13 @@ export function ImproveCarousel({
   return (
     <Carousel className="flex items-center mt-16 max-h-[80vh] max-w-[25vw] shadow-xl ml-14">
       <CarouselContent>
-        {improveMethod.map((item) => (
+        {recommendedEvents.map((item) => (
           <CarouselItem key={item.uuid}>
             <Card className="h-full w-full">
               <CardContent className="h-full w-full">
                 <Image
                   key={slideIdx} // key 속성으로 슬라이드 인덱스를 사용해 새로 렌더링하도록 함
-                  src={improveMethod[slideIdx].image}
+                  src={recommendedEvents[slideIdx].imageUrl}
                   alt={item.uuid}
                   className="max-h-[100%] w-full translate-y-4"
                   width={300}
@@ -66,7 +66,6 @@ export function ImproveCarousel({
           </CarouselItem>
         ))}
       </CarouselContent>
-      {/* <CarouselPrevious onClick={handlePrev} /> */}
       <CarouselNext onClick={handleNext} />
     </Carousel>
   );

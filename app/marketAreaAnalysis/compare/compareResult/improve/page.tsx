@@ -4,17 +4,18 @@ import NavBar from "@/components/NavBar";
 import { ImprovePart } from "@/components/ImprovePart";
 import { ImproveCarousel } from "@/components/ImproveCarousel";
 import { useEffect, useState } from "react";
+import { useAreaStore } from "@/lib/store";
 
 interface ImproveDataType {
-  ImproveMethod: {
-    image: string;
-    name: string;
-    date: string;
-    area: string;
-    detail: string;
+  recommendedEvents: {
     uuid: string;
+    name: string;
+    imageUrl: string;
+    place: string;
+    period: string;
+    detail: string;
   }[];
-  beforeAndAfter: {
+  comparisonData: {
     before: {
       overallData: {
         population: number;
@@ -24,7 +25,7 @@ interface ImproveDataType {
         visitConcentration: number;
         stayTimeChange: number;
       }[];
-      date: string[];
+      dates: string[];
     };
     after: {
       overallData: {
@@ -35,9 +36,9 @@ interface ImproveDataType {
         visitConcentration: number;
         stayTimeChange: number;
       }[];
-      date: string[];
+      dates: string[];
     };
-    changedFeature: {
+    changes: {
       name: string[];
       value: number[];
     };
@@ -45,18 +46,22 @@ interface ImproveDataType {
 }
 
 export default function ImprovePage() {
+  const globalAreaIdx = useAreaStore((state) => state.globalAreaIdx);
+  const globalCompareAreaIdx = useAreaStore(
+    (state) => state.globalCompareAreaIdx
+  );
   const [improveData, setImproveData] = useState<ImproveDataType>({
-    ImproveMethod: [
+    recommendedEvents: [
       {
-        image: "",
+        imageUrl: "",
         name: "",
-        date: "",
-        area: "",
+        period: "",
+        place: "",
         detail: "",
         uuid: "",
       },
     ],
-    beforeAndAfter: {
+    comparisonData: {
       before: {
         overallData: [
           {
@@ -68,7 +73,7 @@ export default function ImprovePage() {
             stayTimeChange: 0,
           },
         ],
-        date: [""],
+        dates: [""],
       },
       after: {
         overallData: [
@@ -81,9 +86,9 @@ export default function ImprovePage() {
             stayTimeChange: 0,
           },
         ],
-        date: [""],
+        dates: [""],
       },
-      changedFeature: {
+      changes: {
         name: [""],
         value: [0],
       },
@@ -91,11 +96,32 @@ export default function ImprovePage() {
   });
   const [selectedImproveIndex, setSelectedImproveIndex] = useState(0);
 
-  // useEffect(() => {  
-  //   const fetchData = async () => {
-  //     const response = await fetch(`https://localens.duckdns.org/`)
-  //   }
-  // }, []); // 빈 배열은 이 useEffect가 컴포넌트 마운트 시 한 번만 실행되도록 보장
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        `https://localens.duckdns.org/api/improvements/recommendations/${globalAreaIdx}/${globalCompareAreaIdx}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch Data...");
+      }
+
+      const data = await response.json();
+      console.log(data);
+
+      setImproveData(data);
+
+      return data;
+    };
+
+    if (
+      globalAreaIdx >= 0 &&
+      globalCompareAreaIdx >= 0 &&
+      globalAreaIdx !== globalCompareAreaIdx
+    ) {
+      fetchData();
+    }
+  }, [globalAreaIdx, globalCompareAreaIdx]);
 
   return (
     <>
@@ -109,26 +135,26 @@ export default function ImprovePage() {
           </div>
           <div className="w-full mx-auto flex justify-between items-center">
             <ImproveCarousel
-              improveMethod={improveData.ImproveMethod}
+              recommendedEvents={improveData.recommendedEvents}
               setSelectedImproveIndex={setSelectedImproveIndex}
             />
             <div className="flex flex-col areaAnalysis_ptaglw translate-y-3 py-24 px-6 max-w-[20vw] mr-10 mt-6 border-2 border-gray-100 shadow-lg">
               <p className="flex flex-col gap-1 mb-2">
                 지역{" "}
                 <span className="mb-2 areaAnalysis_ptagl">
-                  {improveData.ImproveMethod[selectedImproveIndex]?.area}
+                  {improveData.recommendedEvents[selectedImproveIndex]?.place}
                 </span>
               </p>
               <p className="flex flex-col gap-1 mb-2">
                 기간{" "}
                 <span className="mb-2 areaAnalysis_ptagl">
-                  {improveData.ImproveMethod[selectedImproveIndex]?.date}
+                  {improveData.recommendedEvents[selectedImproveIndex]?.period}
                 </span>
               </p>
               <p className="flex flex-col gap-1 mb-2">
                 성격
                 <span className="mb-2 areaAnalysis_ptagl">
-                  {improveData.ImproveMethod[selectedImproveIndex]?.detail}
+                  {improveData.recommendedEvents[selectedImproveIndex]?.detail}
                 </span>
               </p>
             </div>
@@ -136,9 +162,9 @@ export default function ImprovePage() {
         </div>
 
         <ImprovePart
-          before={improveData.beforeAndAfter.before}
-          after={improveData.beforeAndAfter.after}
-          changedFeature={improveData.beforeAndAfter.changedFeature}
+          before={improveData.comparisonData.before}
+          after={improveData.comparisonData.after}
+          changedFeature={improveData.comparisonData.changes}
           selectedImproveIndex={selectedImproveIndex}
         />
       </div>
