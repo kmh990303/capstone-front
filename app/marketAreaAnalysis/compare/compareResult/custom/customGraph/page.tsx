@@ -87,7 +87,6 @@ export default function CustomGraphPage() {
       if (!response.ok) throw new Error("Failed to fetch data...");
 
       const data = await response.json();
-      console.log(data);
       setDistrict1Data(data.data.district1);
       setDistrict2Data(data.data.district2);
 

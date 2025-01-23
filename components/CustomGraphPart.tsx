@@ -3,7 +3,7 @@
 import { CustomCompareChartComponent } from "./CustomCompareChart";
 import Image from "next/image";
 import personLogo from "@/images/person.png";
-import React, { memo } from "react";
+import React from "react";
 
 import { useAreaStore } from "@/lib/store";
 
@@ -57,7 +57,6 @@ const CustomGraphPart = ({ idx, districtData }: DateComparePartPropsType) => {
 
   // 현재 상권 이름
   const area = idx === 1 ? name : compareName;
-  console.log("오버롤 데이터 확인용", districtData);
   // 전체 데이터 병합
   const beforeChartData = [
     ...Object.entries(districtData.overallData).map(([key, value]) => ({
