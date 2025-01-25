@@ -13,8 +13,8 @@ interface changedDataPropsType {
       stayPerVisitor: number;
       visitConcentration: number;
       stayTimeChange: number;
-    }[]; // `overallData`는 배열
-    dates: string[];
+    }; 
+    dates: string;
   };
   after: {
     overallData: {
@@ -24,33 +24,24 @@ interface changedDataPropsType {
       stayPerVisitor: number;
       visitConcentration: number;
       stayTimeChange: number;
-    }[]; // `overallData`는 배열
-    dates: string[];
+    }; 
+    dates: string;
   };
   changes: {
     name: string;
     value: number;
-  }[];
-  selectedImproveIndex: number; // Carousel에서 전달받은 인덱스
+  };
 }
 
 export const ImprovePart = ({
   before,
   after,
   changes,
-  selectedImproveIndex,
 }: changedDataPropsType) => {
-  // selectedImproveIndex를 기반으로 before와 after의 overallData에서 해당 항목만 추출
-  const leftChartData = before.overallData[selectedImproveIndex]; // `before`의 selectedImproveIndex에 해당하는 항목
-  const rightChartData = after.overallData[selectedImproveIndex]; // `after`의 selectedImproveIndex에 해당하는 항목
-
-  // changedFeature의 name과 value가 동적으로 변경될 때 대응
   const renderChangedFeature = () => {
     // name과 value 배열의 길이가 다를 경우 대비하여 안전하게 처리
-    const names = changes.length ? changes[selectedImproveIndex].name : "없음";
-    const values = changes.length
-      ? changes[selectedImproveIndex].value
-      : "없음";
+    const names = changes.name ? changes.name : "없음";
+    const values = changes.value !== null ? changes.value : "없음";
 
     return (
       <span>
@@ -74,13 +65,13 @@ export const ImprovePart = ({
         <div className="flex w-[90%] mx-auto mt-4">
           {/* 왼쪽 차트에 `leftChartData` 전달 */}
           <ImproveLeftChart
-            overallData={leftChartData}
-            date={before.dates[selectedImproveIndex]}
+            overallData={before.overallData}
+            date={before.dates}
           />
           {/* 오른쪽 차트에 `rightChartData` 전달 */}
           <ImproveRightChart
-            overallData={rightChartData}
-            date={after.dates[selectedImproveIndex]}
+            overallData={after.overallData}
+            date={after.dates}
           />
         </div>
         <div className="flex flex-col gap-2 mt-7 w-[90%] mx-auto">

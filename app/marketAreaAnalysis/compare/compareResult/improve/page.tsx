@@ -24,8 +24,8 @@ interface ImproveDataType {
         stayPerVisitor: number;
         visitConcentration: number;
         stayTimeChange: number;
-      }[];
-      dates: string[];
+      };
+      dates: string;
     };
     after: {
       overallData: {
@@ -35,14 +35,14 @@ interface ImproveDataType {
         stayPerVisitor: number;
         visitConcentration: number;
         stayTimeChange: number;
-      }[];
-      dates: string[];
+      };
+      dates: string;
     };
     changes: {
       name: string;
       value: number;
-    }[];
-  };
+    };
+  }[];
 }
 
 export default function ImprovePage() {
@@ -61,10 +61,10 @@ export default function ImprovePage() {
         uuid: "",
       },
     ],
-    comparisonData: {
-      before: {
-        overallData: [
-          {
+    comparisonData: [
+      {
+        before: {
+          overallData: {
             population: 0,
             stayVisit: 0,
             congestion: 0,
@@ -72,12 +72,10 @@ export default function ImprovePage() {
             visitConcentration: 0,
             stayTimeChange: 0,
           },
-        ],
-        dates: [""],
-      },
-      after: {
-        overallData: [
-          {
+          dates: "",
+        },
+        after: {
+          overallData: {
             population: 0,
             stayVisit: 0,
             congestion: 0,
@@ -85,16 +83,14 @@ export default function ImprovePage() {
             visitConcentration: 0,
             stayTimeChange: 0,
           },
-        ],
-        dates: [""],
-      },
-      changes: [
-        {
+          dates: "",
+        },
+        changes: {
           name: "",
           value: 0,
         },
-      ],
-    },
+      },
+    ],
   });
   const [selectedImproveIndex, setSelectedImproveIndex] = useState(0);
 
@@ -164,10 +160,9 @@ export default function ImprovePage() {
         </div>
 
         <ImprovePart
-          before={improveData.comparisonData.before}
-          after={improveData.comparisonData.after}
-          changes={improveData.comparisonData.changes}
-          selectedImproveIndex={selectedImproveIndex}
+          before={improveData.comparisonData[selectedImproveIndex].before}
+          after={improveData.comparisonData[selectedImproveIndex].after}
+          changes={improveData.comparisonData[selectedImproveIndex].changes}
         />
       </div>
     </>
