@@ -13,7 +13,7 @@ interface changedDataPropsType {
       stayPerVisitor: number;
       visitConcentration: number;
       stayTimeChange: number;
-    }; 
+    };
     dates: string;
   };
   after: {
@@ -24,7 +24,7 @@ interface changedDataPropsType {
       stayPerVisitor: number;
       visitConcentration: number;
       stayTimeChange: number;
-    }; 
+    };
     dates: string;
   };
   changes: {
@@ -76,7 +76,9 @@ export const ImprovePart = ({
         </div>
         <div className="flex flex-col gap-2 mt-7 w-[90%] mx-auto">
           <p className="areaAnalysis_smallp">설명</p>
-          <p className="areaAnalysis_smallp">{renderChangedFeature()}</p>
+          <p className="areaAnalysis_smallp">
+            {changes !== null && renderChangedFeature()}
+          </p>
         </div>
       </div>
     </div>
