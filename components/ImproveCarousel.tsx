@@ -54,7 +54,7 @@ export function ImproveCarousel({
           recommendedEvents.map((item) => (
             <CarouselItem key={item.uuid}>
               <Card className="h-full w-full">
-                <CardContent className="h-full w-full">
+                <CardContent className="w-[21rem]">
                   <Image
                     key={slideIdx} // key 속성으로 슬라이드 인덱스를 사용해 새로 렌더링하도록 함
                     src={recommendedEvents[slideIdx].imageUrl}
