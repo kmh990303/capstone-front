@@ -103,12 +103,12 @@ export function CardForm() {
   }, [userInfo.email, userInfo.password]);
 
   return (
-    <motion.div
-      className="w-[35rem] h-[35rem] mx-auto bg-white shadow-xl rounded-md"
-      initial={{ opacity: 0, y: 50 }} // 초기 상태
-      animate={{ opacity: 1, y: 0 }} // 애니메이션 중 상태
-      exit={{ opacity: 0, y: 50 }} // 종료 상태
-      transition={{ duration: 0.5 }} // 애니메이션 지속 시간
+    <div
+      className="w-[35rem] h-[35rem] mx-auto bg-white shadow-xl rounded-md max-h-full"
+      // initial={{ opacity: 0, y: 50 }} // 초기 상태
+      // animate={{ opacity: 1, y: 0 }} // 애니메이션 중 상태
+      // exit={{ opacity: 0, y: 50 }} // 종료 상태
+      // transition={{ duration: 0.5 }} // 애니메이션 지속 시간
     >
       <CardHeader>
         <CardTitle>
@@ -221,6 +221,6 @@ export function CardForm() {
           </div>
         </form>
       </CardContent>
-    </motion.div>
+    </div>
   );
 }

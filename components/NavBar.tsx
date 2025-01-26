@@ -76,7 +76,7 @@ const NavBar: React.FC = () => {
         className="ml-10 cursor-pointer w-[12rem]"
         onClick={handleLogoClick}
       />
-      <div>
+      <div className="flex flex-wrap items-center justify-between gap-4">
         {name && (
           <>
             <motion.button
