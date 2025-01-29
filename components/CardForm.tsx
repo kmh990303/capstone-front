@@ -9,9 +9,9 @@ import {
 } from "@/components/ui/card";
 
 import Image from "next/image";
-import ModalLogo from "@/images/ModalLogo2.png";
-import lockImage from "@/images/lock2.png";
-import emailImage from "@/images/email.png";
+import ModalLogo from "@/images/modalLogo.webp";
+import lockImage from "@/images/lock.webp";
+import emailImage from "@/images/email.webp";
 
 import { MoonLoader } from "react-spinners";
 
@@ -58,11 +58,9 @@ export function CardForm() {
       setIsLoading(true);
       // setError(null);
       const data = await login(userInfo.email, userInfo.password);
-      console.log(data, "api 요청 성공!");
       setAccessToken(data.accessToken);
       setRefreshToken(data.refreshToken);
       setLoginSuccess();
-      console.log(loginSuccess);
       router.push("/inputArea");
     } catch (e) {
       // const errorMessage = e instanceof Error ? e.message : "알 수 없는 에러";

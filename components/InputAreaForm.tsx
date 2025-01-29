@@ -10,8 +10,8 @@ import {
 import { OriginalSelectedArea } from "./OriginalSelectedArea";
 
 import Image from "next/image";
-import SearchImage from "@/images/search.png";
-import ModalLogo from "@/images/ModalLogo2.png";
+import SearchImage from "@/images/search.webp";
+import ModalLogo from "@/images/modalLogo.webp";
 
 import { MoonLoader } from "react-spinners";
 
@@ -30,11 +30,8 @@ export function InputAreaForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     setIsLoading(true);
     setError(null);
-
-    console.log(selectedArea);
     setName(selectedArea);
     setIsLoading(false);
 
@@ -42,13 +39,7 @@ export function InputAreaForm() {
   };
 
   return (
-    <motion.div
-      className="w-[35rem] h-[35rem] mx-auto bg-white shadow-xl rounded-md"
-      initial={{ opacity: 0, y: 50 }} // 초기 상태
-      animate={{ opacity: 1, y: 0 }} // 애니메이션 중 상태
-      exit={{ opacity: 0, y: 50 }} // 종료 상태
-      transition={{ duration: 0.5 }} // 애니메이션 지속 시간
-    >
+    <div className="w-[35rem] h-[35rem] mx-auto bg-white shadow-xl rounded-md">
       <CardHeader className="mt-5">
         <CardTitle>
           <Image src={ModalLogo} alt="logo" className="w-20rem mx-auto m-1" />
@@ -113,6 +104,6 @@ export function InputAreaForm() {
           </div>
         </form>
       </CardContent>
-    </motion.div>
+    </div>
   );
 }

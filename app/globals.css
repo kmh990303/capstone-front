@@ -78,7 +78,7 @@ body {
 }
 
 .background {
-  background-image: url("/backImage.png");
+  background-image: url("/background.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
