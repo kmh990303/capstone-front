@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import { CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 
 import Image from "next/image";
-import lockImage from "@/images/lock2.png";
-import emailImage from "@/images/email.png";
+import lockImage from "@/images/lock.webp";
+import emailImage from "@/images/email.webp";
 
 import { MoonLoader } from "react-spinners";
 

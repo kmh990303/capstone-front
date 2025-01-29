@@ -5,7 +5,7 @@ import { MdInfoOutline } from "react-icons/md";
 import { motion } from "framer-motion";
 import { CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import Image from "next/image";
-import emailImage from "@/images/email.png";
+import emailImage from "@/images/email.webp";
 import { MoonLoader } from "react-spinners";
 
 import { useRouter } from "next/navigation";

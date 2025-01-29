@@ -10,8 +10,8 @@ import {
 import SelectArea from "./SelectArea";
 
 import Image from "next/image";
-import SearchImage from "@/images/search.png";
-import ModalLogo from "@/images/ModalLogo2.png";
+import SearchImage from "@/images/search.webp";
+import ModalLogo from "@/images/modalLogo.webp";
 
 import { MoonLoader } from "react-spinners";
 

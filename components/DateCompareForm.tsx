@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 
 import Image from "next/image";
-import ModalLogo from "@/images/ModalLogo2.png";
+import ModalLogo from "@/images/modalLogo.webp";
 
 import { MoonLoader } from "react-spinners";
 
