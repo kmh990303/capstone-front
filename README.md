@@ -3,7 +3,7 @@
 <br/>
 
 <div align="center">
-  <img src="images/navLogo2.png" alt="로고" width="300">
+  <img src="images/navLogo.webp" alt="로고" width="300">
 </div>
 
 <br/>
