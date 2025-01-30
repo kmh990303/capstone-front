@@ -25,13 +25,11 @@ export function InputAreaForm() {
 
   const [selectedArea, setSelectedArea] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
   const { setName } = useAreaStore();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    setError(null);
     setName(selectedArea);
     setIsLoading(false);
 

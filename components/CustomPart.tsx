@@ -155,6 +155,7 @@ export const CustomPart = () => {
     setTurn(false);
     setOptionCnt((prevState) => prevState + 1);
     setKeywords((prevState) => [...prevState, option.feature]);
+    console.log(keywords);
   };
 
   const handleCalOptionClick = (option: calOptionType) => {
