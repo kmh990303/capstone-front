@@ -56,15 +56,13 @@ export function CardForm() {
 
     try {
       setIsLoading(true);
-      // setError(null);
       const data = await login(userInfo.email, userInfo.password);
       setAccessToken(data.accessToken);
       setRefreshToken(data.refreshToken);
       setLoginSuccess();
       router.push("/inputArea");
     } catch (e) {
-      // const errorMessage = e instanceof Error ? e.message : "알 수 없는 에러";
-      // setError("로그인 실패: " + errorMessage);
+      window.alert("아이디와 비밀번호를 다시 확인해주세요.");
       console.error(e);
     } finally {
       setIsLoading(false);
