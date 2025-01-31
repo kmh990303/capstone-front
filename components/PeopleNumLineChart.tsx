@@ -52,7 +52,9 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function PeopleNumLineChart({ chartData }: PeopleNumLineChartPropsType) {
+export default function PeopleNumLineChart({
+  chartData,
+}: PeopleNumLineChartPropsType) {
   // 데이터 변환 로직
   const formattedData = Object.entries(chartData).map(([key, value]) => {
     const hourMap: { [key: string]: string } = {

@@ -52,7 +52,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function StayVisitRatioChart({
+export default function StayVisitRatioChart({
   chartData,
 }: hourlyStayVisitRatioPropsType) {
   const formattedData = Object.entries(chartData).map(([key, value]) => {

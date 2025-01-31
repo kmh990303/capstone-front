@@ -52,7 +52,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function CongestionChangeChart({
+export default function CongestionChangeChart({
   chartData,
 }: hourlyCongestionRateChangePropsType) {
   const formattedData = Object.entries(chartData).map(([key, value]) => {

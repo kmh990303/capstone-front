@@ -95,7 +95,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function AgeGroupStayPatternChart({
+export default function AgeGroupStayPatternChart({
   chartData,
 }: ageStayPatternPropsType) {
   // chartData를 변환

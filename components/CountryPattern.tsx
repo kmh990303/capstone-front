@@ -36,7 +36,9 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function CountryPatternChart({ chartData }: countryPatternPropsType) {
+export default function CountryPatternChart({
+  chartData,
+}: countryPatternPropsType) {
   const totalVisitors = React.useMemo(() => {
     return chartData.Foreigner + chartData.Local;
   }, [chartData]);

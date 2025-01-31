@@ -8,17 +8,19 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { PeopleNumLineChart } from "./PeopleNumLineChart";
-import { StayVisitRatioChart } from "./StayVisitRatioChart";
-import { CongestionChangeChart } from "./CongestionChangeChart";
-import { StayPerVisitorChart } from "./StayPerVisitorChart";
-import { StayTimeChangeChart } from "./StayTimeChangeChart";
-import { AgeGroupStayPatternChart } from "./AgeStayPatternChart";
-import { CountryPatternChart } from "./CountryPattern";
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import React from "react";
+import dynamic from "next/dynamic";
+
+const PeopleNumLineChart = dynamic(() => import("./PeopleNumLineChart"));
+const CongestionChangeChart = dynamic(() => import("./CongestionChangeChart"));
+const StayPerVisitorChart = dynamic(() => import("./StayPerVisitorChart"));
+const StayTimeChangeChart = dynamic(() => import("./StayTimeChangeChart"));
+const StayVisitRatioChart = dynamic(() => import("./StayVisitRatioChart"));
+const AgeGroupStayPatternChart = dynamic(() => import("./AgeStayPatternChart"));
+const CountryPatternChart = dynamic(() => import("./CountryPattern"));
 
 interface detailPropsType {
   areaIdx: number;

@@ -52,7 +52,9 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function StayPerVisitorChart({ chartData }: stayPerVisitorPropsType) {
+export default function StayPerVisitorChart({
+  chartData,
+}: stayPerVisitorPropsType) {
   const formattedData = Object.entries(chartData).map(([key, value]) => {
     const hourMap: { [key: string]: string } = {
       zero: "0시",
