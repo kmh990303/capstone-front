@@ -127,9 +127,9 @@ export default function ImprovePage() {
       <div className="flex">
         <div className="w-[58%] h-[90vh] overflow-y-auto">
           <div className="w-full h-[10vh] border-2 border-gray-100 flex flex-col justify-center items-center">
-            <h1 className="flex items-center gap-2 areaAnalysis_black">
+            <p className="flex items-center gap-2 areaAnalysis_black">
               로컬렌즈에서 제시하는 개선 방안입니다.
-            </h1>
+            </p>
           </div>
           <div className="w-full mx-auto flex justify-between items-center">
             <ImproveCarousel
