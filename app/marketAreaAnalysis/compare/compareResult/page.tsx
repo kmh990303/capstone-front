@@ -272,7 +272,7 @@ export default function CompareResultPage() {
       <div className="flex">
         <div className="w-[58%] h-[90vh]">
           <div className="w-full h-[10vh] border-2 border-gray-100 flex justify-center items-center">
-            <h1 className="flex items-center gap-2 areaAnalysis_black">
+            <p className="flex items-center gap-2 areaAnalysis_black">
               <span className="areaAnalysis">
                 {areaData.districtInfo.districtName}
               </span>
@@ -281,7 +281,7 @@ export default function CompareResultPage() {
                 {compareAreaData.districtInfo.districtName}
               </span>
               처럼 되려면?
-            </h1>
+            </p>
           </div>
           <div className="w-full h-[80vh] flex items-center">
             <div className="w-1/2 h-full border-2 border-gray-100">
