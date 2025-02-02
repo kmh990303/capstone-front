@@ -286,12 +286,12 @@ export default function CompareResultPage() {
           <div className="w-full h-[80vh] flex items-center">
             <div className="w-1/2 h-full border-2 border-gray-100">
               <div className="flex flex-col gap-4 h-[10vh] mt-10">
-                <h3 className="areaAnalysis3 ml-8">
+                <p className="areaAnalysis3 ml-8">
                   {areaData.districtInfo.districtName} 상권 유형
-                </h3>
-                <h3 className="areaAnalysis4 ml-8">
+                </p>
+                <p className="areaAnalysis4 ml-8">
                   {areaData.districtInfo.clusterName}
-                </h3>
+                </p>
               </div>
 
               <div>
@@ -334,12 +334,12 @@ export default function CompareResultPage() {
             </div>
             <div className="w-1/2 h-full border-2 border-gray-100">
               <div className="flex flex-col gap-4 h-[10vh] mt-10">
-                <h3 className="areaAnalysis3 ml-8">
+                <p className="areaAnalysis3 ml-8">
                   {compareAreaData.districtInfo.districtName} 상권 유형
-                </h3>
-                <h3 className="areaAnalysis4_purple ml-8">
+                </p>
+                <p className="areaAnalysis4_purple ml-8">
                   {compareAreaData.districtInfo.clusterName}
-                </h3>
+                </p>
               </div>
 
               <div>

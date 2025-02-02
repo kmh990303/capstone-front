@@ -61,10 +61,10 @@ export const CompareResultPart = ({
     <>
       <div className="w-[42%] h-[90vh] flex flex-col">
         <div className="w-full h-[10vh] border-2 border-gray-100 flex justify-center items-center">
-          <h1 className="flex items-center gap-2 areaAnalysis_black">
+          <p className="flex items-center gap-2 areaAnalysis_black">
             <span className="areaAnalysis">{name}</span> vs
             <span className="areaAnalysis_purple">{compareName}</span>
-          </h1>
+          </p>
         </div>
 
         <div className="flex items-center justify-between py-5">
