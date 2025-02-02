@@ -305,7 +305,7 @@ function DetailSheet({ areaIdx, areaName }: detailPropsType) {
             className="areaAnalysis3"
             style={{ marginTop: "1.55rem" }}
           >
-            상권에 대한 세부 지표 정보를 제공합니다.
+            상권 세부 정보
           </SheetDescription>
         </SheetHeader>
         <div className="flex flex-col mt-4">
