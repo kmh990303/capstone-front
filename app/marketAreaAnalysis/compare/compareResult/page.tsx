@@ -289,9 +289,9 @@ export default function CompareResultPage() {
                 <p className="areaAnalysis3 ml-8">
                   {areaData.districtInfo.districtName} 상권 유형
                 </p>
-                <p className="areaAnalysis4 ml-8">
+                <span className="areaAnalysis4 ml-8">
                   {areaData.districtInfo.clusterName}
-                </p>
+                </span>
               </div>
 
               <div>
@@ -337,9 +337,9 @@ export default function CompareResultPage() {
                 <p className="areaAnalysis3 ml-8">
                   {compareAreaData.districtInfo.districtName} 상권 유형
                 </p>
-                <p className="areaAnalysis4_purple ml-8">
+                <span className="areaAnalysis4_purple ml-8">
                   {compareAreaData.districtInfo.clusterName}
-                </p>
+                </span>
               </div>
 
               <div>
