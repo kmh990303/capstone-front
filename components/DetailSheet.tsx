@@ -308,7 +308,7 @@ function DetailSheet({ areaIdx, areaName }: detailPropsType) {
             상권에 대한 세부 지표 정보를 제공합니다.
           </SheetDescription>
         </SheetHeader>
-        <div className="flex flex-col">
+        <div className="flex flex-col mt-4">
           <PeopleNumLineChart chartData={hourlyFloatingData} />
           <StayVisitRatioChart chartData={hourlyStayVisitRatioData} />
           <CongestionChangeChart chartData={hourlyCongestionRateChangeData} />
